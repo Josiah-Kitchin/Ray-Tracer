@@ -5,6 +5,12 @@ Material::Material() : color(Color(0, 0, 0)), ambient(0), diffuse(0), specular(0
 
 
 Color lighting(const Material& mat, const Light& light, const Point& position, const Vec& eye, const Vec& normal) { 
+    /* Phong Reflection Model */
+
+
+    //The Problem
+    //I know its the diffuce, is messing up somewhere. The ambient and specular are still correct, 
+    //but somewhere the diffuse is off. it should be 0.63 but it ends up 0.45
     Color ambient, diffuse, specular; 
 
     Color effective_color = mat.color * light.intensity; 
@@ -32,3 +38,7 @@ Color lighting(const Material& mat, const Light& light, const Point& position, c
     }
     return ambient + diffuse + specular; 
 }
+
+
+
+

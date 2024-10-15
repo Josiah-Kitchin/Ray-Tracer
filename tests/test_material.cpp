@@ -35,6 +35,7 @@ TEST(lighting, lighting3) {
     Material mat; 
     mat.color = Color(1,1,1);
     mat.ambient = 0.1; mat.diffuse = 0.9 * (sqrt(2)/2);
+    mat.shininess = 1; 
     Point position(0, 0, 0);
 
     ASSERT_EQ(Color(0.7364, 0.7364, 0.7364), lighting(mat, light, position, eyev, normalv));
@@ -47,6 +48,7 @@ TEST(lighting, lighting4) {
     Material mat; 
     mat.color = Color(1,1,1);
     mat.ambient = 0.1; mat.diffuse = 0.9 * (sqrt(2)/2); mat.specular = 0.9; 
+    mat.shininess = 1;
     Point position(0, 0, 0);
 
     ASSERT_EQ(Color(1.6364, 1.6364, 1.6364), lighting(mat, light, position, eyev, normalv));

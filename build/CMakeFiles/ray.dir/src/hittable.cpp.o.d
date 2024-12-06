@@ -179,4 +179,7 @@ CMakeFiles/ray.dir/src/hittable.cpp.o: \
  /usr/include/c++/11/bits/istream.tcc \
  /home/josiah/Desktop/ray_challenge/include/matrices.hpp \
  /home/josiah/Desktop/ray_challenge/include/intersection.hpp \
+ /home/josiah/Desktop/ray_challenge/include/material.hpp \
+ /home/josiah/Desktop/ray_challenge/include/light.hpp \
+ /home/josiah/Desktop/ray_challenge/include/material.hpp \
  /home/josiah/Desktop/ray_challenge/include/utils.hpp

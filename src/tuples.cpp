@@ -225,20 +225,20 @@ std::ostream& operator<<(std::ostream& out, const Color& color) {
 
 void Color::clamp() { 
     if (r > 1) r = 1; 
-    if (r < 1) r = 0;  
+    if (r < 0) r = 0;  
 
     if (g > 1) g = 1; 
-    if (g < 1) g = 0; 
+    if (g < 0) g = 0; 
 
     if (b > 1) b = 1;  
-    if (b < 1) b = 0;  
+    if (b < 0) b = 0;  
 }
 
 void Color::convert_to_256() { 
     clamp(); 
-    r = 255 * r; 
-    g = 255 * g; 
-    b = 255 * b; 
+    r = round(255 * r); 
+    g = round(255 * g); 
+    b = round(255 * b); 
 }
 
 

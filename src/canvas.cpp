@@ -22,7 +22,6 @@ void Canvas::insert_color(Color color, int line, int color_idx) {
 void Canvas::write_to_ppm() { 
     std::cout << "P3\n" << width << ' ' << height << "\n255\n"; 
     for (int line = 0; line < height; line++) { 
-	std::clog << "\rScanlines remaining: " << (height - line) << ' ' << std::flush; 
 	
         for (int pixel = 0; pixel < width; pixel++) { 
             Color color = pixel_at(line, pixel); 

@@ -1,7 +1,7 @@
-CMakeFiles/ray.dir/src/material.cpp.o: \
- /home/josiah/Desktop/ray_challenge/src/material.cpp \
+CMakeFiles/ray.dir/src/light.cpp.o: \
+ /home/josiah/Desktop/ray_challenge/src/light.cpp \
  /usr/include/stdc-predef.h \
- /home/josiah/Desktop/ray_challenge/include/material.hpp \
+ /home/josiah/Desktop/ray_challenge/include/light.hpp \
  /home/josiah/Desktop/ray_challenge/include/tuples.hpp \
  /usr/include/c++/11/cmath \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -171,5 +171,4 @@ CMakeFiles/ray.dir/src/material.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc \
- /home/josiah/Desktop/ray_challenge/include/light.hpp
+ /usr/include/c++/11/bits/istream.tcc

@@ -431,6 +431,7 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/hittable.cpp.o: /h
   /home/josiah/Desktop/ray_challenge/include/intersection.hpp \
   /home/josiah/Desktop/ray_challenge/include/material.hpp \
   /home/josiah/Desktop/ray_challenge/include/light.hpp \
+  /home/josiah/Desktop/ray_challenge/include/material.hpp \
   /home/josiah/Desktop/ray_challenge/include/utils.hpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.o: /home/josiah/Desktop/ray_challenge/src/intersection.cpp \

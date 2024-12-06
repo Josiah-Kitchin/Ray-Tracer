@@ -34,7 +34,7 @@ TEST(lighting, lighting3) {
     Light light(Color(1, 1, 1), Point(0, 10, -10));
     Material mat; 
     mat.color = Color(1,1,1);
-    mat.ambient = 0.1; mat.diffuse = 0.9 * (sqrt(2)/2);
+    mat.ambient = 0.1; mat.diffuse = 0.9;
     mat.shininess = 1; 
     Point position(0, 0, 0);
 
@@ -47,7 +47,7 @@ TEST(lighting, lighting4) {
     Light light(Color(1, 1, 1), Point(0, 10, -10));
     Material mat; 
     mat.color = Color(1,1,1);
-    mat.ambient = 0.1; mat.diffuse = 0.9 * (sqrt(2)/2); mat.specular = 0.9; 
+    mat.ambient = 0.1; mat.diffuse = 0.9; mat.specular = 0.9; 
     mat.shininess = 1;
     Point position(0, 0, 0);
 

@@ -1,7 +1,7 @@
 
 #include "material.hpp"
 
-Material::Material() : color(Color(0, 0, 0)), ambient(0), diffuse(0), specular(0), shininess(0) {}
+Material::Material() : color(Color(0, 0, 0)), ambient(0), diffuse(0), specular(0), shininess(1) {}
 
 
 Color lighting(const Material& mat, const Light& light, const Point& position, const Vec& eye, const Vec& normal) { 

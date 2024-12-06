@@ -201,6 +201,30 @@ src/intersection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/intersection.cpp.s
 .PHONY : src/intersection.cpp.s
 
+src/light.o: src/light.cpp.o
+.PHONY : src/light.o
+
+# target to build an object file
+src/light.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/light.cpp.o
+.PHONY : src/light.cpp.o
+
+src/light.i: src/light.cpp.i
+.PHONY : src/light.i
+
+# target to preprocess a source file
+src/light.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/light.cpp.i
+.PHONY : src/light.cpp.i
+
+src/light.s: src/light.cpp.s
+.PHONY : src/light.s
+
+# target to generate assembly for a file
+src/light.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/light.cpp.s
+.PHONY : src/light.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -224,6 +248,30 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/material.o: src/material.cpp.o
+.PHONY : src/material.o
+
+# target to build an object file
+src/material.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/material.cpp.o
+.PHONY : src/material.cpp.o
+
+src/material.i: src/material.cpp.i
+.PHONY : src/material.i
+
+# target to preprocess a source file
+src/material.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/material.cpp.i
+.PHONY : src/material.cpp.i
+
+src/material.s: src/material.cpp.s
+.PHONY : src/material.s
+
+# target to generate assembly for a file
+src/material.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/material.cpp.s
+.PHONY : src/material.cpp.s
 
 src/matrices.o: src/matrices.cpp.o
 .PHONY : src/matrices.o
@@ -339,9 +387,15 @@ help:
 	@echo "... src/intersection.o"
 	@echo "... src/intersection.i"
 	@echo "... src/intersection.s"
+	@echo "... src/light.o"
+	@echo "... src/light.i"
+	@echo "... src/light.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/material.o"
+	@echo "... src/material.i"
+	@echo "... src/material.s"
 	@echo "... src/matrices.o"
 	@echo "... src/matrices.i"
 	@echo "... src/matrices.s"

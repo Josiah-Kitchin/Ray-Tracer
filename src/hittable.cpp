@@ -1,6 +1,7 @@
 
 
 #include "hittable.hpp"
+#include "material.hpp"
 #include "utils.hpp"
 #include <cmath> 
 
@@ -42,7 +43,7 @@ void Sphere::transform(const Matrix& new_transformation) {
     transformation = transformation * new_transformation;
 }
 
-Vec Sphere::normal_at(const Point& world_point) { 
+Vec Sphere::normal_at(const Point& world_point) const { 
     //Returns the normal vector at a point. 
     //Because the sphere is transformed, we must make calculations to compute the normal at the 
     //transformed state. 

@@ -181,4 +181,5 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/hittable.cpp.o: \
  /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/material.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/light.hpp \
+ /home/josiah/Desktop/ray_challenge/tests/../include/material.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/utils.hpp

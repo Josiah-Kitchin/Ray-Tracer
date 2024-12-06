@@ -13,6 +13,9 @@ class Hittable {
 public: 
 
     virtual std::vector<Intersection> intersect(const Ray&) const = 0; 
+    // virtual void transform(const Matrix&) = 0;
+    // virtual Vec normal_at(const Point&) const = 0; 
+
     virtual ~Hittable() = default; 
 
 };
@@ -29,7 +32,7 @@ public:
     Sphere();
     std::vector<Intersection> intersect(const Ray&) const override; 
     void transform(const Matrix&);
-    Vec normal_at(const Point&);
+    Vec normal_at(const Point&) const;
 
 };
 

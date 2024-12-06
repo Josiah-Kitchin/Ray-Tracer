@@ -180,4 +180,8 @@ CMakeFiles/ray.dir/src/main.cpp.o: \
  /home/josiah/Desktop/ray_challenge/include/hittable.hpp \
  /home/josiah/Desktop/ray_challenge/include/ray.hpp \
  /home/josiah/Desktop/ray_challenge/include/matrices.hpp \
- /home/josiah/Desktop/ray_challenge/include/intersection.hpp
+ /home/josiah/Desktop/ray_challenge/include/intersection.hpp \
+ /home/josiah/Desktop/ray_challenge/include/material.hpp \
+ /home/josiah/Desktop/ray_challenge/include/light.hpp \
+ /home/josiah/Desktop/ray_challenge/include/material.hpp \
+ /home/josiah/Desktop/ray_challenge/include/light.hpp

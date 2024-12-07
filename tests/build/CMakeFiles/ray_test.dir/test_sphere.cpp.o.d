@@ -300,7 +300,7 @@ CMakeFiles/ray_test.dir/test_sphere.cpp.o: \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
  /home/josiah/Desktop/ray_challenge/tests/../include/matrices.hpp \
- /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/material.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/light.hpp \
+ /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/ray.hpp

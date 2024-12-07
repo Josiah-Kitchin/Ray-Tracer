@@ -298,6 +298,30 @@ home/josiah/Desktop/ray_challenge/src/intersection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.s
 .PHONY : home/josiah/Desktop/ray_challenge/src/intersection.cpp.s
 
+home/josiah/Desktop/ray_challenge/src/intersection_state.o: home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o
+.PHONY : home/josiah/Desktop/ray_challenge/src/intersection_state.o
+
+# target to build an object file
+home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o
+.PHONY : home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o
+
+home/josiah/Desktop/ray_challenge/src/intersection_state.i: home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i
+.PHONY : home/josiah/Desktop/ray_challenge/src/intersection_state.i
+
+# target to preprocess a source file
+home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i
+.PHONY : home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i
+
+home/josiah/Desktop/ray_challenge/src/intersection_state.s: home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s
+.PHONY : home/josiah/Desktop/ray_challenge/src/intersection_state.s
+
+# target to generate assembly for a file
+home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s
+.PHONY : home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s
+
 home/josiah/Desktop/ray_challenge/src/light.o: home/josiah/Desktop/ray_challenge/src/light.cpp.o
 .PHONY : home/josiah/Desktop/ray_challenge/src/light.o
 
@@ -442,6 +466,30 @@ home/josiah/Desktop/ray_challenge/src/utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.s
 .PHONY : home/josiah/Desktop/ray_challenge/src/utils.cpp.s
 
+home/josiah/Desktop/ray_challenge/src/world.o: home/josiah/Desktop/ray_challenge/src/world.cpp.o
+.PHONY : home/josiah/Desktop/ray_challenge/src/world.o
+
+# target to build an object file
+home/josiah/Desktop/ray_challenge/src/world.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o
+.PHONY : home/josiah/Desktop/ray_challenge/src/world.cpp.o
+
+home/josiah/Desktop/ray_challenge/src/world.i: home/josiah/Desktop/ray_challenge/src/world.cpp.i
+.PHONY : home/josiah/Desktop/ray_challenge/src/world.i
+
+# target to preprocess a source file
+home/josiah/Desktop/ray_challenge/src/world.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.i
+.PHONY : home/josiah/Desktop/ray_challenge/src/world.cpp.i
+
+home/josiah/Desktop/ray_challenge/src/world.s: home/josiah/Desktop/ray_challenge/src/world.cpp.s
+.PHONY : home/josiah/Desktop/ray_challenge/src/world.s
+
+# target to generate assembly for a file
+home/josiah/Desktop/ray_challenge/src/world.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.s
+.PHONY : home/josiah/Desktop/ray_challenge/src/world.cpp.s
+
 main_test.o: main_test.cpp.o
 .PHONY : main_test.o
 
@@ -513,6 +561,30 @@ test_intersection.s: test_intersection.cpp.s
 test_intersection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_intersection.cpp.s
 .PHONY : test_intersection.cpp.s
+
+test_intersection_state.o: test_intersection_state.cpp.o
+.PHONY : test_intersection_state.o
+
+# target to build an object file
+test_intersection_state.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_intersection_state.cpp.o
+.PHONY : test_intersection_state.cpp.o
+
+test_intersection_state.i: test_intersection_state.cpp.i
+.PHONY : test_intersection_state.i
+
+# target to preprocess a source file
+test_intersection_state.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_intersection_state.cpp.i
+.PHONY : test_intersection_state.cpp.i
+
+test_intersection_state.s: test_intersection_state.cpp.s
+.PHONY : test_intersection_state.s
+
+# target to generate assembly for a file
+test_intersection_state.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_intersection_state.cpp.s
+.PHONY : test_intersection_state.cpp.s
 
 test_material.o: test_material.cpp.o
 .PHONY : test_material.o
@@ -634,6 +706,30 @@ test_tuples.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_tuples.cpp.s
 .PHONY : test_tuples.cpp.s
 
+test_world.o: test_world.cpp.o
+.PHONY : test_world.o
+
+# target to build an object file
+test_world.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_world.cpp.o
+.PHONY : test_world.cpp.o
+
+test_world.i: test_world.cpp.i
+.PHONY : test_world.i
+
+# target to preprocess a source file
+test_world.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_world.cpp.i
+.PHONY : test_world.cpp.i
+
+test_world.s: test_world.cpp.s
+.PHONY : test_world.s
+
+# target to generate assembly for a file
+test_world.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray_test.dir/build.make CMakeFiles/ray_test.dir/test_world.cpp.s
+.PHONY : test_world.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -660,6 +756,9 @@ help:
 	@echo "... home/josiah/Desktop/ray_challenge/src/intersection.o"
 	@echo "... home/josiah/Desktop/ray_challenge/src/intersection.i"
 	@echo "... home/josiah/Desktop/ray_challenge/src/intersection.s"
+	@echo "... home/josiah/Desktop/ray_challenge/src/intersection_state.o"
+	@echo "... home/josiah/Desktop/ray_challenge/src/intersection_state.i"
+	@echo "... home/josiah/Desktop/ray_challenge/src/intersection_state.s"
 	@echo "... home/josiah/Desktop/ray_challenge/src/light.o"
 	@echo "... home/josiah/Desktop/ray_challenge/src/light.i"
 	@echo "... home/josiah/Desktop/ray_challenge/src/light.s"
@@ -678,6 +777,9 @@ help:
 	@echo "... home/josiah/Desktop/ray_challenge/src/utils.o"
 	@echo "... home/josiah/Desktop/ray_challenge/src/utils.i"
 	@echo "... home/josiah/Desktop/ray_challenge/src/utils.s"
+	@echo "... home/josiah/Desktop/ray_challenge/src/world.o"
+	@echo "... home/josiah/Desktop/ray_challenge/src/world.i"
+	@echo "... home/josiah/Desktop/ray_challenge/src/world.s"
 	@echo "... main_test.o"
 	@echo "... main_test.i"
 	@echo "... main_test.s"
@@ -687,6 +789,9 @@ help:
 	@echo "... test_intersection.o"
 	@echo "... test_intersection.i"
 	@echo "... test_intersection.s"
+	@echo "... test_intersection_state.o"
+	@echo "... test_intersection_state.i"
+	@echo "... test_intersection_state.s"
 	@echo "... test_material.o"
 	@echo "... test_material.i"
 	@echo "... test_material.s"
@@ -702,6 +807,9 @@ help:
 	@echo "... test_tuples.o"
 	@echo "... test_tuples.i"
 	@echo "... test_tuples.s"
+	@echo "... test_world.o"
+	@echo "... test_world.i"
+	@echo "... test_world.s"
 .PHONY : help
 
 

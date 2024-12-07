@@ -178,8 +178,8 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/hittable.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
  /home/josiah/Desktop/ray_challenge/tests/../include/matrices.hpp \
- /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/material.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/light.hpp \
+ /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/material.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/utils.hpp

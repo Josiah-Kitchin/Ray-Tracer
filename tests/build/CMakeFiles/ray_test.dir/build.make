@@ -111,10 +111,24 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.s
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/src/intersection.cpp -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.s
 
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o: CMakeFiles/ray_test.dir/flags.make
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o: /home/josiah/Desktop/ray_challenge/src/intersection_state.cpp
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o -c /home/josiah/Desktop/ray_challenge/src/intersection_state.cpp
+
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/josiah/Desktop/ray_challenge/src/intersection_state.cpp > CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.i
+
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/src/intersection_state.cpp -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.s
+
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o: /home/josiah/Desktop/ray_challenge/src/light.cpp
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o -c /home/josiah/Desktop/ray_challenge/src/light.cpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.s: cmake
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o: /home/josiah/Desktop/ray_challenge/src/material.cpp
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o -c /home/josiah/Desktop/ray_challenge/src/material.cpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.s: cm
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o: /home/josiah/Desktop/ray_challenge/src/matrices.cpp
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o -c /home/josiah/Desktop/ray_challenge/src/matrices.cpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.i: cmake_force
@@ -156,7 +170,7 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.s: cm
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o: /home/josiah/Desktop/ray_challenge/src/ray.cpp
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o -c /home/josiah/Desktop/ray_challenge/src/ray.cpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.i: cmake_force
@@ -170,7 +184,7 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.s: cmake_f
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o: /home/josiah/Desktop/ray_challenge/src/tuples.cpp
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o -c /home/josiah/Desktop/ray_challenge/src/tuples.cpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.i: cmake_force
@@ -184,7 +198,7 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.s: cmak
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o: /home/josiah/Desktop/ray_challenge/src/utils.cpp
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o -c /home/josiah/Desktop/ray_challenge/src/utils.cpp
 
 CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.i: cmake_force
@@ -195,10 +209,24 @@ CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.s: cmake
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/src/utils.cpp -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.s
 
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o: CMakeFiles/ray_test.dir/flags.make
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o: /home/josiah/Desktop/ray_challenge/src/world.cpp
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o -MF CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o.d -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o -c /home/josiah/Desktop/ray_challenge/src/world.cpp
+
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/josiah/Desktop/ray_challenge/src/world.cpp > CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.i
+
+CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/src/world.cpp -o CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.s
+
 CMakeFiles/ray_test.dir/main_test.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/main_test.cpp.o: ../main_test.cpp
 CMakeFiles/ray_test.dir/main_test.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ray_test.dir/main_test.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ray_test.dir/main_test.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/main_test.cpp.o -MF CMakeFiles/ray_test.dir/main_test.cpp.o.d -o CMakeFiles/ray_test.dir/main_test.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/main_test.cpp
 
 CMakeFiles/ray_test.dir/main_test.cpp.i: cmake_force
@@ -212,7 +240,7 @@ CMakeFiles/ray_test.dir/main_test.cpp.s: cmake_force
 CMakeFiles/ray_test.dir/test_canvas.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_canvas.cpp.o: ../test_canvas.cpp
 CMakeFiles/ray_test.dir/test_canvas.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/ray_test.dir/test_canvas.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ray_test.dir/test_canvas.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_canvas.cpp.o -MF CMakeFiles/ray_test.dir/test_canvas.cpp.o.d -o CMakeFiles/ray_test.dir/test_canvas.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_canvas.cpp
 
 CMakeFiles/ray_test.dir/test_canvas.cpp.i: cmake_force
@@ -226,7 +254,7 @@ CMakeFiles/ray_test.dir/test_canvas.cpp.s: cmake_force
 CMakeFiles/ray_test.dir/test_intersection.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_intersection.cpp.o: ../test_intersection.cpp
 CMakeFiles/ray_test.dir/test_intersection.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/ray_test.dir/test_intersection.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ray_test.dir/test_intersection.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_intersection.cpp.o -MF CMakeFiles/ray_test.dir/test_intersection.cpp.o.d -o CMakeFiles/ray_test.dir/test_intersection.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_intersection.cpp
 
 CMakeFiles/ray_test.dir/test_intersection.cpp.i: cmake_force
@@ -237,10 +265,24 @@ CMakeFiles/ray_test.dir/test_intersection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/test_intersection.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/tests/test_intersection.cpp -o CMakeFiles/ray_test.dir/test_intersection.cpp.s
 
+CMakeFiles/ray_test.dir/test_intersection_state.cpp.o: CMakeFiles/ray_test.dir/flags.make
+CMakeFiles/ray_test.dir/test_intersection_state.cpp.o: ../test_intersection_state.cpp
+CMakeFiles/ray_test.dir/test_intersection_state.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ray_test.dir/test_intersection_state.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_intersection_state.cpp.o -MF CMakeFiles/ray_test.dir/test_intersection_state.cpp.o.d -o CMakeFiles/ray_test.dir/test_intersection_state.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_intersection_state.cpp
+
+CMakeFiles/ray_test.dir/test_intersection_state.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_test.dir/test_intersection_state.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/josiah/Desktop/ray_challenge/tests/test_intersection_state.cpp > CMakeFiles/ray_test.dir/test_intersection_state.cpp.i
+
+CMakeFiles/ray_test.dir/test_intersection_state.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/test_intersection_state.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/tests/test_intersection_state.cpp -o CMakeFiles/ray_test.dir/test_intersection_state.cpp.s
+
 CMakeFiles/ray_test.dir/test_material.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_material.cpp.o: ../test_material.cpp
 CMakeFiles/ray_test.dir/test_material.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/ray_test.dir/test_material.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ray_test.dir/test_material.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_material.cpp.o -MF CMakeFiles/ray_test.dir/test_material.cpp.o.d -o CMakeFiles/ray_test.dir/test_material.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_material.cpp
 
 CMakeFiles/ray_test.dir/test_material.cpp.i: cmake_force
@@ -254,7 +296,7 @@ CMakeFiles/ray_test.dir/test_material.cpp.s: cmake_force
 CMakeFiles/ray_test.dir/test_matrices.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_matrices.cpp.o: ../test_matrices.cpp
 CMakeFiles/ray_test.dir/test_matrices.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/ray_test.dir/test_matrices.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ray_test.dir/test_matrices.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_matrices.cpp.o -MF CMakeFiles/ray_test.dir/test_matrices.cpp.o.d -o CMakeFiles/ray_test.dir/test_matrices.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_matrices.cpp
 
 CMakeFiles/ray_test.dir/test_matrices.cpp.i: cmake_force
@@ -268,7 +310,7 @@ CMakeFiles/ray_test.dir/test_matrices.cpp.s: cmake_force
 CMakeFiles/ray_test.dir/test_ray.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_ray.cpp.o: ../test_ray.cpp
 CMakeFiles/ray_test.dir/test_ray.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/ray_test.dir/test_ray.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/ray_test.dir/test_ray.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_ray.cpp.o -MF CMakeFiles/ray_test.dir/test_ray.cpp.o.d -o CMakeFiles/ray_test.dir/test_ray.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_ray.cpp
 
 CMakeFiles/ray_test.dir/test_ray.cpp.i: cmake_force
@@ -282,7 +324,7 @@ CMakeFiles/ray_test.dir/test_ray.cpp.s: cmake_force
 CMakeFiles/ray_test.dir/test_sphere.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_sphere.cpp.o: ../test_sphere.cpp
 CMakeFiles/ray_test.dir/test_sphere.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/ray_test.dir/test_sphere.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/ray_test.dir/test_sphere.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_sphere.cpp.o -MF CMakeFiles/ray_test.dir/test_sphere.cpp.o.d -o CMakeFiles/ray_test.dir/test_sphere.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_sphere.cpp
 
 CMakeFiles/ray_test.dir/test_sphere.cpp.i: cmake_force
@@ -296,7 +338,7 @@ CMakeFiles/ray_test.dir/test_sphere.cpp.s: cmake_force
 CMakeFiles/ray_test.dir/test_tuples.cpp.o: CMakeFiles/ray_test.dir/flags.make
 CMakeFiles/ray_test.dir/test_tuples.cpp.o: ../test_tuples.cpp
 CMakeFiles/ray_test.dir/test_tuples.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/ray_test.dir/test_tuples.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/ray_test.dir/test_tuples.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_tuples.cpp.o -MF CMakeFiles/ray_test.dir/test_tuples.cpp.o.d -o CMakeFiles/ray_test.dir/test_tuples.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_tuples.cpp
 
 CMakeFiles/ray_test.dir/test_tuples.cpp.i: cmake_force
@@ -307,25 +349,43 @@ CMakeFiles/ray_test.dir/test_tuples.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/test_tuples.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/tests/test_tuples.cpp -o CMakeFiles/ray_test.dir/test_tuples.cpp.s
 
+CMakeFiles/ray_test.dir/test_world.cpp.o: CMakeFiles/ray_test.dir/flags.make
+CMakeFiles/ray_test.dir/test_world.cpp.o: ../test_world.cpp
+CMakeFiles/ray_test.dir/test_world.cpp.o: CMakeFiles/ray_test.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/ray_test.dir/test_world.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ray_test.dir/test_world.cpp.o -MF CMakeFiles/ray_test.dir/test_world.cpp.o.d -o CMakeFiles/ray_test.dir/test_world.cpp.o -c /home/josiah/Desktop/ray_challenge/tests/test_world.cpp
+
+CMakeFiles/ray_test.dir/test_world.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ray_test.dir/test_world.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/josiah/Desktop/ray_challenge/tests/test_world.cpp > CMakeFiles/ray_test.dir/test_world.cpp.i
+
+CMakeFiles/ray_test.dir/test_world.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ray_test.dir/test_world.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/josiah/Desktop/ray_challenge/tests/test_world.cpp -o CMakeFiles/ray_test.dir/test_world.cpp.s
+
 # Object files for target ray_test
 ray_test_OBJECTS = \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/canvas.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/hittable.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.o" \
+"CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o" \
 "CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o" \
+"CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o" \
 "CMakeFiles/ray_test.dir/main_test.cpp.o" \
 "CMakeFiles/ray_test.dir/test_canvas.cpp.o" \
 "CMakeFiles/ray_test.dir/test_intersection.cpp.o" \
+"CMakeFiles/ray_test.dir/test_intersection_state.cpp.o" \
 "CMakeFiles/ray_test.dir/test_material.cpp.o" \
 "CMakeFiles/ray_test.dir/test_matrices.cpp.o" \
 "CMakeFiles/ray_test.dir/test_ray.cpp.o" \
 "CMakeFiles/ray_test.dir/test_sphere.cpp.o" \
-"CMakeFiles/ray_test.dir/test_tuples.cpp.o"
+"CMakeFiles/ray_test.dir/test_tuples.cpp.o" \
+"CMakeFiles/ray_test.dir/test_world.cpp.o"
 
 # External object files for target ray_test
 ray_test_EXTERNAL_OBJECTS =
@@ -333,26 +393,30 @@ ray_test_EXTERNAL_OBJECTS =
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/canvas.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/hittable.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection.cpp.o
+ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/light.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/material.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/matrices.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/ray.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/tuples.cpp.o
 ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/utils.cpp.o
+ray_test: CMakeFiles/ray_test.dir/home/josiah/Desktop/ray_challenge/src/world.cpp.o
 ray_test: CMakeFiles/ray_test.dir/main_test.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_canvas.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_intersection.cpp.o
+ray_test: CMakeFiles/ray_test.dir/test_intersection_state.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_material.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_matrices.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_ray.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_sphere.cpp.o
 ray_test: CMakeFiles/ray_test.dir/test_tuples.cpp.o
+ray_test: CMakeFiles/ray_test.dir/test_world.cpp.o
 ray_test: CMakeFiles/ray_test.dir/build.make
 ray_test: lib/libgtest.a
 ray_test: lib/libgtest_main.a
 ray_test: lib/libgtest.a
 ray_test: CMakeFiles/ray_test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable ray_test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/josiah/Desktop/ray_challenge/tests/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable ray_test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ray_test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

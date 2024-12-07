@@ -1,5 +1,5 @@
-CMakeFiles/ray_test.dir/test_intersection.cpp.o: \
- /home/josiah/Desktop/ray_challenge/tests/test_intersection.cpp \
+CMakeFiles/ray_test.dir/test_intersection_state.cpp.o: \
+ /home/josiah/Desktop/ray_challenge/tests/test_intersection_state.cpp \
  /usr/include/stdc-predef.h \
  /home/josiah/Desktop/ray_challenge/tests/googletest/googletest/include/gtest/gtest.h \
  /usr/include/c++/11/cstddef \
@@ -274,8 +274,7 @@ CMakeFiles/ray_test.dir/test_intersection.cpp.o: \
  /home/josiah/Desktop/ray_challenge/tests/googletest/googletest/include/gtest/gtest-typed-test.h \
  /home/josiah/Desktop/ray_challenge/tests/googletest/googletest/include/gtest/gtest_pred_impl.h \
  /home/josiah/Desktop/ray_challenge/tests/googletest/googletest/include/gtest/gtest_prod.h \
- /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp \
- /home/josiah/Desktop/ray_challenge/tests/../include/ray.hpp \
+ /home/josiah/Desktop/ray_challenge/tests/../include/intersection_state.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/tuples.hpp \
  /usr/include/c++/11/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -299,8 +298,9 @@ CMakeFiles/ray_test.dir/test_intersection.cpp.o: \
  /usr/include/c++/11/tr1/poly_hermite.tcc \
  /usr/include/c++/11/tr1/poly_laguerre.tcc \
  /usr/include/c++/11/tr1/riemann_zeta.tcc \
- /home/josiah/Desktop/ray_challenge/tests/../include/matrices.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/hittable.hpp \
+ /home/josiah/Desktop/ray_challenge/tests/../include/ray.hpp \
+ /home/josiah/Desktop/ray_challenge/tests/../include/matrices.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/material.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/light.hpp \
  /home/josiah/Desktop/ray_challenge/tests/../include/intersection.hpp

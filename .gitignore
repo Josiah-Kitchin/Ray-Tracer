@@ -1,10 +1,7 @@
 
 
-CMakeCache.txt
-ray
-ray_test
-googletest
-googletest
-lib
-bin
-.gitignore
+googletest/*
+googletest/
+build/*
+build/
+.vscode

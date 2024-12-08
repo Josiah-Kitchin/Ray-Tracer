@@ -1,3 +1,0 @@
-/home/josiah/Projects/ray_tracer/CMakeFiles/ray.dir
-/home/josiah/Projects/ray_tracer/CMakeFiles/edit_cache.dir
-/home/josiah/Projects/ray_tracer/CMakeFiles/rebuild_cache.dir

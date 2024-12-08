@@ -10,7 +10,7 @@ using std::vector;
 
 /*----------------Sphere----------------*/
 
-Sphere::Sphere() : radius(1), origin(Point(0, 0, 0)), material(Material()), transformation(identity()) {}
+Sphere::Sphere() : radius(1), origin(Point(0, 0, 0)) {}
 
 vector<Intersection> Sphere::intersect(const Ray& ray) const { 
     //transform the ray instead of the sphere, with the type of transformation matrix being held in the 

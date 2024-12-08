@@ -1,7 +1,7 @@
-CMakeFiles/ray.dir/src/intersection.cpp.o: \
- /home/josiah/Desktop/ray_challenge/src/intersection.cpp \
+CMakeFiles/ray.dir/src/world.cpp.o: \
+ /home/josiah/Desktop/ray_challenge/src/world.cpp \
  /usr/include/stdc-predef.h \
- /home/josiah/Desktop/ray_challenge/include/intersection.hpp \
+ /home/josiah/Desktop/ray_challenge/include/world.hpp \
  /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -44,6 +44,7 @@ CMakeFiles/ray.dir/src/intersection.cpp.o: \
  /usr/include/c++/11/bits/hash_bytes.h \
  /usr/include/c++/11/bits/range_access.h \
  /usr/include/c++/11/bits/vector.tcc \
+ /home/josiah/Desktop/ray_challenge/include/hittable.hpp \
  /home/josiah/Desktop/ray_challenge/include/ray.hpp \
  /home/josiah/Desktop/ray_challenge/include/tuples.hpp \
  /usr/include/c++/11/cmath /usr/include/math.h \
@@ -177,4 +178,28 @@ CMakeFiles/ray.dir/src/intersection.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/josiah/Desktop/ray_challenge/include/matrices.hpp
+ /home/josiah/Desktop/ray_challenge/include/matrices.hpp \
+ /home/josiah/Desktop/ray_challenge/include/material.hpp \
+ /home/josiah/Desktop/ray_challenge/include/light.hpp \
+ /home/josiah/Desktop/ray_challenge/include/intersection.hpp \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h \
+ /usr/include/c++/11/bits/stl_algo.h \
+ /usr/include/c++/11/bits/algorithmfwd.h \
+ /usr/include/c++/11/bits/stl_heap.h \
+ /usr/include/c++/11/bits/stl_tempbuf.h \
+ /usr/include/c++/11/bits/uniform_int_dist.h \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/tuple \
+ /usr/include/c++/11/array /usr/include/c++/11/bits/uses_allocator.h \
+ /usr/include/c++/11/bits/invoke.h /usr/include/c++/11/bits/refwrap.h \
+ /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/unordered_map \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h \
+ /usr/include/c++/11/bits/enable_special_members.h \
+ /usr/include/c++/11/bits/node_handle.h \
+ /usr/include/c++/11/bits/unordered_map.h \
+ /usr/include/c++/11/bits/erase_if.h \
+ /usr/include/c++/11/pstl/execution_defs.h

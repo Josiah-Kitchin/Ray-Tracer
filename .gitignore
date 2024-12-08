@@ -7,3 +7,4 @@ googletest
 googletest
 lib
 bin
+.gitignore

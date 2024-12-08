@@ -5,7 +5,7 @@
 
 Ray::Ray(Point origin, Vec direction) : origin(origin), direction(direction) {}
 
-Point Ray::at(double t) { 
+Point Ray::at(double t) const { 
     return origin + direction * t;  
 }
 

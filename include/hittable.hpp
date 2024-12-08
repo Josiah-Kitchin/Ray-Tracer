@@ -3,21 +3,25 @@
 
 #include <vector> 
 #include "ray.hpp"
-#include "intersection.hpp"
 #include "material.hpp"
-
-
+#include "intersection.hpp"
 
 class Hittable { 
-//abstract class for hittable objects 
+    /* 
+        The hittable abstract class is for objects that can be insersected by rays. They hold materials 
+        and can be transformed 
+    */
 public: 
 
     virtual std::vector<Intersection> intersect(const Ray&) const = 0; 
-    // virtual void transform(const Matrix&) = 0;
-    // virtual Vec normal_at(const Point&) const = 0; 
+    virtual void transform(const Matrix&) = 0;
+    virtual Vec normal_at(const Point&) const = 0; 
 
+    Hittable() : material(), transformation(identity()) {}
     virtual ~Hittable() = default; 
 
+    Material material; 
+    Matrix transformation; 
 };
 
 class Sphere : public Hittable { 
@@ -26,8 +30,6 @@ private:
     Point origin; 
 
 public: 
-    Material material; 
-    Matrix transformation; 
 
     Sphere();
     std::vector<Intersection> intersect(const Ray&) const override; 

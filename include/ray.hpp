@@ -13,7 +13,7 @@ public:
 
     Ray(Point, Vec);
 
-    Point at(double);
+    Point at(double) const;
 };
 
 Ray transform_ray(const Ray&, const Matrix&);

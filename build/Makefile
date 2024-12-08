@@ -201,6 +201,30 @@ src/intersection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/intersection.cpp.s
 .PHONY : src/intersection.cpp.s
 
+src/intersection_state.o: src/intersection_state.cpp.o
+.PHONY : src/intersection_state.o
+
+# target to build an object file
+src/intersection_state.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/intersection_state.cpp.o
+.PHONY : src/intersection_state.cpp.o
+
+src/intersection_state.i: src/intersection_state.cpp.i
+.PHONY : src/intersection_state.i
+
+# target to preprocess a source file
+src/intersection_state.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/intersection_state.cpp.i
+.PHONY : src/intersection_state.cpp.i
+
+src/intersection_state.s: src/intersection_state.cpp.s
+.PHONY : src/intersection_state.s
+
+# target to generate assembly for a file
+src/intersection_state.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/intersection_state.cpp.s
+.PHONY : src/intersection_state.cpp.s
+
 src/light.o: src/light.cpp.o
 .PHONY : src/light.o
 
@@ -369,6 +393,30 @@ src/utils.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/utils.cpp.s
 .PHONY : src/utils.cpp.s
 
+src/world.o: src/world.cpp.o
+.PHONY : src/world.o
+
+# target to build an object file
+src/world.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/world.cpp.o
+.PHONY : src/world.cpp.o
+
+src/world.i: src/world.cpp.i
+.PHONY : src/world.i
+
+# target to preprocess a source file
+src/world.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/world.cpp.i
+.PHONY : src/world.cpp.i
+
+src/world.s: src/world.cpp.s
+.PHONY : src/world.s
+
+# target to generate assembly for a file
+src/world.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ray.dir/build.make CMakeFiles/ray.dir/src/world.cpp.s
+.PHONY : src/world.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -387,6 +435,9 @@ help:
 	@echo "... src/intersection.o"
 	@echo "... src/intersection.i"
 	@echo "... src/intersection.s"
+	@echo "... src/intersection_state.o"
+	@echo "... src/intersection_state.i"
+	@echo "... src/intersection_state.s"
 	@echo "... src/light.o"
 	@echo "... src/light.i"
 	@echo "... src/light.s"
@@ -408,6 +459,9 @@ help:
 	@echo "... src/utils.o"
 	@echo "... src/utils.i"
 	@echo "... src/utils.s"
+	@echo "... src/world.o"
+	@echo "... src/world.i"
+	@echo "... src/world.s"
 .PHONY : help
 
 

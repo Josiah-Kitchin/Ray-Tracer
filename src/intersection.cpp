@@ -12,7 +12,7 @@ bool operator==(const Intersection& i1, const Intersection& i2) {
 
 Intersection hit(std::vector<Intersection>& intersections) { 
     //finds what gets hit out of a list of interesections by returning the intersection 
-    // with the lowest t. If there are no hits, returns an intersection with a nullptr object 
+    //with the lowest t. If there are no hits, returns an intersection with a nullptr object 
     if (intersections.empty()) return Intersection(0, nullptr); 
 
     Intersection min = intersections.at(0);  
@@ -26,3 +26,4 @@ Intersection hit(std::vector<Intersection>& intersections) {
     }
     return min;  
 }
+

@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/josiah/Desktop/ray_challenge/src/canvas.cpp" "CMakeFiles/ray.dir/src/canvas.cpp.o" "gcc" "CMakeFiles/ray.dir/src/canvas.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/hittable.cpp" "CMakeFiles/ray.dir/src/hittable.cpp.o" "gcc" "CMakeFiles/ray.dir/src/hittable.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/intersection.cpp" "CMakeFiles/ray.dir/src/intersection.cpp.o" "gcc" "CMakeFiles/ray.dir/src/intersection.cpp.o.d"
+  "/home/josiah/Desktop/ray_challenge/src/intersection_state.cpp" "CMakeFiles/ray.dir/src/intersection_state.cpp.o" "gcc" "CMakeFiles/ray.dir/src/intersection_state.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/light.cpp" "CMakeFiles/ray.dir/src/light.cpp.o" "gcc" "CMakeFiles/ray.dir/src/light.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/main.cpp" "CMakeFiles/ray.dir/src/main.cpp.o" "gcc" "CMakeFiles/ray.dir/src/main.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/material.cpp" "CMakeFiles/ray.dir/src/material.cpp.o" "gcc" "CMakeFiles/ray.dir/src/material.cpp.o.d"
@@ -18,6 +19,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/josiah/Desktop/ray_challenge/src/ray.cpp" "CMakeFiles/ray.dir/src/ray.cpp.o" "gcc" "CMakeFiles/ray.dir/src/ray.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/tuples.cpp" "CMakeFiles/ray.dir/src/tuples.cpp.o" "gcc" "CMakeFiles/ray.dir/src/tuples.cpp.o.d"
   "/home/josiah/Desktop/ray_challenge/src/utils.cpp" "CMakeFiles/ray.dir/src/utils.cpp.o" "gcc" "CMakeFiles/ray.dir/src/utils.cpp.o.d"
+  "/home/josiah/Desktop/ray_challenge/src/world.cpp" "CMakeFiles/ray.dir/src/world.cpp.o" "gcc" "CMakeFiles/ray.dir/src/world.cpp.o.d"
   )
 
 # Targets to which this target links.

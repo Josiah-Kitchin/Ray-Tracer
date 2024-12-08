@@ -2,8 +2,10 @@
 #define INTERSECTION_HPP
 
 #include <vector> 
+#include "ray.hpp"
+#include "tuples.hpp"
 
-class Hittable; //prevents circular includes 
+class Hittable; 
 
 class Intersection { 
 public: 
@@ -17,9 +19,5 @@ bool operator==(const Intersection&, const Intersection&);
 
 Intersection hit(std::vector<Intersection>&); 
 
-
-
-
-
-
 #endif
+

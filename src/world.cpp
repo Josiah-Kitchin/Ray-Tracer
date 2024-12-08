@@ -1,6 +1,7 @@
 
 
 #include "world.hpp"
+#include "material.hpp"
 #include <algorithm> 
 
 
@@ -23,6 +24,26 @@ std::vector<Intersection> World::intersects(const Ray& ray) {
         return a.t < b.t;
     });
     return intersections; 
+}
+
+Color World::shade_hit(const IntersectionState& state) { 
+    /* Calculate the color for an intersection based on the worlds lights and the intersection state */
+    Color shade; 
+    for (const auto& light : lights) { 
+       shade += lighting(state.object->material, light, state.point, state.eye, state.normal);
+    }
+    return shade; 
+}
+
+Color World::color_at(const Ray& ray) { 
+    /* Encapuslate some of the intersection logic in one function */
+    auto intersections = intersects(ray);
+    Intersection object_hit = hit(intersections);
+    if (object_hit == Intersection(0, nullptr)) {
+        return Color(0, 0, 0);
+    }
+    IntersectionState state(object_hit, ray);
+    return shade_hit(state);
 }
 
 

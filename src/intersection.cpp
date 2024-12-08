@@ -27,3 +27,4 @@ Intersection hit(std::vector<Intersection>& intersections) {
     return min;  
 }
 
+

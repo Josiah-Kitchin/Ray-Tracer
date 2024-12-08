@@ -19,3 +19,4 @@ IntersectionState::IntersectionState(const Intersection& intersection, const Ray
     }
 
 }   
+

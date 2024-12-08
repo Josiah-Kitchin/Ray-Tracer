@@ -5,7 +5,9 @@
 #include "hittable.hpp"
 #include "light.hpp"
 #include "intersection.hpp"
+#include "intersection_state.hpp"
 #include "ray.hpp"
+#include "tuples.hpp"
 
 class World {
 
@@ -16,8 +18,11 @@ public:
     World(); 
     
     std::vector<Intersection> intersects(const Ray&);
+    Color shade_hit(const IntersectionState&); 
+    Color color_at(const Ray&);
 
 };
+
 
 
 

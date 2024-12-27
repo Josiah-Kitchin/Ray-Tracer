@@ -45,6 +45,7 @@ Matrix rotation_x(double);
 Matrix rotation_y(double); 
 Matrix rotation_z(double); 
 Matrix shearing(double, double, double, double, double, double);
+Matrix view_transform(const Point&, const Point&, const Vec&);
 
 Point operator*(const Matrix&, const Point&);
 Point operator*(const Point&, const Matrix&);

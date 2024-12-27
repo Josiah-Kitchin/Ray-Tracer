@@ -9,8 +9,6 @@
 
 class Canvas { 
 public: 
-    int width; 
-    int height; 
 
     Canvas(int, int); 
 
@@ -19,6 +17,8 @@ public:
     void write_to_ppm(); 
 private:
     std::vector<std::vector<Color>> color_matrix; 
+    int m_width; 
+    int m_height; 
     
 };
 

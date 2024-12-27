@@ -9,15 +9,9 @@ file(GLOB INCLUDES "include/*.hpp")
 
 add_executable(ray ${SOURCES} ${INCLUDES})
 
-# Include directories
 include_directories(/usr/include)  # Adjust this path based on where headers are located
 include_directories( ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# Link libraries
-# target_link_libraries(ray PRIVATE )
+target_compile_options(ray PRIVATE -Wall -Wextra -O3) 
 
-# Compiler options
-target_compile_options(ray PRIVATE -Wall -Wextra -g) 
-
-# Build configuration
 set(CMAKE_BUILD_TYPE Debug)

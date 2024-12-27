@@ -13,8 +13,9 @@ using std::initializer_list;
 using std::size_t; 
 
 Matrix::Matrix(int size) : size(size) {
+    matrix_data.reserve(size);
     for (int i = 0; i < size; i++) { 
-        matrix_data.push_back(vector<double>(size, 0));
+        matrix_data.emplace_back(size, 0);
     }
 }   
 
@@ -99,9 +100,9 @@ Matrix operator*(const Matrix& left, const Matrix& right) {
     for (int row = 0; row < 4; row++) { 
         for (int col = 0; col < 4; col++) { 
             result.set(row, col) = left.get(row, 0) * right.get(0, col) + 
-                                  left.get(row, 1) * right.get(1, col) + 
-                                  left.get(row, 2) * right.get(2, col) + 
-                                  left.get(row, 3) * right.get(3, col); 
+                                   left.get(row, 1) * right.get(1, col) + 
+                                   left.get(row, 2) * right.get(2, col) + 
+                                   left.get(row, 3) * right.get(3, col); 
         }
     }
     return result; 
@@ -229,12 +230,33 @@ Matrix rotation_z(double radians) {
 
 Matrix shearing(double x_y, double x_z, double y_x, double y_z, double z_x, double z_y) {
     //Slans the point. The parameters are the values in proportion to each other. For example, 
-    //x_y is the proportoin of change of x to y. 
+    //x_y is the proportion of change of x to y. 
     return Matrix{{1, x_y, x_z, 0}, 
                   {y_x, 1, y_z, 0},
                   {z_x, z_y, 1, 0},
                   {0, 0, 0, 1}};
 }
+
+Matrix view_transform(const Point& from, const Point& to, const Vec& up) { 
+    /*  Transforms the world, can be thought of as moving the eye 
+        from: Where the eye should be in the scene
+        to: where the eye will look
+        up: vector indicidating which direction is up
+    */
+
+   Vec foward = unit_vector(to - from);
+   Vec normal_up = unit_vector(up);
+   Vec left = cross(foward, normal_up);
+   Vec true_up = cross(left, foward);
+
+   Matrix orientation({{left.x,    left.y,    left.z,    0},
+                       {true_up.x, true_up.y, true_up.z, 0},
+                       {-foward.x, -foward.y, -foward.z, 0}, 
+                       {0,         0,         0,         1}});
+
+    return orientation * translation(-from.x, -from.y, -from.z);
+}
+
 
 //Point and Vec interaction 
 

@@ -244,6 +244,33 @@ TEST(Matrix, transformation_sequence) {
     ASSERT_EQ(Point(15, 0, 7), point * transform); 
 }
 
+TEST(Matrix, view_transform) { 
+    Point from(0, 0, 0);
+    Point to(0, 0, -1);
+    Vec up(0, 1, 0);
+    Matrix t = view_transform(from, to, up);
+    ASSERT_EQ(t, identity());
+}
+
+TEST(Matrix, view_transform2) { 
+    Point from(0, 0, 8);
+    Point to(0, 0, 0);
+    Vec up(0, 1, 0);
+    Matrix t = view_transform(from, to, up);
+    ASSERT_EQ(t, translation(0, 0, -8));
+}
+
+TEST(Matrix, view_transform3) { 
+    Point from(0, 0, 8);
+    Point to(0, 0, 0);
+    Vec up(0, 1, 0);
+    Matrix t = view_transform(from, to, up);
+    ASSERT_EQ(t, translation(0, 0, -8));
+}
+
+
+
+
 
 
 

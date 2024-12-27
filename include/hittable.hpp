@@ -14,26 +14,32 @@ class Hittable {
 public: 
 
     virtual std::vector<Intersection> intersect(const Ray&) const = 0; 
-    virtual void transform(const Matrix&) = 0;
     virtual Vec normal_at(const Point&) const = 0; 
 
-    Hittable() : material(), transformation(identity()) {}
+    Hittable() : material(), m_transformation(identity()) {}
     virtual ~Hittable() = default; 
 
+    Hittable& set_color(const Color&); 
+    Hittable& set_ambient(double);
+    Hittable& set_diffuse(double);
+    Hittable& set_specular(double);
+    Hittable& transform(const Matrix&);
+    Hittable& set_material(const Material&);
+
     Material material; 
-    Matrix transformation; 
+
+protected: 
+    Matrix m_transformation; 
+    
 };
 
 class Sphere : public Hittable { 
-private: 
-    double radius; 
     Point origin; 
 
 public: 
 
     Sphere();
     std::vector<Intersection> intersect(const Ray&) const override; 
-    void transform(const Matrix&);
     Vec normal_at(const Point&) const;
 
 };

@@ -57,6 +57,11 @@ A simple 3D ray tracer inspired by *A Ray Tracer Challenge* by James Buck. This 
 ```
 
 
+Images
+
+![My Image](images/spheres_with_bg.ppm)
+
+
 
 
 

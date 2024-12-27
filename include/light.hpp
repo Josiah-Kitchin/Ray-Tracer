@@ -14,8 +14,8 @@ public:
     friend Color calculate_lighting(const Material&, const Light&, const Point&, const Vec&, const Vec&);
 
 private:
-    Color intensity; 
-    Point position; 
+    Color m_intensity; 
+    Point m_position; 
 
     
 };

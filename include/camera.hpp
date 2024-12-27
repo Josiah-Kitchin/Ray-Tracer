@@ -18,16 +18,16 @@ public:
     
 
 private: 
-    int horizontal_pixels; 
-    int vertical_pixels;
-    double field_of_view; 
+    int m_horizontal_pixels; 
+    int m_vertical_pixels;
+    double m_field_of_view; 
 
-    double pixel_size;
-    double half_width; 
-    double half_height; 
+    double m_pixel_size;
+    double m_half_width; 
+    double m_half_height; 
+    Matrix m_transformation = identity(); 
 
     Ray ray_to_pixel(int, int) const;
-    Matrix transformation = identity(); 
     void init(); //calculates pixel size, half_width, half_height
 };
 

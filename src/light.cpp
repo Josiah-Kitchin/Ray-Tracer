@@ -2,16 +2,16 @@
 #include "light.hpp"
 
 
-Light::Light(const Color& intensity, const Point& position) : intensity(intensity), position(position) {}
-Light::Light() : intensity(Color()), position(Point()) {}
+Light::Light(const Color& intensity, const Point& position) : m_intensity(intensity), m_position(position) {}
+Light::Light() : m_intensity(Color()), m_position(Point()) {}
 
-Light& Light::set_intensity(const Color& in_intensity) { 
-    intensity = in_intensity; 
+Light& Light::set_intensity(const Color& intensity) { 
+    m_intensity = intensity; 
     return *this; 
 }
 
-Light& Light::set_position(const Point& in_position) { 
-    position = in_position; 
+Light& Light::set_position(const Point& position) { 
+    m_position = position; 
     return *this; 
 }
 
@@ -20,9 +20,9 @@ Color calculate_lighting(const Material& mat, const Light& light, const Point& p
 
     Color ambient, diffuse, specular; 
 
-    Color effective_color = mat.color * light.intensity; 
+    Color effective_color = mat.color * light.m_intensity; 
 
-    Vec light_direction = unit_vector(light.position - position);
+    Vec light_direction = unit_vector(light.m_position - position);
 
     ambient = effective_color * mat.ambient; 
 
@@ -40,7 +40,7 @@ Color calculate_lighting(const Material& mat, const Light& light, const Point& p
             specular = Color(0, 0, 0);
         } else { 
             double factor = pow(reflect_dot_eye, mat.shininess);
-            specular = light.intensity * mat.specular * factor; 
+            specular = light.m_intensity * mat.specular * factor; 
         }
     }
     return ambient + diffuse + specular; 

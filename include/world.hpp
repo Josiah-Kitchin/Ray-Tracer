@@ -26,8 +26,8 @@ private:
     std::vector<Intersection> intersects(const Ray&);
     Color shade_hit(const IntersectionState&); 
     Color color_at(const Ray&);
-    std::vector<Hittable*> objects;
-    std::vector<Light> lights; 
+    std::vector<Hittable*> m_objects;
+    std::vector<Light> m_lights; 
 };
 
 

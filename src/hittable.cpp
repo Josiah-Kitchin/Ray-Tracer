@@ -40,7 +40,7 @@ Hittable& Hittable::transform(const Matrix& new_transformation) {
 
 /*----------------Sphere----------------*/
 
-Sphere::Sphere() : origin(Point(0, 0, 0)) {}
+Sphere::Sphere() : m_origin(Point(0, 0, 0)) {}
 
 vector<Intersection> Sphere::intersect(const Ray& ray) const { 
     
@@ -48,7 +48,7 @@ vector<Intersection> Sphere::intersect(const Ray& ray) const {
     //hittable object. This means we have to take the inverse to give the correct transformation to the ray  
     Ray transformed_ray = transform_ray(ray, inverse(m_transformation)); 
     //calculates whether a ray hits a sphere by calculating the discriminant 
-    Vec sphere_to_ray = transformed_ray.origin - origin; 
+    Vec sphere_to_ray = transformed_ray.origin - m_origin; 
 
     double a = dot(transformed_ray.direction, transformed_ray.direction);
     double b = 2 * dot(transformed_ray.direction, sphere_to_ray); 

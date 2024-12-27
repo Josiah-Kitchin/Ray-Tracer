@@ -34,13 +34,15 @@ protected:
 };
 
 class Sphere : public Hittable { 
-    Point origin; 
 
 public: 
 
     Sphere();
     std::vector<Intersection> intersect(const Ray&) const override; 
     Vec normal_at(const Point&) const;
+
+private: 
+    Point m_origin;
 
 };
 

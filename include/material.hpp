@@ -2,7 +2,6 @@
 #define MATERIAL_HPP
 
 #include "tuples.hpp"
-#include "light.hpp"
 
 class Material { 
 public: 
@@ -11,8 +10,13 @@ public:
 
     Material(); 
 
+    Material& set_ambient(double);
+    Material& set_diffuse(double);
+    Material& set_specular(double);
+    Material& set_shininess(double);
+    Material& set_color(const Color&);
+
 };
 
-Color lighting(const Material&, const Light&, const Point&, const Vec&, const Vec&);
 
 #endif

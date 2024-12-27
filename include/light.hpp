@@ -2,17 +2,26 @@
 #define LIGHT_HPP
 
 #include "tuples.hpp"
+#include "material.hpp"
 
-class Light { 
+struct Light { 
 public: 
+    Light(const Color&, const Point&);
+    Light();
+    Light& set_intensity(const Color&); 
+    Light& set_position(const Point&);
+
+    friend Color calculate_lighting(const Material&, const Light&, const Point&, const Vec&, const Vec&);
+
+private:
     Color intensity; 
     Point position; 
 
-    Light(const Color&, const Point&);
     
 };
 
 
+Color calculate_lighting(const Material&, const Light&, const Point&, const Vec&, const Vec&);
 
 
 #endif

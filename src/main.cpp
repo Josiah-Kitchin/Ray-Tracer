@@ -2,58 +2,94 @@
 
 /*
     Ray tracing project by Josiah Kitchin, a computer science student at the University of Oregon 
-    Guided by the Ray Tracer Challenge book by INSERT CREDIT HERE 
+    Guided by the Ray Tracer Challenge book by James Buck 
 */
 
 #include <iostream> 
+#include <cmath> 
+
 #include "tuples.hpp" 
 #include "canvas.hpp" 
-#include "matrices.hpp"
 #include "hittable.hpp"
 #include "material.hpp"
 #include "light.hpp"
+#include "camera.hpp"
 
 int main() { 
-    Point ray_origin(0, 0, -5);
-    double wall_z = 10; 
-    double wall_size = 7; 
-    double canvas_pixels = 100;   
-    double pixel_size = wall_size / canvas_pixels;  
-    double half = wall_size / 2; 
 
-    Canvas canvas(canvas_pixels, canvas_pixels); 
-    Color black(0, 0, 0);
-    Sphere sphere; 
-    sphere.material.color = Color(0.2745, 1, 0.3725); 
-    sphere.material.ambient = 0.1;
-    sphere.material.diffuse = 0.9 * (sqrt(2)/2);
-    sphere.material.specular = 0.5;
+    Material background_mat; 
+    background_mat
+        .set_color(Color(1, 0.9, 0.9))
+        .set_specular(0);
 
-    Light light(Color(1, 1, 1), Point(-10, 10, -10));
+    Sphere floor; 
+    floor 
+        .transform(scaling(10, 0.01, 10))
+        .set_material(background_mat);
 
-    for (double y = 0; y < canvas_pixels; y++) { 
-        double world_y = half - pixel_size * y; 
-	    std::clog << "\rScanlines remaining: " << (canvas_pixels - y) << ' ' << std::flush; 
+    Sphere left_wall; 
+    left_wall 
+        .transform(translation(0, 0, 5))
+        .transform(rotation_y(-M_PI/4))
+        .transform(rotation_x(M_PI/2))
+        .transform(scaling(10, 0.01, 10))
+        .set_material(background_mat);
 
-        for (double x = 0; x < canvas_pixels; x++) { 
-            double world_x = -half + pixel_size * x; 
-            Point position(world_x, world_y, wall_z); 
+    Sphere right_wall; 
+    right_wall
+        .transform(translation(0, 0, 5))
+        .transform(rotation_y(M_PI/4))
+        .transform(rotation_x(M_PI/2))
+        .transform(scaling(10, 0.01, 10))
+        .set_material(background_mat);
 
-            Ray ray(ray_origin, unit_vector(position - ray_origin));
-            std::vector<Intersection> intersections = sphere.intersect(ray);
 
-            if (!intersections.empty()) { 
-                Intersection closest_intersection = hit(intersections); 
-                const Hittable* object = closest_intersection.object;  
-                Point hit_point = ray.at(closest_intersection.t);
-                Color color = lighting(object->material, light, hit_point, -ray.direction, object->normal_at(hit_point));
-                canvas.insert_color(color, x, y);
-            } else { 
-                canvas.insert_color(black, x, y);
-            }
-        }
-    }
-    canvas.write_to_ppm(); 
+    Material sphere_mat; 
+    sphere_mat
+        .set_diffuse(0.7)
+        .set_specular(0.3);
+
+    Sphere middle_sphere; 
+    middle_sphere
+        .transform(translation(-0.5, 1, 0.5))
+        .set_material(sphere_mat)
+        .set_color(Color(0.1, 1, 0.5));
+
+    Sphere right_sphere; 
+    right_sphere
+        .transform(translation(1.5, 0.5, -0.5))
+        .transform(scaling(0.5, 0.5, 0.5))
+        .set_material(sphere_mat)
+        .set_color(Color(0.5, 1, 0.1));
+
+    Sphere left_sphere; 
+    left_sphere
+        .transform(translation(-1.5, 0.33, -0.75))
+        .transform(scaling(0.33, 0.33, 0.33))
+        .set_material(sphere_mat)
+        .set_color(Color(1, 0.8, 1));
+
+    
+    Light light; 
+    light 
+        .set_intensity(Color(1, 1, 1))
+        .set_position(Point(-10, 10, -10));
+
+    Camera camera; 
+    camera
+        .set_horizontal_pixels(1000)
+        .set_vertical_pixels(500)
+        .set_field_of_view(M_PI/3)
+        .transform(view_transform(Point(0, 1.5, -5), Point(0, 1, 0), Vec(0, 1, 0)));
+
+    World world;
+    world
+        .set_lights({light})
+        .set_objects({&floor, &left_wall, &right_wall, &middle_sphere, &right_sphere, &left_sphere});
+
+    Canvas image = camera.render(world);
+
+    image.write_to_ppm();
 
     return 0; 
 }

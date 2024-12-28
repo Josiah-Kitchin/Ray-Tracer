@@ -1,10 +1,5 @@
 
 
-/*
-    Ray tracing project by Josiah Kitchin, a computer science student at the University of Oregon 
-    Guided by the Ray Tracer Challenge book by James Buck 
-*/
-
 #include <iostream> 
 #include <cmath> 
 

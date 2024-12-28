@@ -1,7 +1,7 @@
 # Ray Tracer
 Author: Josiah Kitchin, Computer Science Student at the University of Oregon
 
-A 3D ray tracer inspired by *[A Ray Tracer Challenge](https://www.oreilly.com/library/view/the-ray-tracer/9781680506778/)* by James Buck. This project is a work in progress, aiming to build a 3D renderer using ray tracing techniques.
+A 3D ray tracer inspired by *[A Ray Tracer Challenge](https://www.oreilly.com/library/view/the-ray-tracer/9781680506778/)* by Jamis Buck. This project is a work in progress, aiming to build a 3D renderer using ray tracing techniques.
 
 
 

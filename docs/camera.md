@@ -1,43 +1,35 @@
 
-# Material Class Documentation 
+# Camera Class Documentation 
 
-## Class Overview
+The `Camera` class represents the view origin of the scene:
 
-The `Material` class contains the following attributes:
-
-- **Color**: The base color of the material (represented in RGB as the Color object).
-- **Ambient**: The ambient reflectivity factor. Lights up an object uniformally 
-- **Diffuse**: The diffuse reflectivity factor. Depends on the angle of the object relative to light source. Can give matte appearance  
-- **Specular**: The specular reflectivity factor. Creates sharp highlights on shiny surfaces, depending on angle and shininess
-- **Shininess**: The shininess factor for surface highlights.
-
-Material attributes can be set with 
+The `Camera` object sets the pixel dimensions and the field of view 
+These can be set by 
 ```c++
-Material mat;
-mat
-    .set_color(Color(1, 1, 1))
-    .set_ambient(1)
-    .set_diffuse(1)
-    .set_specular(1)
-    .set_shininess(1);
-```
-Default values are 0.3
-
-
-The `Material` class is stored in a Hittable subclass (spheres, etc)
-They can be stored in the hittable object by
-```c++
-Material mat
-    .set_diffuse(1)
-Sphere sphere;
-sphere.set_material(mat)
+Camera cam; 
+cam
+    .set_horizontal_pixels(5);
+    .set_vertical_pixels(5);
+    .set_field_of_view(5);
 
 ```
-or can be directly changed by the object by 
+The camera can be moved around the scene by calling transform and using the view transform matrix 
+See [Transformation Matrices](transformation_matrices.md) for more info 
 ```c++
-Sphere sphere; 
-sphere
-    .set_ambient(1)
-    .set_color(Color(1, 1, 1));
+cam.transform(view_transform(Point(0, 1.5, -5), Point(0, 1, 0), Vec(0, 1, 0)));
 
 ```
+
+The `Camera` class renders a `World` class and returns a `Canvas`
+The `Canvas` can then write the colors to the standard ouput
+See [World](world.md) for the `World` class docs 
+```c++
+Canvas canvas = cam.render(world)
+canvas.write_to_ppm()
+
+```
+
+
+The arguments are transformation matrices, which will be applied in the order called by .transform 
+See [Transformation Matrices](transformation_matrices.md) for all transformation matrices
+

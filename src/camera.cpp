@@ -49,17 +49,18 @@ Canvas Camera::render(World& world) {
 
     init(); //calculate some neccessary variables 
 
-
-    //Initialize the iterators 
+    //Initialize the iterator 
     m_vertical_pixel_iterator.resize(m_vertical_pixels);
     for (int i = 0; i < m_vertical_pixels; ++i)  
         m_vertical_pixel_iterator[i] = i; 
-
 
     Canvas image(m_horizontal_pixels, m_vertical_pixels);
 
     auto start = std::chrono::high_resolution_clock::now(); 
 
+    std::clog << " Rendering...            \r";
+
+    /* -------------- Render Loop -------------- */
     std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
         [&](int y) {
             for (int x = 0; x < m_horizontal_pixels; ++x) {
@@ -69,11 +70,11 @@ Canvas Camera::render(World& world) {
             }
         }
     );
+    /*-------------------------------------------*/
 
     auto end = std::chrono::high_resolution_clock::now(); 
-
     std::chrono::duration<double> duration = end - start; 
-    std::clog << "Time to render: " << duration.count() << "\n";
+    std::clog << "\rImage Complete\nTime to render: " << duration.count() << '\n';  
 
     return image; 
 }

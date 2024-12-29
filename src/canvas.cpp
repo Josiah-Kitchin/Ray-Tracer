@@ -30,7 +30,6 @@ void Canvas::write_to_ppm() {
             std::cout << color.r << ' ' << color.g << ' ' << color.b << '\n';
         }
     }
-    std::clog << "\rImage Complete                " << std::endl; 
 }
 
 

@@ -13,6 +13,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 ## Features
 - Ray tracing-based 3D rendering
+- Multithreaded 
 - Test-driven development with Google Test
 - Built with CMake for easy build configuration
 

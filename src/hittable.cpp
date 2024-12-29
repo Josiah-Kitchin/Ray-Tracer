@@ -8,7 +8,6 @@
 
 using std::vector; 
 
-
 /* ----------- Hittable Creation Methods ---------- */
 Hittable& Hittable::set_color(const Color& color) { 
     material.color = color; 

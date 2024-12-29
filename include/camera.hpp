@@ -6,6 +6,7 @@
 #include "ray.hpp"
 #include "world.hpp"
 #include "canvas.hpp"
+#include <vector> 
 
 class Camera { 
 public: 
@@ -29,6 +30,9 @@ private:
 
     Ray ray_to_pixel(int, int) const;
     void init(); //calculates pixel size, half_width, half_height
+
+    std::vector<int> m_vertical_pixel_iterator;  //need iters to use for each parrallelisim 
+
 };
 
 

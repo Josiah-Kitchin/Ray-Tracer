@@ -2,7 +2,9 @@
 
 #include "camera.hpp"
 #include <cmath> 
-
+#include <algorithm>
+#include <execution> 
+#include <chrono> 
 
 
 void Camera::init() { 
@@ -38,26 +40,43 @@ Ray Camera::ray_to_pixel(int pixel_x, int pixel_y) const {
     return Ray(origin, direction);
 }
 
-void log_line(int current_line, int total) { 
-	std::clog << "\rScanlines remaining: " << (total - current_line) << ' ' << std::flush; 
-}
+
+/* ----------------- Interface Methods ---------------- */
 
 Canvas Camera::render(World& world) { 
-    init();
+    /* Called by the user to render a world of lights and objects 
+       Iterators are used to create a multithreaded for loop */ 
+
+    init(); //calculate some neccessary variables 
+
+
+    //Initialize the iterators 
+    m_vertical_pixel_iterator.resize(m_vertical_pixels);
+    for (int i = 0; i < m_vertical_pixels; ++i)  
+        m_vertical_pixel_iterator[i] = i; 
+
 
     Canvas image(m_horizontal_pixels, m_vertical_pixels);
-    for (int y = 0; y < m_vertical_pixels; ++y) { 
-        log_line(y, m_vertical_pixels);
-        for (int x = 0; x < m_horizontal_pixels; ++x) {
-            Ray ray = ray_to_pixel(x, y);
-            Color pixel_color = world.color_at(ray);
-            image.insert_color(pixel_color, x, y);
+
+    auto start = std::chrono::high_resolution_clock::now(); 
+
+    std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
+        [&](int y) {
+            for (int x = 0; x < m_horizontal_pixels; ++x) {
+                Ray ray = ray_to_pixel(x, y);
+                Color pixel_color = world.color_at(ray);
+                image.insert_color(pixel_color, x, y);
+            }
         }
-    }
+    );
+
+    auto end = std::chrono::high_resolution_clock::now(); 
+
+    std::chrono::duration<double> duration = end - start; 
+    std::clog << "Time to render: " << duration.count() << "\n";
+
     return image; 
 }
-
-/* ----------- Interface Methods ------------- */
 
 Camera& Camera::set_horizontal_pixels(int pixels) { 
     m_horizontal_pixels = pixels; 

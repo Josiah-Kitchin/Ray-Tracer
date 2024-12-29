@@ -45,3 +45,4 @@ Color calculate_lighting(const Material& mat, const Light& light, const Point& p
     }
     return ambient + diffuse + specular; 
 }
+

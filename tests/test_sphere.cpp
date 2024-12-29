@@ -1,6 +1,10 @@
 #include <gtest/gtest.h> 
-#include "hittable.hpp"
-#include "ray.hpp"
+#include "scene/hittable.hpp"
+#include "geo/ray.hpp"
+
+using namespace scene; 
+using namespace geo; 
+using namespace xform;
 
 TEST(Sphere, intersect) { 
     Ray ray(Point(0, 0, -5), Vec(0, 0, 1));

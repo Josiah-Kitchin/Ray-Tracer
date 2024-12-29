@@ -1,7 +1,11 @@
 
 
 #include <gtest/gtest.h> 
-#include "tuples.hpp" 
+#include "geo/tuples.hpp" 
+#include "color/color.hpp"
+
+using namespace geo; 
+using namespace color; 
 
 TEST(Vec, add) { 
     Vec actual = Vec(1,1,1) + Vec(1,1,1);  
@@ -98,34 +102,34 @@ TEST(Point, subtract) {
     ASSERT_EQ(Vec(1, 1, 1), actual); 
 }  
 
-TEST(Color, plus_equals) { 
-    Color actual(0.5 ,0.5, 0.5); 
-    actual += Color(0.5, 0.5, 0.5); 
-    ASSERT_EQ(Color(1, 1, 1), actual); 
+TEST(RGB, plus_equals) { 
+    RGB actual(0.5 ,0.5, 0.5); 
+    actual += RGB(0.5, 0.5, 0.5); 
+    ASSERT_EQ(RGB(1, 1, 1), actual); 
     actual += Point(1, 1, 1); 
-    ASSERT_EQ(Color(2, 2, 2), actual); 
+    ASSERT_EQ(RGB(2, 2, 2), actual); 
 }
 
-TEST(Color, add) { 
-    Color actual = Color(1, 1, 1) + Color(1, 1, 1); 
-    ASSERT_EQ(Color(2, 2, 2), actual); 
-    actual = Color(1, 1, 1) + Point(1, 1, 1); 
-    ASSERT_EQ(Color(2, 2, 2), actual); 
+TEST(RGB, add) { 
+    RGB actual = RGB(1, 1, 1) + RGB(1, 1, 1); 
+    ASSERT_EQ(RGB(2, 2, 2), actual); 
+    actual = RGB(1, 1, 1) + Point(1, 1, 1); 
+    ASSERT_EQ(RGB(2, 2, 2), actual); 
 }
 
-TEST(Color, clamp) { 
-    Color actual(50, 24, 21); 
+TEST(RGB, clamp) { 
+    RGB actual(50, 24, 21); 
     actual.clamp(); 
-    ASSERT_EQ(actual, Color(1, 1, 1)); 
-    actual = Color(-1, -1, -1); 
+    ASSERT_EQ(actual, RGB(1, 1, 1)); 
+    actual = RGB(-1, -1, -1); 
     actual.clamp(); 
-    ASSERT_EQ(actual, Color(0, 0, 0)); 
+    ASSERT_EQ(actual, RGB(0, 0, 0)); 
 }
 
-TEST(Color, conert_to_256) { 
-    Color actual(1, 1, 1); 
+TEST(RGB, conert_to_256) { 
+    RGB actual(1, 1, 1); 
     actual.convert_to_256(); 
-    ASSERT_EQ(Color(255, 255, 255), actual);
+    ASSERT_EQ(RGB(255, 255, 255), actual);
 }
 
 

@@ -24,19 +24,19 @@ color::RGB calculate_lighting(const scene::Material& mat, const Light& light, co
 
     color::RGB effective_color = mat.color * light.m_intensity; 
 
-    geo::Vec light_direction = unit_vector(light.m_position - position);
+    geo::Vec light_direction = geo::unit_vector(light.m_position - position);
 
     ambient = effective_color * mat.ambient; 
 
-    double light_dot_normal = dot(light_direction, normal); 
+    double light_dot_normal = geo::dot(light_direction, normal); 
 
     if (light_dot_normal < 0) { 
         diffuse = color::RGB(0, 0, 0); 
         specular = color::RGB(0, 0, 0);
     } else { 
         diffuse = effective_color * mat.diffuse * light_dot_normal; 
-        geo::Vec reflect_direction = reflect(-light_direction, normal);
-        double reflect_dot_eye = dot(reflect_direction, eye);
+        geo::Vec reflect_direction = geo::reflect(-light_direction, normal);
+        double reflect_dot_eye = geo::dot(reflect_direction, eye);
 
         if (reflect_dot_eye <= 0) { 
             specular = color::RGB(0, 0, 0);

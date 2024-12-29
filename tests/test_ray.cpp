@@ -1,6 +1,9 @@
 
 #include <gtest/gtest.h> 
-#include "ray.hpp"
+#include "geo/ray.hpp"
+
+using namespace geo; 
+using namespace xform; 
 
 
 TEST(Ray, constructor) { 

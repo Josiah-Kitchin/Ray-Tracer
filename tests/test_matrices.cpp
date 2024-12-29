@@ -1,7 +1,10 @@
 
 #include <gtest/gtest.h> 
-#include "matrices.hpp"
-#include "tuples.hpp"
+#include "xform/matrices.hpp"
+#include "geo/tuples.hpp"
+
+using namespace xform;
+using namespace geo; 
 
 
 TEST(Matrix, get) { 

@@ -15,7 +15,7 @@ std::vector<geo::Intersection> World::intersects(const geo::Ray& ray) {
     /* Return a vector of all intersections of objects in the world in sorted order*/
 
     std::vector<geo::Intersection> intersections; 
-    intersections.reserve(500);
+    intersections.reserve(m_objects.size() * 500);
 
     for (const auto object : m_objects) {
         auto object_intersections = object->intersect(ray);
@@ -42,7 +42,8 @@ color::RGB World::color_at(const geo::Ray& ray) {
     /* Encapuslate some of the intersection logic in one function */
     auto intersections = intersects(ray);
     geo::Intersection object_hit = geo::hit(intersections);
-    if (object_hit == geo::Intersection(0, nullptr)) {
+    if (object_hit == geo::Intersection(0, nullptr)) { 
+        //Miss 
         return color::RGB(0, 0, 0);
     }
     geo::IntersectionState state(object_hit, ray);

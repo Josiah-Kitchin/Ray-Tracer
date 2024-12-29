@@ -1,7 +1,11 @@
 
 #include <gtest/gtest.h> 
-#include "intersection.hpp"
-#include "hittable.hpp"
+#include "geo/intersection.hpp"
+#include "scene/hittable.hpp"
+
+using namespace geo; 
+using namespace scene; 
+using namespace xform; 
 
 TEST(hit, hit1) { 
     Sphere sphere; 

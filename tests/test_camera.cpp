@@ -1,9 +1,11 @@
 
 #include <gtest/gtest.h> 
-#include "camera.hpp"
+#include "scene/camera.hpp"
 #include <cmath> 
 #include "utils.hpp"
 
+using namespace scene; 
+using namespace geo; 
 
 TEST(Camera, pixel_size) { 
     Camera camera(200, 125, M_PI/2); 

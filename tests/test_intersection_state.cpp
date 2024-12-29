@@ -1,7 +1,9 @@
 
 #include <gtest/gtest.h> 
-#include "intersection_state.hpp"
+#include "geo/intersection_state.hpp"
 
+using namespace geo; 
+using namespace scene; 
 
 TEST(IntersectionState, init) {
     Ray ray(Point(0, 0, -5), Vec(0, 0, 1));

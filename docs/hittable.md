@@ -6,10 +6,10 @@ The `Hittable` class is an abstract class of hittable objects, e.g. spheres, cub
 `Hittable` objects hold a material, see [Material](material.md) for info 
 `Hittable` objects can be transformed by calling 
 ```c++
-Sphere sphere; 
+scene::Sphere sphere; 
     sphere
-        .transform(scaling(2, 2, 2))
-        .transform(rotattion_x(5))
+        .transform(xform::scaling(2, 2, 2))
+        .transform(xform::rotattion_x(5))
 
 ```
 The arguments are transformation matrices, which will be applied in the order called by .transform 

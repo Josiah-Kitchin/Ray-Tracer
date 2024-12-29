@@ -11,7 +11,7 @@ The `Material` class contains the following attributes:
 
 Material attributes can be set with 
 ```c++
-Material mat;
+scene::Material mat;
 mat
     .set_color(Color(1, 1, 1))
     .set_ambient(1)
@@ -25,15 +25,15 @@ Default values are 0.3
 The `Material` class is stored in a Hittable subclass (spheres, etc)
 They can be stored in the hittable object by
 ```c++
-Material mat
+scene::Material mat
     .set_diffuse(1)
-Sphere sphere;
+scene::Sphere sphere;
 sphere.set_material(mat)
 
 ```
 or can be directly changed by the object by 
 ```c++
-Sphere sphere; 
+scene::Sphere sphere; 
 sphere
     .set_ambient(1)
     .set_color(Color(1, 1, 1));

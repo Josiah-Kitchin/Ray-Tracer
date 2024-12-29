@@ -15,13 +15,13 @@ The transformations will be applied in the order .transform was called
 
 ##Matrices 
 ```c++
-Matrix translation(double x, double y, double z); 
-Matrix scaling(double x, double y, double z); 
-Matrix rotation_x(double radians); 
-Matrix rotation_y(double radians); 
-Matrix rotation_z(double radians); 
-Matrix shearing(double x_y, double x_z, double y_x, double y_z, double z_x, double z_y);
-Matrix view_transform(const Point& from, const Point& to, const Vec& up);
+xform::Matrix xform::translation(double x, double y, double z); 
+xform::Matrix xform::scaling(double x, double y, double z); 
+xform::Matrix xform::rotation_x(double radians); 
+xform::Matrix xform::rotation_y(double radians); 
+xform::Matrix xform::rotation_z(double radians); 
+xform::Matrix xform::shearing(double x_y, double x_z, double y_x, double y_z, double z_x, double z_y);
+xform::Matrix xform::view_transform(const Point& from, const Point& to, const Vec& up);
 ```
 
 

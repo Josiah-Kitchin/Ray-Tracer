@@ -6,9 +6,9 @@ There should only be one instance of the `World` class
 
 The `World` class holds a vector of lights and pointers to hittable objects, which can be set by  
 ```c++
-Sphere sphere; 
-Light light; 
-World world;
+scene::Sphere sphere; 
+scene::Light light; 
+scene::World world;
     world
         .set_lights({light})
         .set_objects({&sphere});
@@ -16,9 +16,9 @@ World world;
 ```
 Or added one by one 
 ```c++
-Sphere sphere; 
-Light light; 
-World world;
+scene::Sphere sphere; 
+scene::Light light; 
+scene::World world;
     world
         .add_light(light)
         .add_object(&sphere);

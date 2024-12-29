@@ -16,7 +16,7 @@ public:
     Point at(double) const;
 };
 
-Ray transform_ray(const Ray&, const Matrix&);
+Ray transform_ray(const Ray&, const xform::Matrix&);
 
 
 #endif 

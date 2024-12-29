@@ -33,8 +33,8 @@ Ray Camera::ray_to_pixel(int pixel_x, int pixel_y) const {
     double world_x = m_half_width - x_offset; 
     double world_y = m_half_height - y_offset; 
 
-    Point pixel = inverse(m_transformation) * Point(world_x, world_y, -1);
-    Point origin = inverse(m_transformation) * Point(0, 0, 0);
+    Point pixel =  xform::inverse(m_transformation) * Point(world_x, world_y, -1);
+    Point origin = xform::inverse(m_transformation) * Point(0, 0, 0);
     Vec direction = unit_vector(pixel - origin);
 
     return Ray(origin, direction);
@@ -92,7 +92,7 @@ Camera& Camera::set_field_of_view(double degrees) {
     return *this;
 }
 
-Camera& Camera::transform(const Matrix& new_transformation) { 
+Camera& Camera::transform(const xform::Matrix& new_transformation) { 
     m_transformation = m_transformation * new_transformation;
     return *this;
 }

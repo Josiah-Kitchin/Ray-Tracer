@@ -13,7 +13,7 @@ public:
     Camera& set_horizontal_pixels(int);
     Camera& set_vertical_pixels(int);
     Camera& set_field_of_view(double);
-    Camera& transform(const Matrix&);
+    Camera& transform(const xform::Matrix&);
 
     Canvas render(World&);
     
@@ -26,7 +26,7 @@ private:
     double m_pixel_size;
     double m_half_width; 
     double m_half_height; 
-    Matrix m_transformation = identity(); 
+    xform::Matrix m_transformation = xform::identity(); 
 
     Ray ray_to_pixel(int, int) const;
     void init(); //calculates pixel size, half_width, half_height

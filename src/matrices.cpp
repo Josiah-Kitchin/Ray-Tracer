@@ -8,18 +8,30 @@
 #include <cassert> 
 #include <cmath> 
 
+
+
+/* ------------- Static Declarations ------------- */
+double static cofactor(const xform::Matrix& matrix, size_t delete_row, size_t delete_column);  
+double static minor(const xform::Matrix& matrix, size_t delete_row, size_t delete_column);  
+double static determinant(const xform::Matrix& matrix);  
+xform::Matrix static submatrix(const xform::Matrix& matrix, size_t delete_row, size_t delete_col);  
+bool static is_invertable(const xform::Matrix& matrix);  
+/* ---------------------------------------- */
+
 using std::vector; 
 using std::initializer_list; 
 using std::size_t; 
 
-Matrix::Matrix(int size) : size(size) {
+/* ----------------- Matrix Class ------------------ */
+
+xform::Matrix::Matrix(int size) : size(size) {
     matrix_data.reserve(size);
     for (int i = 0; i < size; i++) { 
         matrix_data.emplace_back(size, 0);
     }
 }   
 
-Matrix::Matrix(initializer_list<initializer_list<double>> matrix_list) {
+xform::Matrix::Matrix(initializer_list<initializer_list<double>> matrix_list) {
     size_t rows = matrix_list.size(); 
     size_t columns = matrix_list.begin()->size();  
     size = rows; 
@@ -35,7 +47,143 @@ Matrix::Matrix(initializer_list<initializer_list<double>> matrix_list) {
     }
 }
     
-bool operator==(const Matrix& left, const Matrix& right) { 
+double xform::Matrix::get(double row, double col) const { 
+    return matrix_data.at(row).at(col); 
+}
+
+double& xform::Matrix::set(double row, double col) { 
+    return matrix_data.at(row).at(col); 
+}
+
+/* ------------------- Matrix manipulation ----------------------- */
+
+xform::Matrix xform::transpose(const xform::Matrix& matrix) { 
+    //returns a matrix with flipped rows and columns of the given matrix
+    xform::Matrix result(matrix.size); 
+    for (size_t row = 0; row < matrix.size; row++) { 
+        for (size_t col = 0; col < matrix.size; col++) { 
+            result.set(row, col) = matrix.get(col, row); 
+        }
+    }
+    return result; 
+}
+
+xform::Matrix xform::inverse(const xform::Matrix& matrix) { 
+    assert(is_invertable(matrix)); 
+
+    xform::Matrix result_matrix(matrix.size);
+    for (size_t row = 0; row < matrix.size; row++) { 
+        for (size_t col = 0; col < matrix.size; col++) { 
+            //column row accomplishes the transpose operation 
+            result_matrix.set(col, row) = cofactor(matrix, row, col) / determinant(matrix); 
+        }
+    }
+    return result_matrix; 
+}
+
+
+/* ---------------------- Transformation Matrices ---------------------- */
+
+xform::Matrix xform::identity() { 
+    //returns a 4x4 idenity_matrix. Returns the originial matrix when 
+    //mulitiplied by the identity matrix
+    return xform::Matrix{{1, 0, 0, 0}, 
+                        {0, 1, 0, 0},
+                        {0, 0, 1, 0}, 
+                        {0, 0, 0, 1} };
+}
+
+
+xform::Matrix xform::translation(double x, double y, double z) { 
+    //the translation matrix is meant to be mulitpled with a point to return a point translated 
+    //in the direction of x y and z (point.x += x, point.y += y, point.z += z)
+    return xform::Matrix{{1, 0, 0, x},
+                        {0, 1, 0, y}, 
+                        {0, 0, 1, z}, 
+                        {0, 0, 0, 1}}; 
+}
+
+xform::Matrix xform::scaling(double x, double y, double z) { 
+    //Scales a point when scaling is multiplied by a point. 
+    return xform::Matrix{{x, 0, 0, 0}, 
+                        {0, y, 0, 0}, 
+                        {0, 0, z, 0},
+                        {0, 0, 0, 1}};
+}
+
+xform::Matrix xform::rotation_x(double radians) { 
+    //Rotates the point along the x-axis
+    return xform::Matrix{{1, 0, 0, 0}, 
+                        {0, std::cos(radians), -std::sin(radians), 0},
+                        {0, std::sin(radians), std::cos(radians), 0}, 
+                        {0, 0, 0, 1}};
+
+}
+
+xform::Matrix xform::rotation_y(double radians) { 
+    return xform::Matrix{{std::cos(radians), 0, std::sin(radians), 0}, 
+                        {0, 1, 0, 0}, 
+                        {-std::sin(radians), 0, std::cos(radians), 0},
+                        {0, 0, 0, 1}};
+}
+
+xform::Matrix xform::rotation_z(double radians) { 
+    return xform::Matrix{{std::cos(radians), -std::sin(radians), 0, 0},
+                        {std::sin(radians), std::cos(radians), 0, 0},
+                        {0, 0, 1, 0}, 
+                        {0, 0, 0, 1}};
+}
+
+xform::Matrix xform::shearing(double x_y, double x_z, double y_x, double y_z, double z_x, double z_y) {
+    //Slans the point. The parameters are the values in proportion to each other. For example, 
+    //x_y is the proportion of change of x to y. 
+    return xform::Matrix{{1, x_y, x_z, 0}, 
+                        {y_x, 1, y_z, 0},
+                        {z_x, z_y, 1, 0},
+                        {0, 0, 0, 1}};
+}
+
+xform::Matrix xform::view_transform(const Point& from, const Point& to, const Vec& up) { 
+    /*  Transforms the world, can be thought of as moving the eye 
+        from: Where the eye should be in the scene
+        to: where the eye will look
+        up: vector indicidating which direction is up
+    */
+
+   Vec foward = unit_vector(to - from);
+   Vec normal_up = unit_vector(up);
+   Vec left = cross(foward, normal_up);
+   Vec true_up = cross(left, foward);
+
+   xform::Matrix orientation({{left.x,    left.y,    left.z,    0},
+                            {true_up.x, true_up.y, true_up.z, 0},
+                            {-foward.x, -foward.y, -foward.z, 0}, 
+                            {0,         0,         0,         1}});
+
+    return orientation * xform::translation(-from.x, -from.y, -from.z);
+}
+
+
+
+/* ------------------- Operators ---------------- */
+
+xform::Matrix xform::operator*(const xform::Matrix& left, const xform::Matrix& right) { 
+    //Only works for 4x4 matrices 
+    assert(left.size == 4 && right.size == 4); 
+    
+    xform::Matrix result(4); 
+    for (int row = 0; row < 4; row++) { 
+        for (int col = 0; col < 4; col++) { 
+            result.set(row, col) = left.get(row, 0) * right.get(0, col) + 
+                                   left.get(row, 1) * right.get(1, col) + 
+                                   left.get(row, 2) * right.get(2, col) + 
+                                   left.get(row, 3) * right.get(3, col); 
+        }
+    }
+    return result; 
+}
+
+bool xform::operator==(const xform::Matrix& left, const xform::Matrix& right) { 
     assert(left.size == right.size);
 
     for (size_t row = 0; row < left.size; row++) { 
@@ -48,11 +196,11 @@ bool operator==(const Matrix& left, const Matrix& right) {
     return true; 
 }
 
-bool operator!=(const Matrix& left, const Matrix& right) { 
+bool xform::operator!=(const xform::Matrix& left, const xform::Matrix& right) { 
     return !(left == right);
 }
 
-std::ostream& operator<<(std::ostream& out, const Matrix& matrix) { 
+std::ostream& xform::operator<<(std::ostream& out, const xform::Matrix& matrix) { 
     //for testing purposes 
     out << '\n';
     for (size_t row = 0; row < matrix.size; row++) { 
@@ -64,56 +212,46 @@ std::ostream& operator<<(std::ostream& out, const Matrix& matrix) {
     return out; 
 }
 
-double Matrix::get(double row, double col) const { 
-    return matrix_data.at(row).at(col); 
+
+//Point and vec interaction 
+
+Point xform::operator*(const xform::Matrix& matrix, const Point& point) { 
+    assert(matrix.size == 4);
+
+    double x_new = matrix.get(0, 0) * point.x + matrix.get(0, 1) * point.y + matrix.get(0,2) * point.z + matrix.get(0,3);
+    double y_new = matrix.get(1, 0) * point.x + matrix.get(1, 1) * point.y + matrix.get(1, 2) * point.z + matrix.get(1, 3);
+    double z_new = matrix.get(2, 0) * point.x + matrix.get(2, 1) * point.y + matrix.get(2, 2) * point.z + matrix.get(2, 3);
+
+    return Point(x_new, y_new, z_new);
 }
 
-double& Matrix::set(double row, double col) { 
-    return matrix_data.at(row).at(col); 
+Point xform::operator*(const Point& point, const xform::Matrix& matrix) { 
+    return matrix * point; 
 }
 
-Matrix transpose(const Matrix& matrix) { 
-    //returns a matrix with flipped rows and columns of the given matrix
-    Matrix result(matrix.size); 
-    for (size_t row = 0; row < matrix.size; row++) { 
-        for (size_t col = 0; col < matrix.size; col++) { 
-            result.set(row, col) = matrix.get(col, row); 
-        }
-    }
-    return result; 
+Vec xform::operator*(const xform::Matrix& matrix, const Vec& vec) { 
+    assert(matrix.size == 4);
+
+    double x_new = matrix.get(0, 0) * vec.x + matrix.get(0, 1) * vec.y + matrix.get(0,2)  * vec.z; 
+    double y_new = matrix.get(1, 0) * vec.x + matrix.get(1, 1) * vec.y + matrix.get(1, 2) * vec.z;
+    double z_new = matrix.get(2, 0) * vec.x + matrix.get(2, 1) * vec.y + matrix.get(2, 2) * vec.z;
+
+    return Vec(x_new, y_new, z_new);
 }
 
-Matrix identity() { 
-    //returns a 4x4 idenity_matrix. Returns the originial matrix when 
-    //mulitiplied by the identity matrix
-    return Matrix{{1, 0, 0, 0}, 
-                  {0, 1, 0, 0},
-                  {0, 0, 1, 0}, 
-                  {0, 0, 0, 1} };
-}
-
-Matrix operator*(const Matrix& left, const Matrix& right) { 
-    //Only works for 4x4 matrices 
-    assert(left.size == 4 && right.size == 4); 
-    
-    Matrix result(4); 
-    for (int row = 0; row < 4; row++) { 
-        for (int col = 0; col < 4; col++) { 
-            result.set(row, col) = left.get(row, 0) * right.get(0, col) + 
-                                   left.get(row, 1) * right.get(1, col) + 
-                                   left.get(row, 2) * right.get(2, col) + 
-                                   left.get(row, 3) * right.get(3, col); 
-        }
-    }
-    return result; 
+Vec xform::operator*(const Vec& vec, const xform::Matrix& matrix) { 
+    return matrix * vec; 
 }
 
 
-Matrix submatrix(const Matrix& matrix, size_t delete_row, size_t delete_col) { 
+/* ------------------------- Static Functions ------------------------------ */
+ 
+
+xform::Matrix static submatrix(const xform::Matrix& matrix, size_t delete_row, size_t delete_col) { 
     //Returns a matrix similar to the given matrix but has a given row and col subtracted. For example, 
     // a 4x4 matrix returns a 3x3 matrix. 
     
-    Matrix result(matrix.size - 1);
+    xform::Matrix result(matrix.size - 1);
     size_t matrix_row = 0, result_row = 0;
 
     while (result_row < result.size) {  
@@ -135,15 +273,7 @@ Matrix submatrix(const Matrix& matrix, size_t delete_row, size_t delete_col) {
     return result; 
 }
 
-double minor(const Matrix& matrix, size_t delete_row, size_t delete_column) { 
-    //Takes the determinant of the sub matrix
-    //determinant is recursive and will continue until it reaches a 2x2 matrix
-
-    Matrix result_submatrix = submatrix(matrix, delete_row, delete_column); 
-    return determinant(result_submatrix); 
-}
-
-double cofactor(const Matrix& matrix, size_t delete_row, size_t delete_column) { 
+double static cofactor(const xform::Matrix& matrix, size_t delete_row, size_t delete_column) { 
     //negates the minor if row+col is odd
     double result_minor = minor(matrix, delete_row, delete_column); 
     if ((delete_row + delete_column) % 2 != 0) { 
@@ -153,7 +283,7 @@ double cofactor(const Matrix& matrix, size_t delete_row, size_t delete_column) {
 
 }
 
-double determinant(const Matrix& matrix) { 
+double static determinant(const xform::Matrix& matrix) { 
     //Finds the determinant in any sized matrix 
     double det = 0; 
 
@@ -171,128 +301,15 @@ double determinant(const Matrix& matrix) {
     return det; 
 }
 
-bool is_invertable(const Matrix& matrix) { 
+
+double static minor(const xform::Matrix& matrix, size_t delete_row, size_t delete_column) { 
+    //Takes the determinant of the sub matrix
+    //determinant is recursive and will continue until it reaches a 2x2 matrix
+
+    xform::Matrix result_submatrix = submatrix(matrix, delete_row, delete_column); 
+    return determinant(result_submatrix); 
+}
+
+bool static is_invertable(const xform::Matrix& matrix) { 
     return !(determinant(matrix) == 0);
 }
-
-Matrix inverse(const Matrix& matrix) { 
-    assert(is_invertable(matrix)); 
-
-    Matrix result_matrix(matrix.size);
-    for (size_t row = 0; row < matrix.size; row++) { 
-        for (size_t col = 0; col < matrix.size; col++) { 
-            //column row accomplishes the transpose operation 
-            result_matrix.set(col, row) = cofactor(matrix, row, col) / determinant(matrix); 
-        }
-    }
-    return result_matrix; 
-}
-
-Matrix translation(double x, double y, double z) { 
-    //the translation matrix is meant to be mulitpled with a point to return a point translated 
-    //in the direction of x y and z (point.x += x, point.y += y, point.z += z)
-    return Matrix{{1, 0, 0, x},
-                  {0, 1, 0, y}, 
-                  {0, 0, 1, z}, 
-                  {0, 0, 0, 1}}; 
-}
-
-Matrix scaling(double x, double y, double z) { 
-    //Scales a point when scaling is multiplied by a point. 
-    return Matrix{{x, 0, 0, 0}, 
-                  {0, y, 0, 0}, 
-                  {0, 0, z, 0},
-                  {0, 0, 0, 1}};
-}
-
-Matrix rotation_x(double radians) { 
-    //Rotates the point along the x-axis
-    return Matrix{{1, 0, 0, 0}, 
-                  {0, std::cos(radians), -std::sin(radians), 0},
-                  {0, std::sin(radians), std::cos(radians), 0}, 
-                  {0, 0, 0, 1}};
-
-}
-
-Matrix rotation_y(double radians) { 
-    return Matrix{{std::cos(radians), 0, std::sin(radians), 0}, 
-                  {0, 1, 0, 0}, 
-                  {-std::sin(radians), 0, std::cos(radians), 0},
-                  {0, 0, 0, 1}};
-}
-
-Matrix rotation_z(double radians) { 
-    return Matrix{{std::cos(radians), -std::sin(radians), 0, 0},
-                  {std::sin(radians), std::cos(radians), 0, 0},
-                  {0, 0, 1, 0}, 
-                  {0, 0, 0, 1}};
-}
-
-Matrix shearing(double x_y, double x_z, double y_x, double y_z, double z_x, double z_y) {
-    //Slans the point. The parameters are the values in proportion to each other. For example, 
-    //x_y is the proportion of change of x to y. 
-    return Matrix{{1, x_y, x_z, 0}, 
-                  {y_x, 1, y_z, 0},
-                  {z_x, z_y, 1, 0},
-                  {0, 0, 0, 1}};
-}
-
-Matrix view_transform(const Point& from, const Point& to, const Vec& up) { 
-    /*  Transforms the world, can be thought of as moving the eye 
-        from: Where the eye should be in the scene
-        to: where the eye will look
-        up: vector indicidating which direction is up
-    */
-
-   Vec foward = unit_vector(to - from);
-   Vec normal_up = unit_vector(up);
-   Vec left = cross(foward, normal_up);
-   Vec true_up = cross(left, foward);
-
-   Matrix orientation({{left.x,    left.y,    left.z,    0},
-                       {true_up.x, true_up.y, true_up.z, 0},
-                       {-foward.x, -foward.y, -foward.z, 0}, 
-                       {0,         0,         0,         1}});
-
-    return orientation * translation(-from.x, -from.y, -from.z);
-}
-
-
-//Point and Vec interaction 
-
-Point operator*(const Matrix& matrix, const Point& point) { 
-    assert(matrix.size == 4);
-
-    double x_new = matrix.get(0, 0) * point.x + matrix.get(0, 1) * point.y + matrix.get(0,2) * point.z + matrix.get(0,3);
-    double y_new = matrix.get(1, 0) * point.x + matrix.get(1, 1) * point.y + matrix.get(1, 2) * point.z + matrix.get(1, 3);
-    double z_new = matrix.get(2, 0) * point.x + matrix.get(2, 1) * point.y + matrix.get(2, 2) * point.z + matrix.get(2, 3);
-
-    return Point(x_new, y_new, z_new);
-}
-
-Point operator*(const Point& point, const Matrix& matrix) { 
-    return matrix * point; 
-}
-
-Vec operator*(const Matrix& matrix, const Vec& vec) { 
-    assert(matrix.size == 4);
-
-    double x_new = matrix.get(0, 0) * vec.x + matrix.get(0, 1) * vec.y + matrix.get(0,2)  * vec.z; 
-    double y_new = matrix.get(1, 0) * vec.x + matrix.get(1, 1) * vec.y + matrix.get(1, 2) * vec.z;
-    double z_new = matrix.get(2, 0) * vec.x + matrix.get(2, 1) * vec.y + matrix.get(2, 2) * vec.z;
-
-    return Vec(x_new, y_new, z_new);
-}
-
-Vec operator*(const Vec& vec, const Matrix& matrix) { 
-    return matrix * vec; 
-}
-
-
-
-
-
-
-
-
- 

@@ -31,7 +31,7 @@ Hittable& Hittable::set_material(const Material& mat) {
     return *this;
 }
 
-Hittable& Hittable::transform(const Matrix& new_transformation) { 
+Hittable& Hittable::transform(const xform::Matrix& new_transformation) { 
     m_transformation = m_transformation * new_transformation;
     return *this; 
 }
@@ -73,8 +73,8 @@ Vec Sphere::normal_at(const Point& world_point) const {
     //Returns the normal vector at a point. 
     //Because the sphere is transformed, we must make calculations to compute the normal at the 
     //transformed state. 
-    Point object_point = inverse(m_transformation) * world_point; 
+    Point object_point = xform::inverse(m_transformation) * world_point; 
     Vec object_normal = object_point - Point(0, 0, 0);
-    Vec world_normal = transpose(inverse(m_transformation)) * object_normal; 
+    Vec world_normal = xform::transpose(xform::inverse(m_transformation)) * object_normal; 
     return unit_vector(world_normal);
 }

@@ -6,7 +6,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 
 (12/27/2024)
-![My Image](images/spheres.ppm)
+![My Image](images/spheres.png)
 
 
 

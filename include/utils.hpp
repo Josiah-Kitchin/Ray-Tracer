@@ -5,6 +5,8 @@
 
 #include <cmath> 
 
-bool compare_doubles(double, double); 
+namespace utils { 
+    bool compare_doubles(double, double); 
+}
 
 #endif

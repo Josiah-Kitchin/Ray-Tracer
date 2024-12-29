@@ -1,18 +1,20 @@
 
 
-#include "tuples.hpp" 
+#include "geo/tuples.hpp" 
 #include "utils.hpp"
 #include <cassert> 
 
 
 
-/* The tuples included the classes Vec, Point, and Color. 
+/* The tuples included the classes Vec, Point, and RGB. 
 The Vec is a direction in 3d space, while a Point is a coordinate in 3d space 
 The Color holds an r, g, and b */ 
 
 
 
 /*-------------Vec-------------*/
+using geo::Vec; 
+using geo::Point; 
 
 Vec::Vec() : x(0), y(0), z(0) {} 
 Vec::Vec(double x, double y, double z) : x(x), y(y), z(z) {}
@@ -71,9 +73,9 @@ Vec operator/(const Vec& right, double t) {
 }
 
 bool operator==(const Vec& left, const Vec& right) { 
-    return compare_doubles(left.x, right.x) && 
-           compare_doubles(left.y, right.y) && 
-           compare_doubles(left.z, right.z); 
+    return utils::compare_doubles(left.x, right.x) && 
+           utils::compare_doubles(left.y, right.y) && 
+           utils::compare_doubles(left.z, right.z); 
 }
 
 bool operator!=(const Vec& left, const Vec& right) { 
@@ -93,19 +95,19 @@ double Vec::length() const {
     return std::sqrt(length_squared()); 
 }
 
-Vec cross(const Vec& v1, const Vec& v2) { 
+Vec geo::cross(const Vec& v1, const Vec& v2) { 
     //Provides the vector perpendicular to where two vectors cross
     return Vec(v1.y * v2.z - v1.z * v2.y, 
                v1.z * v2.x - v1.x * v2.z, 
                v1.x * v2.y - v1.y * v2.x); 
 }
 
-Vec unit_vector(const Vec& v) { 
+Vec geo::unit_vector(const Vec& v) { 
     //The unit vector is meant to provide direction without changing magnitude 
     return v / v.length(); 
 }
 
-double dot(const Vec& v1, const Vec& v2) { 
+double geo::dot(const Vec& v1, const Vec& v2) { 
     //The extent to which to vectors point in the same direction 
     //positive is pointing to the same general direcition, 
     //negative the opposite direction, and 0 is perpindicular
@@ -118,10 +120,10 @@ bool Vec::near_zero() const {
     return (std::fabs(x) < s) && (std::fabs(y) < s) && (std::fabs(z) < s);
 }
 
-Vec reflect(const Vec& in, const Vec& normal) { 
+Vec geo::reflect(const Vec& in, const Vec& normal) { 
     //Takes a vector and the normal, than returns the vector that is reflected 
     //off of the normal 
-    return in - normal * 2 * dot(in, normal); 
+    return in - normal * 2 * geo::dot(in, normal); 
 }
 /*------------- Point -------------*/
 
@@ -148,9 +150,9 @@ Vec operator-(const Point& left, const Point& right) {
 }
 
 bool operator==(const Point& left, const Point& right) {
-    return compare_doubles(left.x, right.x) && 
-           compare_doubles(left.y, right.y) && 
-           compare_doubles(left.z, right.z); 
+    return utils::compare_doubles(left.x, right.x) && 
+           utils::compare_doubles(left.y, right.y) && 
+           utils::compare_doubles(left.z, right.z); 
 }
 
 bool operator!=(const Point& left, const Point& right) { 
@@ -161,94 +163,3 @@ std::ostream& operator<<(std::ostream& out, const Point& point) {
     out << "(" << point.x << ", " << point.y << ", " << point.z << ")";
     return out; 
 }
-
-
-
-/*-------------Color-------------*/
-
-Color::Color() : r(0), g(0), b(0) {}
-Color::Color(double r, double g, double b) : r(r), g(g), b(b) {}
-
-Color& Color::operator+=(const Color& other) { 
-    r += other.r; 
-    g += other.g; 
-    b += other.b; 
-    return *this; 
-}
-
-Color& Color::operator+=(const Point& point) { 
-    r += point.x; 
-    g += point.y; 
-    b += point.z; 
-    return *this; 
-}
-
-Color operator+(const Color& left, const Color& right) { 
-    return Color(left.r + right.r, left.g + right.g, left.b + right.b); 
-}
-
-Color operator+(const Color& color, const Point& point) { 
-    return Color(color.r + point.x, color.g + point.y, color.b + point.z); 
-}
-
-Color operator+(const Point& point, const Color& color) { 
-    return color + point; 
-}
-
-bool operator==(const Color& left, const Color& right) { 
-    return compare_doubles(left.r, right.r) && 
-           compare_doubles(left.g, right.g) && 
-           compare_doubles(left.b, right.b); 
-}
-
-bool operator!=(const Color& left, const Color& right) { 
-    return !(left == right); 
-}
-
-Color operator*(const Color& left, const Color& right) { 
-    return Color(left.r * right.r, left.g * right.g, left.b * right.b);
-}
-
-Color operator*(const Color& color, double num) { 
-    return Color(color.r * num, color.g * num, color.b * num);
-}
-
-Color operator*(double num, const Color& color) { 
-    return color * num; 
-}
-
-std::ostream& operator<<(std::ostream& out, const Color& color) { 
-    out << "(" << color.r << ", " << color.g << ", " << color.b << ")";
-    return out; 
-}
-
-
-void Color::clamp() { 
-    if (r > 1) r = 1; 
-    if (r < 0) r = 0;  
-
-    if (g > 1) g = 1; 
-    if (g < 0) g = 0; 
-
-    if (b > 1) b = 1;  
-    if (b < 0) b = 0;  
-}
-
-void Color::convert_to_256() { 
-    clamp(); 
-    r = round(255 * r); 
-    g = round(255 * g); 
-    b = round(255 * b); 
-}
-
-
-
-
-
-
-
-
-
-
-
-

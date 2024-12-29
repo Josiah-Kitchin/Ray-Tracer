@@ -1,11 +1,12 @@
 
 
-#include "ray.hpp"
+#include "geo/ray.hpp"
 
+using geo::Ray; 
 
 Ray::Ray(Point origin, Vec direction) : origin(origin), direction(direction) {}
 
-Point Ray::at(double t) const { 
+geo::Point Ray::at(double t) const { 
     return origin + direction * t;  
 }
 

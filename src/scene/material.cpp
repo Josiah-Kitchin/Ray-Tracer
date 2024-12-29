@@ -1,7 +1,9 @@
 
-#include "material.hpp"
+#include "scene/material.hpp"
 
-Material::Material() : color(Color(0, 0, 1)), ambient(0.3), diffuse(0.3), specular(0.3), shininess(1) {}
+using scene::Material; 
+
+Material::Material() : color(color::RGB(0, 0, 1)), ambient(0.3), diffuse(0.3), specular(0.3), shininess(1) {}
 
 Material& Material::set_ambient(double amb) { 
     ambient = amb;
@@ -23,7 +25,7 @@ Material& Material::set_specular(double spec) {
     return *this; 
 }
 
-Material& Material::set_color(const Color& col) { 
+Material& Material::set_color(const color::RGB& col) { 
     color = col;
     return *this;
 }

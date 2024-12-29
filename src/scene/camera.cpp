@@ -1,11 +1,12 @@
 
 
-#include "camera.hpp"
+#include "scene/camera.hpp"
 #include <cmath> 
 #include <algorithm>
 #include <execution> 
 #include <chrono> 
 
+using scene::Camera; 
 
 void Camera::init() { 
     //Initialzes half_width, half_height and pixel size after object initalization 
@@ -25,7 +26,7 @@ void Camera::init() {
 }
 
 
-Ray Camera::ray_to_pixel(int pixel_x, int pixel_y) const { 
+geo::Ray Camera::ray_to_pixel(int pixel_x, int pixel_y) const { 
     //Offset from edge of the canvas to the pixels center
     double x_offset = (double(pixel_x) + 0.5) * m_pixel_size; 
     double y_offset = (double(pixel_y) + 0.5) * m_pixel_size; 
@@ -33,17 +34,17 @@ Ray Camera::ray_to_pixel(int pixel_x, int pixel_y) const {
     double world_x = m_half_width - x_offset; 
     double world_y = m_half_height - y_offset; 
 
-    Point pixel =  xform::inverse(m_transformation) * Point(world_x, world_y, -1);
-    Point origin = xform::inverse(m_transformation) * Point(0, 0, 0);
-    Vec direction = unit_vector(pixel - origin);
+    geo::Point pixel =  xform::inverse(m_transformation) * geo::Point(world_x, world_y, -1);
+    geo::Point origin = xform::inverse(m_transformation) * geo::Point(0, 0, 0);
+    geo::Vec direction = unit_vector(pixel - origin);
 
-    return Ray(origin, direction);
+    return geo::Ray(origin, direction);
 }
 
 
 /* ----------------- Interface Methods ---------------- */
 
-Canvas Camera::render(World& world) { 
+image::Canvas Camera::render(scene::World& world) { 
     /* Called by the user to render a world of lights and objects 
        Iterators are used to create a multithreaded for loop */ 
 
@@ -54,7 +55,7 @@ Canvas Camera::render(World& world) {
     for (int i = 0; i < m_vertical_pixels; ++i)  
         m_vertical_pixel_iterator[i] = i; 
 
-    Canvas image(m_horizontal_pixels, m_vertical_pixels);
+    image::Canvas image(m_horizontal_pixels, m_vertical_pixels);
 
     auto start = std::chrono::high_resolution_clock::now(); 
 
@@ -64,8 +65,8 @@ Canvas Camera::render(World& world) {
     std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
         [&](int y) {
             for (int x = 0; x < m_horizontal_pixels; ++x) {
-                Ray ray = ray_to_pixel(x, y);
-                Color pixel_color = world.color_at(ray);
+                geo::Ray ray = ray_to_pixel(x, y);
+                color::RGB pixel_color = world.color_at(ray);
                 image.insert_color(pixel_color, x, y);
             }
         }

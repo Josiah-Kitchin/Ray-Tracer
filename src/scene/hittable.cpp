@@ -1,15 +1,18 @@
 
 
-#include "hittable.hpp"
-#include "material.hpp"
+#include "scene/hittable.hpp"
+#include "scene/material.hpp"
 #include "utils.hpp"
 #include <cmath> 
 
 
 using std::vector; 
 
+using scene::Hittable; 
+using scene::Sphere; 
+
 /* ----------- Hittable Creation Methods ---------- */
-Hittable& Hittable::set_color(const Color& color) { 
+Hittable& Hittable::set_color(const color::RGB& color) { 
     material.color = color; 
     return *this; 
 }
@@ -26,7 +29,7 @@ Hittable& Hittable::set_specular(double specular) {
     return *this;
 }
 
-Hittable& Hittable::set_material(const Material& mat) { 
+Hittable& Hittable::set_material(const scene::Material& mat) { 
     material = mat; 
     return *this;
 }
@@ -39,42 +42,43 @@ Hittable& Hittable::transform(const xform::Matrix& new_transformation) {
 
 /*----------------Sphere----------------*/
 
-Sphere::Sphere() : m_origin(Point(0, 0, 0)) {}
+Sphere::Sphere() : m_origin(geo::Point(0, 0, 0)) {}
 
-vector<Intersection> Sphere::intersect(const Ray& ray) const { 
+vector<geo::Intersection> Sphere::intersect(const geo::Ray& ray) const { 
     
     //transform the ray instead of the sphere, with the type of transformation matrix being held in the 
     //hittable object. This means we have to take the inverse to give the correct transformation to the ray  
-    Ray transformed_ray = transform_ray(ray, inverse(m_transformation)); 
+    geo::Ray transformed_ray = transform_ray(ray, inverse(m_transformation)); 
     //calculates whether a ray hits a sphere by calculating the discriminant 
-    Vec sphere_to_ray = transformed_ray.origin - m_origin; 
+    geo::Vec sphere_to_ray = transformed_ray.origin - m_origin; 
 
-    double a = dot(transformed_ray.direction, transformed_ray.direction);
-    double b = 2 * dot(transformed_ray.direction, sphere_to_ray); 
-    double c = dot(sphere_to_ray, sphere_to_ray) - 1; 
+    double a = geo::dot(transformed_ray.direction, transformed_ray.direction);
+    double b = 2 * geo::dot(transformed_ray.direction, sphere_to_ray); 
+    double c = geo::dot(sphere_to_ray, sphere_to_ray) - 1; 
 
     double discriminant = b*b - 4 * a * c; 
 
     //If the discriminant is negative, the ray has missed
-    if (discriminant < 0) return vector<Intersection>(); 
+    if (discriminant < 0) return vector<geo::Intersection>(); 
 
     double intersect_1 = (-b - sqrt(discriminant)) / (2 * a); 
     double intersect_2 = (-b + sqrt(discriminant)) / (2 * a); 
 
-    Intersection intersection_1(intersect_1, this); 
-    Intersection intersection_2(intersect_2, this); 
+    geo::Intersection intersection_1(intersect_1, this); 
+    geo::Intersection intersection_2(intersect_2, this); 
 
-    if (compare_doubles(intersect_1, intersect_2)) return vector<Intersection>{intersection_1}; 
+    if (utils::compare_doubles(intersect_1, intersect_2)) 
+        return vector<geo::Intersection>{intersection_1}; 
     
-    return vector<Intersection>{intersection_1, intersection_2}; 
+    return vector<geo::Intersection>{intersection_1, intersection_2}; 
 }
 
-Vec Sphere::normal_at(const Point& world_point) const { 
+geo::Vec Sphere::normal_at(const geo::Point& world_point) const { 
     //Returns the normal vector at a point. 
     //Because the sphere is transformed, we must make calculations to compute the normal at the 
     //transformed state. 
-    Point object_point = xform::inverse(m_transformation) * world_point; 
-    Vec object_normal = object_point - Point(0, 0, 0);
-    Vec world_normal = xform::transpose(xform::inverse(m_transformation)) * object_normal; 
+    geo::Point object_point = xform::inverse(m_transformation) * world_point; 
+    geo::Vec object_normal = object_point - geo::Point(0, 0, 0);
+    geo::Vec world_normal = xform::transpose(xform::inverse(m_transformation)) * object_normal; 
     return unit_vector(world_normal);
 }

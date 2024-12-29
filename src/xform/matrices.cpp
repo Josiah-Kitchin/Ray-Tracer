@@ -3,11 +3,10 @@
 /*The matrix class holds n x n elements. It can either be initialized by giving the size for a blank matrix
   or by using initalizer lists*/
 
-#include "matrices.hpp"
+#include "xform/matrices.hpp"
 #include "utils.hpp"
 #include <cassert> 
 #include <cmath> 
-
 
 
 /* ------------- Static Declarations ------------- */
@@ -143,17 +142,17 @@ xform::Matrix xform::shearing(double x_y, double x_z, double y_x, double y_z, do
                         {0, 0, 0, 1}};
 }
 
-xform::Matrix xform::view_transform(const Point& from, const Point& to, const Vec& up) { 
+xform::Matrix xform::view_transform(const geo::Point& from, const geo::Point& to, const geo::Vec& up) { 
     /*  Transforms the world, can be thought of as moving the eye 
         from: Where the eye should be in the scene
         to: where the eye will look
         up: vector indicidating which direction is up
     */
 
-   Vec foward = unit_vector(to - from);
-   Vec normal_up = unit_vector(up);
-   Vec left = cross(foward, normal_up);
-   Vec true_up = cross(left, foward);
+   geo::Vec foward = unit_vector(to - from);
+   geo::Vec normal_up = unit_vector(up);
+   geo::Vec left = cross(foward, normal_up);
+   geo::Vec true_up = cross(left, foward);
 
    xform::Matrix orientation({{left.x,    left.y,    left.z,    0},
                             {true_up.x, true_up.y, true_up.z, 0},
@@ -188,7 +187,7 @@ bool xform::operator==(const xform::Matrix& left, const xform::Matrix& right) {
 
     for (size_t row = 0; row < left.size; row++) { 
         for (size_t col = 0; col < left.size; col++) { 
-            if (!compare_doubles(left.get(row, col), right.get(row, col))) { 
+            if (!utils::compare_doubles(left.get(row, col), right.get(row, col))) { 
                 return false; 
             }
         }
@@ -215,31 +214,31 @@ std::ostream& xform::operator<<(std::ostream& out, const xform::Matrix& matrix) 
 
 //Point and vec interaction 
 
-Point xform::operator*(const xform::Matrix& matrix, const Point& point) { 
+geo::Point xform::operator*(const xform::Matrix& matrix, const geo::Point& point) { 
     assert(matrix.size == 4);
 
     double x_new = matrix.get(0, 0) * point.x + matrix.get(0, 1) * point.y + matrix.get(0,2) * point.z + matrix.get(0,3);
     double y_new = matrix.get(1, 0) * point.x + matrix.get(1, 1) * point.y + matrix.get(1, 2) * point.z + matrix.get(1, 3);
     double z_new = matrix.get(2, 0) * point.x + matrix.get(2, 1) * point.y + matrix.get(2, 2) * point.z + matrix.get(2, 3);
 
-    return Point(x_new, y_new, z_new);
+    return geo::Point(x_new, y_new, z_new);
 }
 
-Point xform::operator*(const Point& point, const xform::Matrix& matrix) { 
+geo::Point xform::operator*(const geo::Point& point, const xform::Matrix& matrix) { 
     return matrix * point; 
 }
 
-Vec xform::operator*(const xform::Matrix& matrix, const Vec& vec) { 
+geo::Vec xform::operator*(const xform::Matrix& matrix, const geo::Vec& vec) { 
     assert(matrix.size == 4);
 
     double x_new = matrix.get(0, 0) * vec.x + matrix.get(0, 1) * vec.y + matrix.get(0,2)  * vec.z; 
     double y_new = matrix.get(1, 0) * vec.x + matrix.get(1, 1) * vec.y + matrix.get(1, 2) * vec.z;
     double z_new = matrix.get(2, 0) * vec.x + matrix.get(2, 1) * vec.y + matrix.get(2, 2) * vec.z;
 
-    return Vec(x_new, y_new, z_new);
+    return geo::Vec(x_new, y_new, z_new);
 }
 
-Vec xform::operator*(const Vec& vec, const xform::Matrix& matrix) { 
+geo::Vec xform::operator*(const geo::Vec& vec, const xform::Matrix& matrix) { 
     return matrix * vec; 
 }
 

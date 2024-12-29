@@ -1,10 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(ray_trace CXX)
 
-file(GLOB SOURCES "src/*.cpp")
-file(GLOB INCLUDES "include/*.hpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp")
 
-add_executable(ray ${SOURCES} ${INCLUDES})
+add_executable(ray ${SOURCES})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 

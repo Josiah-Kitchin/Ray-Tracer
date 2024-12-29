@@ -4,7 +4,7 @@
 #include <vector> 
 #include <initializer_list> 
 #include <iostream> 
-#include "tuples.hpp"
+#include "geo/tuples.hpp"
 
 namespace xform { 
 
@@ -39,12 +39,12 @@ namespace xform {
     Matrix rotation_y(double); 
     Matrix rotation_z(double); 
     Matrix shearing(double, double, double, double, double, double);
-    Matrix view_transform(const Point&, const Point&, const Vec&);
+    Matrix view_transform(const geo::Point&, const geo::Point&, const geo::Vec&);
 
-    Point operator*(const Matrix&, const Point&);
-    Point operator*(const Point&, const Matrix&);
-    Vec operator*(const Matrix&, const Vec&); 
-    Vec operator*(const Vec&, const Matrix&);
+    geo::Point operator*(const Matrix&, const geo::Point&);
+    geo::Point operator*(const geo::Point&, const Matrix&);
+    geo::Vec operator*(const Matrix&, const geo::Vec&); 
+    geo::Vec operator*(const geo::Vec&, const Matrix&);
 
 }
 

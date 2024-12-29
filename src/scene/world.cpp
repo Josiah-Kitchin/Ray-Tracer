@@ -1,19 +1,20 @@
 
 
-#include "world.hpp"
-#include "material.hpp"
+#include "scene/world.hpp"
+#include "scene/material.hpp"
 #include <algorithm> 
 
+using scene::World; 
 
-World::World() : m_objects(std::vector<Hittable*>{}), 
-                 m_lights(std::vector<Light>{ Light(Color(1, 1, 1), Point(-10, 10, -10))}) {}
+World::World() : m_objects(std::vector<scene::Hittable*>{}), 
+                 m_lights(std::vector<scene::Light>{ scene::Light(color::RGB(1, 1, 1), geo::Point(-10, 10, -10)) }) {}
 
 
 
-std::vector<Intersection> World::intersects(const Ray& ray) { 
+std::vector<geo::Intersection> World::intersects(const geo::Ray& ray) { 
     /* Return a vector of all intersections of objects in the world in sorted order*/
 
-    std::vector<Intersection> intersections; 
+    std::vector<geo::Intersection> intersections; 
     intersections.reserve(500);
 
     for (const auto object : m_objects) {
@@ -22,51 +23,51 @@ std::vector<Intersection> World::intersects(const Ray& ray) {
             intersections.emplace_back(intersection);
         }
     }
-    std::sort(intersections.begin(), intersections.end(), [](Intersection a, Intersection b) {
+    std::sort(intersections.begin(), intersections.end(), [](geo::Intersection a, geo::Intersection b) {
         return a.t < b.t;
     });
     return intersections; 
 }
 
-Color World::shade_hit(const IntersectionState& state) { 
+color::RGB World::shade_hit(const geo::IntersectionState& state) { 
     /* Calculate the color for an intersection based on the worlds lights and the intersection state */
-    Color shade; 
+    color::RGB shade; 
     for (const auto& light : m_lights) { 
        shade += calculate_lighting(state.object->material, light, state.point, state.eye, state.normal);
     }
     return shade; 
 }
 
-Color World::color_at(const Ray& ray) { 
+color::RGB World::color_at(const geo::Ray& ray) { 
     /* Encapuslate some of the intersection logic in one function */
     auto intersections = intersects(ray);
-    Intersection object_hit = hit(intersections);
-    if (object_hit == Intersection(0, nullptr)) {
-        return Color(0, 0, 0);
+    geo::Intersection object_hit = geo::hit(intersections);
+    if (object_hit == geo::Intersection(0, nullptr)) {
+        return color::RGB(0, 0, 0);
     }
-    IntersectionState state(object_hit, ray);
+    geo::IntersectionState state(object_hit, ray);
     return shade_hit(state);
 }
 
 
 /* ----------------- Interface Methods ------------------ */
 
-World& World::set_lights(const std::vector<Light>& in_lights) { 
+World& World::set_lights(const std::vector<scene::Light>& in_lights) { 
     m_lights = in_lights; 
     return *this; 
 }
 
-World& World::set_objects(const std::vector<Hittable*>& in_objects) { 
+World& World::set_objects(const std::vector<scene::Hittable*>& in_objects) { 
     m_objects = in_objects; 
     return *this; 
 }
 
-World& World::add_light(const Light& light) { 
+World& World::add_light(const scene::Light& light) { 
     m_lights.emplace_back(light);
     return *this; 
 }
 
-World& World::add_object(Hittable* object) { 
+World& World::add_object(scene::Hittable* object) { 
     m_objects.emplace_back(object);
     return *this;
 }

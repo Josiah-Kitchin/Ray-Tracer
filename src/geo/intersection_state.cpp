@@ -1,5 +1,9 @@
 
-#include "intersection_state.hpp"
+#include "geo/intersection_state.hpp"
+#include "geo/intersection.hpp"
+
+using geo::IntersectionState; 
+using geo::Intersection; 
 
 IntersectionState::IntersectionState(const Intersection& intersection, const Ray& ray) {
     t = intersection.t; 

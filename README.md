@@ -48,6 +48,8 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 ## Example main.cpp
 [Main](src/main.cpp)
+
+
 See [Docs](docs) for more information on how to use the ray tracer
 
 

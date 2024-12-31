@@ -317,7 +317,7 @@ geo::Vec inline xform::operator*(const geo::Vec& vec, const xform::Matrix<4>& ma
 }
 
 
-/* ------------------------- Static Functions ------------------------------ */
+/* ------------------------- Private Functions ------------------------------ */
  
 
 template <std::size_t N> 

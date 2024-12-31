@@ -2,6 +2,7 @@
 #define MATRICES_HPP
 
 #include <vector> 
+#include <array> 
 #include <initializer_list> 
 #include <iostream> 
 #include "geo/tuples.hpp"
@@ -10,16 +11,16 @@ namespace xform {
 
     class Matrix { 
     private: 
-        std::vector<std::vector<double>> matrix_data; 
+        std::array<double, 4> m_data; 
 
     public: 
         std::size_t size; 
         
         Matrix(int); 
-        Matrix(std::initializer_list<std::initializer_list<double>>); 
+        Matrix(const std::initializer_list<double>&); 
 
-        double get(double, double) const;  
-        double& set(double, double); 
+        double get(int, int) const;  
+        void set(double, int, int); 
 
     };
 
@@ -47,6 +48,12 @@ namespace xform {
     geo::Vec operator*(const geo::Vec&, const Matrix&);
 
 }
+
+double cofactor(const xform::Matrix& matrix, size_t delete_row, size_t delete_column);  
+double minor(const xform::Matrix& matrix, size_t delete_row, size_t delete_column);  
+double determinant(const xform::Matrix& matrix);  
+xform::Matrix submatrix(const xform::Matrix& matrix, size_t delete_row, size_t delete_col);  
+bool is_invertable(const xform::Matrix& matrix);  
 
 #endif
 

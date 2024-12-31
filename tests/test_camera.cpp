@@ -8,7 +8,12 @@ using namespace scene;
 using namespace geo; 
 
 TEST(Camera, pixel_size) { 
-    Camera camera(200, 125, M_PI/2); 
+    Camera camera; 
+    camera
+        .set_field_of_view(M_PI/2)
+        .set_horizontal_pixels(200)
+        .set_vertical_pixels(125);
+
 
     ASSERT_TRUE(compare_doubles(camera.pixel_size, 0.01));
 }

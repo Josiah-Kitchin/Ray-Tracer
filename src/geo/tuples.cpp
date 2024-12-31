@@ -48,41 +48,41 @@ Vec& Vec::operator/=(double t) {
 }
 
 
-Vec operator+(const Vec& left, const Vec& right) { 
+Vec geo::operator+(const Vec& left, const Vec& right) { 
     return Vec(left.x + right.x, left.y + right.y, left.z + right.z); 
 }
 
-Vec operator-(const Vec& left, const Vec& right) { 
+Vec geo::operator-(const Vec& left, const Vec& right) { 
     return Vec(left.x - right.x, left.y - right.y, left.z - right.z); 
 }
 
-Vec operator*(const Vec& left, const Vec& right) { 
+Vec geo::operator*(const Vec& left, const Vec& right) { 
     return Vec(left.x * right.x, left.y * right.y, left.z * right.z); 
 }
 
-Vec operator*(const Vec& left, double t) { 
+Vec geo::operator*(const Vec& left, double t) { 
     return Vec(left.x * t, left.y * t, left.z * t); 
 }
 
-Vec operator*(double t, const Vec& right) { 
+Vec geo::operator*(double t, const Vec& right) { 
     return right * t; 
 }
 
-Vec operator/(const Vec& right, double t) { 
+Vec geo::operator/(const Vec& right, double t) { 
     return (1/t) * right; 
 }
 
-bool operator==(const Vec& left, const Vec& right) { 
+bool geo::operator==(const Vec& left, const Vec& right) { 
     return utils::compare_doubles(left.x, right.x) && 
            utils::compare_doubles(left.y, right.y) && 
            utils::compare_doubles(left.z, right.z); 
 }
 
-bool operator!=(const Vec& left, const Vec& right) { 
+bool geo::operator!=(const Vec& left, const Vec& right) { 
     return !(left == right); 
 }
 
-std::ostream& operator<<(std::ostream& out, const Vec& vec) { 
+std::ostream& geo::operator<<(std::ostream& out, const Vec& vec) { 
     out << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
     return out; 
 }
@@ -137,29 +137,29 @@ Point& Point::operator+=(const Vec& v) {
     return *this; 
 }
 
-Point operator+(const Point& point, const Vec& vec) { 
+Point geo::operator+(const Point& point, const Vec& vec) { 
     return Point(point.x + vec.x, point.y + vec.y, point.z + vec.z); 
 }
 
-Point operator+(const Vec& v, const Point& p) { 
+Point geo::operator+(const Vec& v, const Point& p) { 
     return p + v; 
 }
 
-Vec operator-(const Point& left, const Point& right) {
+Vec geo::operator-(const Point& left, const Point& right) {
     return Vec(left.x - right.x, left.y - right.y, left.z - right.z);
 }
 
-bool operator==(const Point& left, const Point& right) {
+bool geo::operator==(const Point& left, const Point& right) {
     return utils::compare_doubles(left.x, right.x) && 
            utils::compare_doubles(left.y, right.y) && 
            utils::compare_doubles(left.z, right.z); 
 }
 
-bool operator!=(const Point& left, const Point& right) { 
+bool geo::operator!=(const Point& left, const Point& right) { 
     return !(left == right); 
 }
 
-std::ostream& operator<<(std::ostream& out, const Point& point) { 
+std::ostream& geo::operator<<(std::ostream& out, const Point& point) { 
     out << "(" << point.x << ", " << point.y << ", " << point.z << ")";
     return out; 
 }

@@ -44,27 +44,25 @@ namespace geo {
         
         Point& operator+=(const Vec&); 
     };
+
+    Vec operator+(const Vec&, const Vec&);
+    Vec operator-(const Vec&, const Vec&); 
+    Vec operator*(const Vec&, const Vec&); 
+    Vec operator*(const Vec&, double); 
+    Vec operator*(double, const Vec&); 
+    Vec operator/(const Vec&, double); 
+    bool operator==(const Vec&, const Vec&); 
+    bool operator!=(const Vec&, const Vec&); 
+    std::ostream& operator<<(std::ostream&, const Vec&); 
+
+
+    Point operator+(const Point&, const Vec&);
+    Point operator+(const Vec&, const Point&);  
+    Vec operator-(const Point&, const Point&); 
+    bool operator==(const Point&, const Point&); 
+    bool operator!=(const Point&, const Point&); 
+    std::ostream& operator<<(std::ostream&, const Point&);
+
 }
 
-
-geo::Vec operator+(const geo::Vec&, const geo::Vec&);
-geo::Vec operator-(const geo::Vec&, const geo::Vec&); 
-geo::Vec operator*(const geo::Vec&, const geo::Vec&); 
-geo::Vec operator*(const geo::Vec&, double); 
-geo::Vec operator*(double, const geo::Vec&); 
-geo::Vec operator/(const geo::Vec&, double); 
-bool operator==(const geo::Vec&, const geo::Vec&); 
-bool operator!=(const geo::Vec&, const geo::Vec&); 
-std::ostream& operator<<(std::ostream&, const geo::Vec&); 
-
-
-geo::Point operator+(const geo::Point&, const geo::Vec&);
-geo::Point operator+(const geo::Vec&, const geo::Point&);  
-geo::Vec operator-(const geo::Point&, const geo::Point&); 
-bool operator==(const geo::Point&, const geo::Point&); 
-bool operator!=(const geo::Point&, const geo::Point&); 
-std::ostream& operator<<(std::ostream&, const geo::Point&);
-
-
 #endif 
-

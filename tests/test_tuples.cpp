@@ -1,5 +1,4 @@
 
-
 #include <gtest/gtest.h> 
 #include "geo/tuples.hpp" 
 #include "color/color.hpp"

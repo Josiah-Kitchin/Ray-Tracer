@@ -74,7 +74,6 @@ int main() {
         .set_field_of_view(M_PI/3)
         .transform(xform::view_transform(geo::Point(0, 1.5, -5), geo::Point(0, 1, 0), geo::Vec(0, 1, 0)));
 
-    //test
     scene::World world;
     world
         .set_lights({light})

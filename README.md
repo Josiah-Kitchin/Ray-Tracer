@@ -5,7 +5,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 
 
-(12/27/2024) 1000 x 5000, 0.128601 Seconds to render 
+(12/27/2024) 1000 x 500, 0.128601 Seconds to render 
 ![My Image](images/spheres.png)
 
 

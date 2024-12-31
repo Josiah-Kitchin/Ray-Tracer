@@ -352,7 +352,7 @@ double determinant(const xform::Matrix<N>& matrix) {
         return matrix.get(0, 0) * matrix.get(1, 1) - 
                matrix.get(0, 1) * matrix.get(1, 0);
     } else if constexpr (N == 3) { // Handle 3x3 matrix
-        return matrix.get(0, 0) * cofactor(matrix, 0, 0) -
+        return matrix.get(0, 0) * cofactor(matrix, 0, 0) +
                matrix.get(0, 1) * cofactor(matrix, 0, 1) +
                matrix.get(0, 2) * cofactor(matrix, 0, 2);
     } else if constexpr (N == 4) { // Handle 4x4 matrix

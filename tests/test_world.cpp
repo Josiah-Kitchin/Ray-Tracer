@@ -1,6 +1,10 @@
 
 #include <gtest/gtest.h> 
+
+#define private public
 #include "scene/world.hpp"
+#undef private 
+
 #include "scene/hittable.hpp"
 #include "geo/tuples.hpp"
 #include "geo/ray.hpp"
@@ -22,9 +26,9 @@ TEST(World, init) {
     sphere2.transform(scaling(0.5, 0.5, 0.5));
 
     World world; 
-    world.objects = {&sphere, &sphere2};
+    world.m_objects = {&sphere, &sphere2};
 
-    ASSERT_TRUE(world.objects.at(0)->material.color == RGB(0.8, 1, 0.6));
+    ASSERT_TRUE(world.m_objects.at(0)->material.color == RGB(0.8, 1, 0.6));
 }
 
 TEST(World, intersects) {
@@ -37,7 +41,7 @@ TEST(World, intersects) {
     sphere2.transform(scaling(0.5, 0.5, 0.5));
 
     World world; 
-    world.objects = {&sphere, &sphere2};
+    world.m_objects = {&sphere, &sphere2};
     Ray ray(Point(0, 0, -5), Vec(0, 0, 1));
 
     std::vector<Intersection> intersections = world.intersects(ray);
@@ -56,7 +60,7 @@ TEST(World, shade_hit) {
     shape.material.ambient = 1; 
     shape.material.diffuse = 1; 
     shape.material.specular = 1; 
-    world.objects = {&shape};
+    world.m_objects = {&shape};
     Intersection i(4, &shape);
     IntersectionState state(i, r); 
     RGB shade = world.shade_hit(state);
@@ -65,7 +69,7 @@ TEST(World, shade_hit) {
 
 TEST(World, shade_hit2) {
     World world; 
-    world.lights = {Light(RGB(1, 1, 1), Point(0, 0.25, 0))};
+    world.m_lights = {Light(RGB(1, 1, 1), Point(0, 0.25, 0))};
     Ray r(Point(0, 0, 0), Vec(0, 0, 1));
     Sphere shape; 
     shape.material.ambient = 1; 

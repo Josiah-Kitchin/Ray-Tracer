@@ -24,41 +24,41 @@ RGB& RGB::operator+=(const geo::Point& point) {
     return *this; 
 }
 
-RGB operator+(const RGB& left, const RGB& right) { 
+RGB color::operator+(const RGB& left, const RGB& right) { 
     return RGB(left.r + right.r, left.g + right.g, left.b + right.b); 
 }
 
-RGB operator+(const RGB& color, const geo::Point& point) { 
+RGB color::operator+(const RGB& color, const geo::Point& point) { 
     return RGB(color.r + point.x, color.g + point.y, color.b + point.z); 
 }
 
-RGB operator+(const geo::Point& point, const RGB& color) { 
+RGB color::operator+(const geo::Point& point, const RGB& color) { 
     return color + point; 
 }
 
-bool operator==(const RGB& left, const RGB& right) { 
+bool color::operator==(const RGB& left, const RGB& right) { 
     return utils::compare_doubles(left.r, right.r) && 
            utils::compare_doubles(left.g, right.g) && 
            utils::compare_doubles(left.b, right.b); 
 }
 
-bool operator!=(const RGB& left, const RGB& right) { 
+bool color::operator!=(const RGB& left, const RGB& right) { 
     return !(left == right); 
 }
 
-RGB operator*(const RGB& left, const RGB& right) { 
+RGB color::operator*(const RGB& left, const RGB& right) { 
     return RGB(left.r * right.r, left.g * right.g, left.b * right.b);
 }
 
-RGB operator*(const RGB& color, double num) { 
+RGB color::operator*(const RGB& color, double num) { 
     return RGB(color.r * num, color.g * num, color.b * num);
 }
 
-RGB operator*(double num, const RGB& color) { 
+RGB color::operator*(double num, const RGB& color) { 
     return color * num; 
 }
 
-std::ostream& operator<<(std::ostream& out, const RGB& color) { 
+std::ostream& color::operator<<(std::ostream& out, const RGB& color) { 
     out << "(" << color.r << ", " << color.g << ", " << color.b << ")";
     return out; 
 }

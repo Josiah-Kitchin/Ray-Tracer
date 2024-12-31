@@ -8,7 +8,7 @@ using geo::Intersection;
 
 Intersection::Intersection(double t, const scene::Hittable* object) : t(t), object(object) {};  
 
-bool operator==(const Intersection& i1, const Intersection& i2) { 
+bool geo::operator==(const Intersection& i1, const Intersection& i2) { 
     return i1.t == i2.t && i1.object == i2.object;
 }
 

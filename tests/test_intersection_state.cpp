@@ -1,5 +1,6 @@
 
 #include <gtest/gtest.h> 
+
 #include "geo/intersection_state.hpp"
 
 using namespace geo; 

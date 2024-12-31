@@ -3,7 +3,7 @@
 
 using scene::Material; 
 
-Material::Material() : color(color::RGB(0, 0, 1)), ambient(0.3), diffuse(0.3), specular(0.3), shininess(1) {}
+Material::Material() : color(color::RGB(0, 0, 0)), ambient(0), diffuse(0), specular(0), shininess(1) {}
 
 Material& Material::set_ambient(double amb) { 
     ambient = amb;

@@ -7,7 +7,7 @@
 
 namespace color {
 
-class RGB { 
+    class RGB { 
     public: 
         double r, g, b; 
 
@@ -20,16 +20,18 @@ class RGB {
         void clamp(); 
         void convert_to_256(); 
     };
-}
 
-color::RGB operator+(const color::RGB&, const color::RGB&);  
-color::RGB operator+(const color::RGB&, const geo::Point&); 
-color::RGB operator+(const color::RGB&, const color::RGB&);
-bool operator==(const color::RGB&, const color::RGB&);
-bool operator!=(const color::RGB&, const color::RGB&); 
-color::RGB operator*(const color::RGB&, const color::RGB&);
-color::RGB operator*(const color::RGB&, double);
-color::RGB operator*(double, const color::RGB&);
-std::ostream& operator<<(std::ostream&, const color::RGB&);
+    RGB operator+(const RGB&, const RGB&);  
+    RGB operator+(const RGB&, const geo::Point&); 
+    RGB operator+(const geo::Point&, const RGB&);
+    RGB operator+(const RGB&, const RGB&);
+    bool operator==(const RGB&, const RGB&);
+    bool operator!=(const RGB&, const RGB&); 
+    RGB operator*(const RGB&, const RGB&);
+    RGB operator*(const RGB&, double);
+    RGB operator*(double, const RGB&);
+    std::ostream& operator<<(std::ostream&, const RGB&);
+
+}
 
 #endif

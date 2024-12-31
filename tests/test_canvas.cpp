@@ -1,6 +1,7 @@
 
 
 #include <gtest/gtest.h> 
+
 #include "image/canvas.hpp" 
 
 using namespace image; 
@@ -10,9 +11,9 @@ using namespace color;
 TEST(Canvas, pixel_at) { 
     Canvas canvas(10, 10); 
     for (int i = 0; i < 10; i++) { 
-	for (int j = 0; j < 10; j++) { 
-	    ASSERT_EQ(RGB(1, 1, 1), canvas.pixel_at(i, j)); 
-	}
+        for (int j = 0; j < 10; j++) { 
+            ASSERT_EQ(RGB(1, 1, 1), canvas.pixel_at(i, j)); 
+        }
     }
 }
 

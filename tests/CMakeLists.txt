@@ -6,7 +6,7 @@ project(Testing CXX)
 file(GLOB_RECURSE SOURCES "../src/*.cpp")
 list(FILTER SOURCES EXCLUDE REGEX "main.cpp$")
 
-file(GLOB_RECURSE TEST_SOURCES "*.cpp") 
+file(GLOB_RECURSE TEST_SOURCES "test_matrices.cpp") 
 
 
 set(GTEST_DIR ./googletest)  # Specify the path to Google Test

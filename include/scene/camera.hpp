@@ -15,7 +15,7 @@ namespace scene {
         Camera& set_horizontal_pixels(int);
         Camera& set_vertical_pixels(int);
         Camera& set_field_of_view(double);
-        Camera& transform(const xform::Matrix&);
+        Camera& transform(const xform::Matrix<4>&);
 
         image::Canvas render(scene::World&);
         
@@ -28,7 +28,7 @@ namespace scene {
         double m_pixel_size;
         double m_half_width; 
         double m_half_height; 
-        xform::Matrix m_transformation = xform::identity(); 
+        xform::Matrix<4> m_transformation = xform::identity(); 
 
         geo::Ray ray_to_pixel(int, int) const;
         void init(); //calculates pixel size, half_width, half_height

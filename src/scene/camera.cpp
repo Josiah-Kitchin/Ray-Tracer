@@ -93,7 +93,7 @@ Camera& Camera::set_field_of_view(double degrees) {
     return *this;
 }
 
-Camera& Camera::transform(const xform::Matrix& new_transformation) { 
+Camera& Camera::transform(const xform::Matrix<4>& new_transformation) { 
     m_transformation = m_transformation * new_transformation;
     return *this;
 }

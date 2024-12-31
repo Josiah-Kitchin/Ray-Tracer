@@ -34,7 +34,7 @@ Hittable& Hittable::set_material(const scene::Material& mat) {
     return *this;
 }
 
-Hittable& Hittable::transform(const xform::Matrix& new_transformation) { 
+Hittable& Hittable::transform(const xform::Matrix<4>& new_transformation) { 
     m_transformation = m_transformation * new_transformation;
     return *this; 
 }

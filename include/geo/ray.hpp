@@ -19,7 +19,7 @@ namespace geo {
     };
 }
 
-geo::Ray transform_ray(const geo::Ray&, const xform::Matrix&);
+geo::Ray transform_ray(const geo::Ray&, const xform::Matrix<4>&);
 
 
 #endif 

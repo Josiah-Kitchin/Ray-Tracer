@@ -25,13 +25,13 @@ namespace scene {
         Hittable& set_ambient(double);
         Hittable& set_diffuse(double);
         Hittable& set_specular(double);
-        Hittable& transform(const xform::Matrix&);
+        Hittable& transform(const xform::Matrix<4>&);
         Hittable& set_material(const Material&);
 
         Material material; 
 
     protected: 
-        xform::Matrix m_transformation; 
+        xform::Matrix<4> m_transformation; 
         
     };
 

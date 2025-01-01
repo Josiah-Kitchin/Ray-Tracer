@@ -2,6 +2,9 @@
 #include <gtest/gtest.h> 
 
 #include "geo/intersection_state.hpp"
+#include "xform/matrices.hpp"
+#include "scene/hittable.hpp"
+#include "utils.hpp"
 
 using namespace geo; 
 using namespace scene; 
@@ -37,4 +40,16 @@ TEST(IntersectionState, inside_hit) {
     ASSERT_EQ(state.eye, Vec(0, 0, -1));
     ASSERT_TRUE(state.inside);
     ASSERT_EQ(state.normal, Vec(0, 0, -1));
+}
+
+TEST(IntersectionState, over_point) { 
+    Ray ray(Point(0, 0, -5), Vec(0, 0, 1));
+    scene::Sphere shape; 
+    shape
+        .transform(xform::translation(0, 0, 1));
+
+    Intersection i(5, &shape);
+    IntersectionState state(i, ray);
+    ASSERT_LT(state.over_point.z, -utils::EPSILON/2);
+    ASSERT_GT(state.point.z, state.over_point.z);
 }

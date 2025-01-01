@@ -19,7 +19,7 @@ Intersection geo::hit(std::vector<Intersection>& intersections) {
 
     Intersection min = intersections.at(0);  
     for (const auto intersection : intersections) { 
-        if (intersection.t >= 0 && intersection.t < min.t) { 
+        if (intersection.t >= 0 && (min.t < 0 || intersection.t < min.t)) { 
             min = intersection; 
         }
     }
@@ -27,6 +27,10 @@ Intersection geo::hit(std::vector<Intersection>& intersections) {
         return Intersection(0, nullptr);
     }
     return min;  
+}
+
+bool geo::is_miss(const Intersection& intersection) { 
+    return intersection.object == nullptr;  
 }
 
 

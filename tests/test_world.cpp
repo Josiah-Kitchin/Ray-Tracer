@@ -10,6 +10,7 @@
 #include "geo/ray.hpp"
 #include "geo/intersection.hpp"
 #include "color/color.hpp"
+#include "utils.hpp"
 
 using namespace scene; 
 using namespace xform; 
@@ -81,12 +82,63 @@ TEST(World, shade_hit2) {
     ASSERT_EQ(shade, RGB(0.894427, 0.894427, 0.894427));
 }
 
+TEST(World, shade_hit3) { 
+    World world; 
+    world.m_lights = {Light(RGB(1, 1, 1), Point(0, 0, -10))};
+
+    Sphere s1; 
+    Sphere s2; 
+    s2.transform(xform::translation(0, 0, 10));
+    world.m_objects = {&s1, &s2};
+    Ray r(Point(0, 0, 5), Vec(0, 0, 1));
+    Intersection i(4, &s2);
+    IntersectionState state(i, r);
+    color::RGB c = world.shade_hit(state);
+    ASSERT_EQ(c, color::RGB(0.1, 0.1, 0.1));
+}
+
+
 TEST(World, color_at) { 
     World world; 
     Ray ray(Point(0, 0, -5), Vec(0, 1, 0));
     RGB color = world.color_at(ray);
     ASSERT_EQ(color, RGB(0, 0, 0)); 
 }
+
+TEST(World, is_shadowed) { 
+    World world;
+    Sphere sphere; 
+    world.add_object(&sphere);
+    Point point(0, 0, 0);
+    ASSERT_FALSE(world.is_shadowed(point));
+}
+
+TEST(World, is_shadowed2) { 
+    World world; 
+    Sphere sphere; 
+    world.add_object(&sphere);
+    Point point(10, -10, 10);
+    ASSERT_TRUE(world.is_shadowed(point));
+}
+
+TEST(World, is_shadowed3) { 
+    World world;
+    Sphere sphere; 
+    world.add_object(&sphere);
+    Point point(-20, 20, -20);
+    ASSERT_FALSE(world.is_shadowed(point));
+}
+
+TEST(World, is_shadowed4) {
+    World world;
+    Sphere sphere; 
+    world.add_object(&sphere);
+    Point point(-2, 2, -2);
+    ASSERT_FALSE(world.is_shadowed(point));
+}
+
+
+
 
 
 

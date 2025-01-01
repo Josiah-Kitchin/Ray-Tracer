@@ -12,7 +12,9 @@ int main() {
     scene::Material background_mat; 
     background_mat
         .set_color(color::RGB(1, 0.9, 0.9))
-        .set_specular(0);
+        .set_specular(0)
+        .set_diffuse(0.3)
+        .set_ambient(0.3);
 
     scene::Sphere floor; 
     floor 
@@ -38,6 +40,7 @@ int main() {
 
     scene::Material sphere_mat; 
     sphere_mat
+        .set_ambient(0.3)
         .set_diffuse(0.7)
         .set_specular(0.3);
 

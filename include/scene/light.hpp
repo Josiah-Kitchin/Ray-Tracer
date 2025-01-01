@@ -18,6 +18,7 @@ namespace scene {
     };
 }
 
-color::RGB calculate_lighting(const scene::Material&, const scene::Light&, const geo::Point&, const geo::Vec&, const geo::Vec&);
+color::RGB calculate_lighting(const scene::Material&, const scene::Light&, const geo::Point&, 
+                              const geo::Vec&, const geo::Vec&, bool);
 
 #endif

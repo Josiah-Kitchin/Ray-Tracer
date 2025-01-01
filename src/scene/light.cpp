@@ -17,8 +17,9 @@ Light& Light::set_position(const geo::Point& position) {
 }
 
 color::RGB calculate_lighting(const scene::Material& mat, const Light& light, const geo::Point& position, 
-                              const geo::Vec& eye, const geo::Vec& normal) { 
+                              const geo::Vec& eye, const geo::Vec& normal, bool in_shadow) { 
     /* Phong Reflection Model */
+
 
     color::RGB ambient, diffuse, specular; 
 
@@ -27,6 +28,9 @@ color::RGB calculate_lighting(const scene::Material& mat, const Light& light, co
     geo::Vec light_direction = geo::unit_vector(light.m_position - position);
 
     ambient = effective_color * mat.ambient; 
+    if (in_shadow) { 
+        return ambient;
+    }
 
     double light_dot_normal = geo::dot(light_direction, normal); 
 

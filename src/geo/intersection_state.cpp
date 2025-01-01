@@ -1,6 +1,7 @@
 
 #include "geo/intersection_state.hpp"
 #include "geo/intersection.hpp"
+#include "utils.hpp"
 
 using geo::IntersectionState; 
 using geo::Intersection; 
@@ -22,5 +23,6 @@ IntersectionState::IntersectionState(const Intersection& intersection, const Ray
         inside = false;
     }
 
+    over_point = point + normal * utils::EPSILON; 
 }   
 

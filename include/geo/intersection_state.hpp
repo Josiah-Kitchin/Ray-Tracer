@@ -12,6 +12,7 @@ namespace geo {
         double t; 
         const scene::Hittable* object; 
         Point point; 
+        Point over_point; //the point slighty in the direction of the surface normal, to overcome the slight rounding errors 
         Vec eye; 
         Vec normal; 
         bool inside; 

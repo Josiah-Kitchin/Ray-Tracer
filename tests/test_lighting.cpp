@@ -16,7 +16,7 @@ TEST(lighting, lighting) {
     mat.ambient = 0.1; mat.diffuse = 0.9; mat.specular=0.9;
     Point position(0, 0, 0);
 
-    ASSERT_EQ(RGB(1.9, 1.9, 1.9), calculate_lighting(mat, light, position, eyev, normalv));
+    ASSERT_EQ(RGB(1.9, 1.9, 1.9), calculate_lighting(mat, light, position, eyev, normalv, false));
 }
 
 TEST(lighting, lighting2) { 
@@ -28,7 +28,7 @@ TEST(lighting, lighting2) {
     mat.ambient = 0.1; mat.diffuse = 0.9; 
     Point position(0, 0, 0);
 
-    ASSERT_EQ(RGB(1.0, 1.0, 1.0), calculate_lighting(mat, light, position, eyev, normalv));
+    ASSERT_EQ(RGB(1.0, 1.0, 1.0), calculate_lighting(mat, light, position, eyev, normalv, false));
 }
 
 TEST(lighting, lighting3) { 
@@ -41,7 +41,7 @@ TEST(lighting, lighting3) {
     mat.shininess = 1; 
     Point position(0, 0, 0);
 
-    ASSERT_EQ(RGB(0.7364, 0.7364, 0.7364), calculate_lighting(mat, light, position, eyev, normalv));
+    ASSERT_EQ(RGB(0.7364, 0.7364, 0.7364), calculate_lighting(mat, light, position, eyev, normalv, false));
 }
 
 TEST(lighting, lighting4) { 
@@ -54,5 +54,17 @@ TEST(lighting, lighting4) {
     mat.shininess = 1;
     Point position(0, 0, 0);
 
-    ASSERT_EQ(RGB(1.6364, 1.6364, 1.6364), calculate_lighting(mat, light, position, eyev, normalv));
+    ASSERT_EQ(RGB(1.6364, 1.6364, 1.6364), calculate_lighting(mat, light, position, eyev, normalv, false));
+}
+
+TEST(lighting, lighting_shadow) { 
+    Vec eyev(0, 0, -1);
+    Vec normalv(0, 0, -1);
+    Light light(RGB(1, 1, 1), Point(0, 0, -10));
+    Material mat; 
+    mat.color = RGB(1,1,1);
+    mat.ambient = 0.1; mat.diffuse = 0.9; mat.specular=0.9;
+    Point position(0, 0, 0);
+    bool in_shadow = true;
+    ASSERT_EQ(RGB(0.1, 0.1, 0.1), calculate_lighting(mat, light, position, eyev, normalv, in_shadow));
 }

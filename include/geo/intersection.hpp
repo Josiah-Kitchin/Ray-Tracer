@@ -19,8 +19,10 @@ namespace geo {
     };
 
     Intersection hit(std::vector<Intersection>&); 
+    bool is_miss(const Intersection&);
 
     bool operator==(const Intersection&, const Intersection&); 
+
 }
 
 

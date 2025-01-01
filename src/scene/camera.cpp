@@ -61,6 +61,7 @@ image::Canvas Camera::render(scene::World& world) {
 
     std::clog << " Rendering...            \r";
 
+    
     /* -------------- Render Loop -------------- */
     std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
         [&](int y) {

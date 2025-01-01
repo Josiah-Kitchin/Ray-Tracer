@@ -3,9 +3,8 @@
 #ifndef UTILS_HPP
 #define UTILS_HPP
 
-#include <cmath> 
-
 namespace utils { 
+    extern const double EPSILON;
     bool compare_doubles(double, double); 
 }
 

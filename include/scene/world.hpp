@@ -25,6 +25,7 @@ class World {
 
     private:
         std::vector<geo::Intersection> intersects(const geo::Ray&);
+        bool is_shadowed(const geo::Point&);
         color::RGB shade_hit(const geo::IntersectionState&); 
         color::RGB color_at(const geo::Ray&);
         std::vector<scene::Hittable*> m_objects;

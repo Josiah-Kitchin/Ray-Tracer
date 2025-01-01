@@ -41,11 +41,20 @@ namespace scene {
 
         Sphere();
         std::vector<geo::Intersection> intersect(const geo::Ray&) const override; 
-        geo::Vec normal_at(const geo::Point&) const;
+        geo::Vec normal_at(const geo::Point&) const override;
 
     private: 
         geo::Point m_origin;
 
+    };
+
+    class Plane : public Hittable {
+
+    public:
+
+        std::vector<geo::Intersection> intersect(const geo::Ray&) const override;
+        geo::Vec normal_at(const geo::Point&) const override;
+        
     };
 }
 

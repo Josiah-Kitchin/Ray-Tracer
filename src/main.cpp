@@ -9,34 +9,7 @@
 
 int main() { 
 
-    scene::Material background_mat; 
-    background_mat
-        .set_color(color::RGB(1, 0.9, 0.9))
-        .set_specular(0)
-        .set_diffuse(0.3)
-        .set_ambient(0.3);
-
-    scene::Sphere floor; 
-    floor 
-        .transform(xform::scaling(10, 0.01, 10))
-        .set_material(background_mat);
-
-    scene::Sphere left_wall; 
-    left_wall 
-        .transform(xform::translation(0, 0, 5))
-        .transform(xform::rotation_y(-M_PI/4))
-        .transform(xform::rotation_x(M_PI/2))
-        .transform(xform::scaling(10, 0.01, 10))
-        .set_material(background_mat);
-
-    scene::Sphere right_wall; 
-    right_wall
-        .transform(xform::translation(0, 0, 5))
-        .transform(xform::rotation_y(M_PI/4))
-        .transform(xform::rotation_x(M_PI/2))
-        .transform(xform::scaling(10, 0.01, 10))
-        .set_material(background_mat);
-
+    /* ----------- Spheres ------------*/
 
     scene::Material sphere_mat; 
     sphere_mat
@@ -64,23 +37,43 @@ int main() {
         .set_material(sphere_mat)
         .set_color(color::RGB(1, 0.8, 1));
 
-    
+
+    /* -------------- Plane -------------- */
+
+    scene::Plane floor;
+    floor 
+        .set_color(color::RGB(1, 1, 1))
+        .set_diffuse(0.8)
+        .set_ambient(0.2);
+
+    scene::Plane background; 
+    background
+        .set_color(color::RGB(1, 1, 1))
+        .set_diffuse(0.8)
+        .set_ambient(0.2)
+        .transform(xform::translation(0, 0, 100))
+        .transform(xform::rotation_x(M_PI/2));
+
+    /* ------------- Light --------------- */
+
     scene::Light light; 
     light 
         .set_intensity(color::RGB(1, 1, 1))
         .set_position(geo::Point(-10, 10, -10));
 
+    /* ------------- Scene --------------*/
+
     scene::Camera camera; 
     camera
-        .set_horizontal_pixels(1000)
-        .set_vertical_pixels(500)
+        .set_horizontal_pixels(2000)
+        .set_vertical_pixels(1000)
         .set_field_of_view(M_PI/3)
         .transform(xform::view_transform(geo::Point(0, 1.5, -5), geo::Point(0, 1, 0), geo::Vec(0, 1, 0)));
 
     scene::World world;
     world
         .set_lights({light})
-        .set_objects({&floor, &left_wall, &right_wall, &middle_sphere, &right_sphere, &left_sphere});
+        .set_objects({&floor, &background, &middle_sphere, &right_sphere, &left_sphere});
 
     image::Canvas image = camera.render(world);
 

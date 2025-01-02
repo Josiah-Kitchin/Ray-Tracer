@@ -32,3 +32,14 @@ Hittable& Hittable::transform(const xform::Matrix<4>& new_transformation) {
     m_transformation = m_transformation * new_transformation;
     return *this; 
 }
+
+Hittable& Hittable::set_pattern(const color::Pattern* pattern) { 
+    material.m_pattern = pattern; 
+    return *this; 
+}
+
+xform::Matrix<4> Hittable::get_transformation() const { 
+    return m_transformation; 
+}
+
+

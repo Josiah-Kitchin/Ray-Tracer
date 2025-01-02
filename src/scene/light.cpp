@@ -1,6 +1,6 @@
 
 #include "scene/light.hpp"
-
+#include "scene/hittable.hpp"
 
 using scene::Light; 
 Light::Light(const color::RGB& intensity, const geo::Point& position) : m_intensity(intensity), m_position(position) {}
@@ -16,14 +16,22 @@ Light& Light::set_position(const geo::Point& position) {
     return *this; 
 }
 
-color::RGB calculate_lighting(const scene::Material& mat, const Light& light, const geo::Point& position, 
+color::RGB calculate_lighting(const scene::Hittable* object, const Light& light, const geo::Point& position, 
                               const geo::Vec& eye, const geo::Vec& normal, bool in_shadow) { 
     /* Phong Reflection Model */
 
+    scene::Material mat = object->material; 
+
+    color::RGB color; 
+    if (mat.m_pattern != nullptr) { 
+        color = mat.m_pattern->color_at_object(object, position);
+    } else { 
+        color = mat.color; 
+    } 
 
     color::RGB ambient, diffuse, specular; 
 
-    color::RGB effective_color = mat.color * light.m_intensity; 
+    color::RGB effective_color = color * light.m_intensity; 
 
     geo::Vec light_direction = geo::unit_vector(light.m_position - position);
 

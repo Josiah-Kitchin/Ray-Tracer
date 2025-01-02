@@ -7,6 +7,7 @@ using color::RGB;
 
 /*-------------Color-------------*/
 
+
 RGB::RGB() : r(0), g(0), b(0) {}
 RGB::RGB(double r, double g, double b) : r(r), g(g), b(b) {}
 
@@ -81,6 +82,31 @@ void RGB::convert_to_256() {
     g = round(255 * g); 
     b = round(255 * b); 
 }
+
+RGB color::black() { 
+    return RGB(0, 0, 0);
+}
+
+RGB color::white() { 
+    return RGB(1, 1, 1);
+}
+
+RGB color::blue() { 
+    return RGB(0, 0, 1);
+}
+
+RGB color::red() { 
+    return RGB(1, 0, 0);
+}
+
+RGB color::green() { 
+    return RGB(0, 1, 0);
+}
+
+
+
+
+
 
 
 

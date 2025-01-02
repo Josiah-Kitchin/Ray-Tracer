@@ -6,59 +6,74 @@
 #include "scene/scene.hpp"
 #include "geo/geo.hpp"
 #include "xform/xform.hpp"
+#include "color/color.hpp"
 
 int main() { 
 
     /* ----------- Spheres ------------*/
 
     scene::Material sphere_mat; 
+    color::Checkers checkers; 
+    checkers 
+        .set_first_color(color::black())
+        .set_second_color(color::white());
+
+    color::Gradient gradient; 
+    gradient
+        .set_first_color(color::RGB(0, 1, 1))
+        .set_second_color(color::red());
+    
     sphere_mat
         .set_ambient(0.3)
         .set_diffuse(0.7)
-        .set_specular(0.3);
+        .set_specular(0.3)
+        .set_pattern(&gradient);
 
     scene::Sphere middle_sphere; 
     middle_sphere
-        .transform(xform::translation(-0.5, 1, 0.8))
-        .set_material(sphere_mat)
-        .set_color(color::RGB(0.1, 1, 0.5));
+        .transform(xform::translation(-0.5, 1, 1.8))
+        .set_material(sphere_mat);
 
     scene::Sphere right_sphere; 
     right_sphere
-        .transform(xform::translation(1.5, 0.5, -0.5))
+        .transform(xform::translation(1.5, 0.5, -0.25))
         .transform(xform::scaling(0.5, 0.5, 0.5))
-        .set_material(sphere_mat)
-        .set_color(color::RGB(0.5, 1, 0.1));
+        .set_material(sphere_mat);
 
     scene::Sphere left_sphere; 
     left_sphere
-        .transform(xform::translation(-1.5, 0.33, -0.75))
+        .transform(xform::translation(-1.5, 0.33, -0.5))
         .transform(xform::scaling(0.33, 0.33, 0.33))
-        .set_material(sphere_mat)
-        .set_color(color::RGB(1, 0.8, 1));
+        .set_material(sphere_mat);
 
 
     /* -------------- Plane -------------- */
 
     scene::Plane floor;
     floor 
-        .set_color(color::RGB(1, 1, 1))
         .set_diffuse(0.8)
-        .set_ambient(0.2);
+        .set_ambient(0.2)
+        .set_pattern(&checkers);
+
+
 
     scene::Plane background; 
     background
-        .set_color(color::RGB(1, 1, 1))
         .set_diffuse(0.8)
-        .set_ambient(0.2)
-        .transform(xform::translation(0, 0, 100))
+        .set_ambient(0.5)
+        .set_pattern(&checkers)
+        .transform(xform::translation(0, 0, 20))
         .transform(xform::rotation_x(M_PI/2));
+        
+        
+        
+
 
     /* ------------- Light --------------- */
 
     scene::Light light; 
     light 
-        .set_intensity(color::RGB(1, 1, 1))
+        .set_intensity(color::white())
         .set_position(geo::Point(-10, 10, -10));
 
     /* ------------- Scene --------------*/

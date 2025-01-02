@@ -27,10 +27,13 @@ namespace scene {
         Hittable& set_specular(double);
         Hittable& transform(const xform::Matrix<4>&);
         Hittable& set_material(const Material&);
+        Hittable& set_pattern(const color::Pattern*);
 
         Material material; 
 
-    protected: 
+        xform::Matrix<4> get_transformation() const; 
+
+    protected:        
         xform::Matrix<4> m_transformation; 
         
     };
@@ -42,6 +45,7 @@ namespace scene {
         Sphere();
         std::vector<geo::Intersection> intersect(const geo::Ray&) const override; 
         geo::Vec normal_at(const geo::Point&) const override;
+
 
     private: 
         geo::Point m_origin;

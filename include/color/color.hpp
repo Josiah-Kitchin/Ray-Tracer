@@ -3,7 +3,9 @@
 #define COLOR_HPP
 
 #include <iostream> 
-#include <geo/tuples.hpp> 
+#include "geo/tuples.hpp" 
+#include "xform/matrices.hpp" 
+
 
 namespace color {
 
@@ -21,6 +23,12 @@ namespace color {
         void convert_to_256(); 
     };
 
+    RGB black(); 
+    RGB white(); 
+    RGB red(); 
+    RGB green(); 
+    RGB blue(); 
+
     RGB operator+(const RGB&, const RGB&);  
     RGB operator+(const RGB&, const geo::Point&); 
     RGB operator+(const geo::Point&, const RGB&);
@@ -31,6 +39,7 @@ namespace color {
     RGB operator*(const RGB&, double);
     RGB operator*(double, const RGB&);
     std::ostream& operator<<(std::ostream&, const RGB&);
+
 
 }
 

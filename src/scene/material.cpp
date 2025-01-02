@@ -29,3 +29,16 @@ Material& Material::set_color(const color::RGB& col) {
     color = col;
     return *this;
 }
+
+Material& Material::set_pattern(const color::Pattern* pattern) { 
+    m_pattern = pattern; 
+    return *this;
+}
+
+Material& Material::set_reflective(double ref) { 
+    reflective = ref; 
+    return *this; 
+}
+
+
+

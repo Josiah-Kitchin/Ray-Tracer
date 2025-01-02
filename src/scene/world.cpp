@@ -36,7 +36,7 @@ color::RGB World::shade_hit(const geo::IntersectionState& state) {
     bool is_shadow = is_shadowed(state.over_point);
     
     for (const auto& light : m_lights) { 
-       shade += calculate_lighting(state.object->material, light, state.point, state.eye, state.normal, is_shadow);
+       shade += calculate_lighting(state.object, light, state.point, state.eye, state.normal, is_shadow);
     
     }
     return shade; 

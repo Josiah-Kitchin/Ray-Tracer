@@ -5,3 +5,4 @@ googletest/
 build/*
 build/
 .vscode
+.cache

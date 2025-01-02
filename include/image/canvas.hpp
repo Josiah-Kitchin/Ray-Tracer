@@ -4,8 +4,6 @@
 
 
 #include <vector>
-#include <iostream> 
-#include "geo/tuples.hpp" 
 #include "color/color.hpp"
 
 namespace image {

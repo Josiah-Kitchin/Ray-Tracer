@@ -137,6 +137,23 @@ TEST(World, is_shadowed4) {
     ASSERT_FALSE(world.is_shadowed(point));
 }
 
+TEST(World, reflect_color) { 
+    World world; 
+    Plane plane; 
+    plane
+        .set_color(color::RGB(1, 1, 1))
+        .set_ambient(1)
+        .set_reflective(0.5)
+        .transform(xform::translation(0, -1, 0));
+
+    world.add_object(&plane);
+    geo::Ray r(geo::Point(0, 0, -3), geo::Vec(0, -sqrt(2)/2, sqrt(2)/2));
+    geo::Intersection i(sqrt(2), &plane);
+    geo::IntersectionState state(i, r);
+    color::RGB c = world.reflect_color(state);
+    ASSERT_EQ(c, color::RGB(0.19032, 0.2379, 0.14274));
+}
+
 
 
 

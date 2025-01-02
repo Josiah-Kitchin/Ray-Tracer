@@ -12,6 +12,7 @@ IntersectionState::IntersectionState(const Intersection& intersection, const Ray
     point = ray.at(t);
     eye = -ray.direction; 
     normal = object->normal_at(point);
+    reflect = geo::reflect(ray.direction, normal);
 
     //Compute if it is on the inside of an object by the dot product
     //If it is negative, the normal and eye are pointing in opposite directions => inside

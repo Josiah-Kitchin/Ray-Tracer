@@ -69,7 +69,7 @@ image::Canvas Camera::render(scene::World& world) {
         [&](int y) {
             for (int x = 0; x < m_horizontal_pixels; ++x) {
                 geo::Ray ray = ray_to_pixel(x, y);
-                color::RGB pixel_color = world.color_at(ray);
+                color::RGB pixel_color = world.color_at(ray, world.reflection_limit);
                 image.insert_color(pixel_color, x, y);
             }
         }
@@ -79,7 +79,7 @@ image::Canvas Camera::render(scene::World& world) {
         [&](int y) {
             for (int x = 0; x < m_horizontal_pixels; ++x) {
                 geo::Ray ray = ray_to_pixel(x, y);
-                color::RGB pixel_color = world.color_at(ray);
+                color::RGB pixel_color = world.color_at(ray, world.reflection_limit);
                 image.insert_color(pixel_color, x, y);
             }
         }

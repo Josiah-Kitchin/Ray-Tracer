@@ -53,3 +53,11 @@ TEST(IntersectionState, over_point) {
     ASSERT_LT(state.over_point.z, -utils::EPSILON/2);
     ASSERT_GT(state.point.z, state.over_point.z);
 }
+
+TEST(InteresctionState, reflect) { 
+    scene::Plane plane; 
+    Ray ray(Point(0, 1, -1), Vec(0, -sqrt(2)/2, sqrt(2)/2));
+    Intersection i(sqrt(2), &plane);
+    IntersectionState state(i, ray);
+    ASSERT_EQ(state.reflect, Vec(0, sqrt(2)/2, sqrt(2)/2));
+}

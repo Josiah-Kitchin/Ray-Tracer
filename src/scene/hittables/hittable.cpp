@@ -38,6 +38,11 @@ Hittable& Hittable::set_pattern(const color::Pattern* pattern) {
     return *this; 
 }
 
+Hittable& Hittable::set_reflective(double ref) { 
+    material.reflective = ref; 
+    return *this; 
+}
+
 xform::Matrix<4> Hittable::get_transformation() const { 
     return m_transformation; 
 }

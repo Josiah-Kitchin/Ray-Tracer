@@ -16,6 +16,7 @@ namespace geo {
         Vec eye; 
         Vec normal; 
         bool inside; 
+        Vec reflect; 
 
         IntersectionState(const Intersection&, const Ray&);
 

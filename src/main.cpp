@@ -1,16 +1,15 @@
 
 
-#include <iostream> 
 #include <cmath> 
-
-#include "scene/scene.hpp"
 #include "geo/geo.hpp"
 #include "xform/xform.hpp"
+#include "scene/scene.hpp"
 #include "color/color.hpp"
 
 int main() { 
 
     /* ----------- Spheres ------------*/
+
 
     scene::Material sphere_mat; 
     color::Checkers checkers; 
@@ -22,53 +21,66 @@ int main() {
     gradient
         .set_first_color(color::RGB(0, 1, 1))
         .set_second_color(color::red());
-    
+
+    color::Stripes stripes; 
+    stripes
+        .set_first_color(color::RGB(0, 1, 1))
+        .set_second_color(color::red())
+        .transform(xform::scaling(0.2, 0.2, 0.2));
+
+    color::Rings rings; 
+    rings
+        .set_first_color(color::RGB(0, 1, 1))
+        .set_second_color(color::red())
+        .transform(xform::scaling(0.2, 0.2, 0.2));
+
+
     sphere_mat
         .set_ambient(0.3)
         .set_diffuse(0.7)
-        .set_specular(0.3)
-        .set_pattern(&gradient);
+        .set_specular(0.3);
 
     scene::Sphere middle_sphere; 
     middle_sphere
         .transform(xform::translation(-0.5, 1, 1.8))
-        .set_material(sphere_mat);
+        .set_material(sphere_mat)
+        .set_pattern(&stripes);
 
     scene::Sphere right_sphere; 
     right_sphere
         .transform(xform::translation(1.5, 0.5, -0.25))
         .transform(xform::scaling(0.5, 0.5, 0.5))
-        .set_material(sphere_mat);
+        .set_material(sphere_mat)
+        .set_pattern(&gradient);
 
     scene::Sphere left_sphere; 
     left_sphere
         .transform(xform::translation(-1.5, 0.33, -0.5))
         .transform(xform::scaling(0.33, 0.33, 0.33))
-        .set_material(sphere_mat);
+        .set_material(sphere_mat)
+        .set_pattern(&rings);
 
+    scene::Sphere sphere; 
 
     /* -------------- Plane -------------- */
 
     scene::Plane floor;
     floor 
+        .set_reflective(0.3)
         .set_diffuse(0.8)
         .set_ambient(0.2)
         .set_pattern(&checkers);
-
 
 
     scene::Plane background; 
     background
         .set_diffuse(0.8)
         .set_ambient(0.5)
-        .set_pattern(&checkers)
+        .set_color(color::black())
         .transform(xform::translation(0, 0, 20))
         .transform(xform::rotation_x(M_PI/2));
-        
-        
-        
 
-
+        
     /* ------------- Light --------------- */
 
     scene::Light light; 

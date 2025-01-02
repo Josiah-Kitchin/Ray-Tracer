@@ -28,6 +28,7 @@ namespace scene {
         Hittable& transform(const xform::Matrix<4>&);
         Hittable& set_material(const Material&);
         Hittable& set_pattern(const color::Pattern*);
+        Hittable& set_reflective(double);
 
         Material material; 
 

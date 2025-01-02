@@ -2,8 +2,6 @@
 #define INTERSECTION_HPP
 
 #include <vector> 
-#include "geo/ray.hpp"
-#include "geo/tuples.hpp"
 
 namespace scene {
     class Hittable; 

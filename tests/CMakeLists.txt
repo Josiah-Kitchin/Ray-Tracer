@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 project(Testing CXX)
 
 
@@ -6,7 +9,7 @@ project(Testing CXX)
 file(GLOB_RECURSE SOURCES "../src/*.cpp")
 list(FILTER SOURCES EXCLUDE REGEX "main.cpp$")
 
-file(GLOB TEST_SOURCES "*.cpp") 
+file(GLOB TEST_SOURCES "test_world.cpp") 
 
 
 set(GTEST_DIR ./googletest)  # Specify the path to Google Test
@@ -35,6 +38,7 @@ target_compile_options(ray_test PRIVATE -Wall -Wextra -g)
 
 # Build configuration
 set(CMAKE_BUILD_TYPE Debug)
+
 
 
 

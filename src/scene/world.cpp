@@ -8,7 +8,8 @@
 using scene::World; 
 
 World::World() : m_objects(std::vector<scene::Hittable*>{}), 
-                 m_lights(std::vector<scene::Light>{ scene::Light(color::RGB(1, 1, 1), geo::Point(-10, 10, -10)) }) {}
+                 m_lights(std::vector<scene::Light>{ scene::Light(color::RGB(1, 1, 1), geo::Point(-10, 10, -10)) }), 
+                 reflection_limit(50) {}
 
 
 
@@ -30,19 +31,21 @@ std::vector<geo::Intersection> World::intersects(const geo::Ray& ray) {
     return intersections; 
 }
 
-color::RGB World::shade_hit(const geo::IntersectionState& state) { 
+color::RGB World::shade_hit(const geo::IntersectionState& state, int recursive_reflection_limit) { 
     /* Calculate the color for an intersection based on the worlds lights and the intersection state */
-    color::RGB shade; 
     bool is_shadow = is_shadowed(state.over_point);
     
+    color::RGB surface; 
     for (const auto& light : m_lights) { 
-       shade += calculate_lighting(state.object, light, state.point, state.eye, state.normal, is_shadow);
-    
+       surface += calculate_lighting(state.object, light, state.point, state.eye, state.normal, is_shadow);
     }
-    return shade; 
+
+    color::RGB reflected = reflect_color(state, recursive_reflection_limit);
+
+    return surface + reflected; 
 }
 
-color::RGB World::color_at(const geo::Ray& ray) { 
+color::RGB World::color_at(const geo::Ray& ray, int recursive_reflection_limit) { 
     /* Encapuslate some of the intersection logic in one function */
     auto intersections = intersects(ray);
     geo::Intersection object_hit = geo::hit(intersections);
@@ -50,7 +53,7 @@ color::RGB World::color_at(const geo::Ray& ray) {
         return color::RGB(0, 0, 0);
     }
     geo::IntersectionState state(object_hit, ray);
-    return shade_hit(state);
+    return shade_hit(state, recursive_reflection_limit);
 }
 
 bool World::is_shadowed(const geo::Point& point) { 
@@ -71,6 +74,19 @@ bool World::is_shadowed(const geo::Point& point) {
         } 
     }
     return true; 
+}
+
+color::RGB World::reflect_color(const geo::IntersectionState& state, int recursive_reflection_limit) {
+    if (recursive_reflection_limit < 1) { 
+        return color::black(); 
+    }
+    
+    if (state.object->material.reflective == 0) { 
+        return color::black(); 
+    }
+    geo::Ray reflect_ray(state.over_point, state.reflect);
+    color::RGB color = color_at(reflect_ray, recursive_reflection_limit - 1);
+    return color * state.object->material.reflective; 
 }
 
 
@@ -94,6 +110,11 @@ World& World::add_light(const scene::Light& light) {
 World& World::add_object(scene::Hittable* object) { 
     m_objects.emplace_back(object);
     return *this;
+}
+
+World& World::set_reflection_limit(int limit) { 
+    reflection_limit = limit; 
+    return *this; 
 }
 
 

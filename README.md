@@ -36,7 +36,6 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 
 ## Test Build
-1. Change directory to the tests directory
 ```bash
     cd Ray-Tracer-Challenge/tests
     git clone https://github.com/google/googletest.git

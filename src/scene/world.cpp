@@ -3,7 +3,6 @@
 #include "scene/world.hpp"
 #include "scene/material.hpp"
 #include <algorithm> 
-#include <iostream> 
 
 using scene::World; 
 
@@ -41,18 +40,21 @@ color::RGB World::shade_hit(const geo::IntersectionState& state, int recursive_r
     }
 
     color::RGB reflected = reflect_color(state, recursive_reflection_limit);
+    color::RGB refracted = refract_color(state, recursive_reflection_limit);
 
-    return surface + reflected; 
+    return surface + reflected + refracted; 
 }
 
 color::RGB World::color_at(const geo::Ray& ray, int recursive_reflection_limit) { 
     /* Encapuslate some of the intersection logic in one function */
     auto intersections = intersects(ray);
-    geo::Intersection object_hit = geo::hit(intersections);
-    if (geo::is_miss(object_hit)) { 
+    int object_hit_idx = geo::hit_index(intersections);
+
+    if (object_hit_idx == -1) { 
         return color::RGB(0, 0, 0);
     }
-    geo::IntersectionState state(object_hit, ray);
+
+    geo::IntersectionState state(object_hit_idx, intersections, ray);
     return shade_hit(state, recursive_reflection_limit);
 }
 
@@ -66,10 +68,10 @@ bool World::is_shadowed(const geo::Point& point) {
         geo::Vec direction = unit_vector(point_to_light);
 
         geo::Ray ray_from_point(point, direction);
-        auto intersections = intersects(ray_from_point);
-        geo::Intersection intersected_ray = geo::hit(intersections);
+        const auto intersections = intersects(ray_from_point);
+        int intersected_ray_idx = geo::hit_index(intersections);
         
-        if (geo::is_miss(intersected_ray) || intersected_ray.t >= distance) { 
+        if ((intersected_ray_idx == -1) || intersections[intersected_ray_idx].t >= distance) { 
             return false;
         } 
     }
@@ -87,6 +89,33 @@ color::RGB World::reflect_color(const geo::IntersectionState& state, int recursi
     geo::Ray reflect_ray(state.over_point, state.reflect);
     color::RGB color = color_at(reflect_ray, recursive_reflection_limit - 1);
     return color * state.object->material.reflective; 
+}
+
+color::RGB World::refract_color(const geo::IntersectionState& state, int recursive_reflection_limit) { 
+    if (recursive_reflection_limit < 1) { 
+        return color::black(); 
+    }
+
+    if (state.object->material.transparency == 0) { 
+        return color::black(); 
+    }
+
+    double n_ratio = state.n1 / state.n2; 
+    double cos_i = geo::dot(state.eye, state.normal);
+    double sin2_t = (n_ratio * n_ratio) * (1 - (cos_i * cos_i));
+
+    if (sin2_t > 1) { //total internal reflection 
+        return color::black(); 
+    }
+
+    double cos_t = sqrt(1.0 - sin2_t);
+    geo::Vec refract_direction = state.normal * (n_ratio * cos_i - cos_t) - state.eye * n_ratio; 
+    geo::Ray refract_ray(state.under_point, refract_direction);
+
+    color::RGB color = color_at(refract_ray, recursive_reflection_limit - 1) *
+                       state.object->material.transparency;
+
+    return color; 
 }
 
 

@@ -8,33 +8,11 @@
 
 int main() { 
 
+
+
     /* ----------- Spheres ------------*/
 
-
     scene::Material sphere_mat; 
-    color::Checkers checkers; 
-    checkers 
-        .set_first_color(color::black())
-        .set_second_color(color::white());
-
-    color::Gradient gradient; 
-    gradient
-        .set_first_color(color::RGB(0, 1, 1))
-        .set_second_color(color::red());
-
-    color::Stripes stripes; 
-    stripes
-        .set_first_color(color::RGB(0, 1, 1))
-        .set_second_color(color::red())
-        .transform(xform::scaling(0.2, 0.2, 0.2));
-
-    color::Rings rings; 
-    rings
-        .set_first_color(color::RGB(0, 1, 1))
-        .set_second_color(color::red())
-        .transform(xform::scaling(0.2, 0.2, 0.2));
-
-
     sphere_mat
         .set_ambient(0.3)
         .set_diffuse(0.7)
@@ -43,42 +21,37 @@ int main() {
     scene::Sphere middle_sphere; 
     middle_sphere
         .transform(xform::translation(-0.5, 1, 1.8))
-        .set_material(sphere_mat)
-        .set_pattern(&stripes);
+        .set_ambient(0.3)
+        .set_diffuse(0.7)
+        .set_specular(0.3)
+        .set_transparency(0.9)
+        .set_refractive_index(1.5);
+        
 
     scene::Sphere right_sphere; 
     right_sphere
-        .transform(xform::translation(1.5, 0.5, -0.25))
+        .transform(xform::translation(-0.5, 0.5, 8))
         .transform(xform::scaling(0.5, 0.5, 0.5))
         .set_material(sphere_mat)
-        .set_pattern(&gradient);
+        .set_color(color::red());
 
     scene::Sphere left_sphere; 
     left_sphere
         .transform(xform::translation(-1.5, 0.33, -0.5))
         .transform(xform::scaling(0.33, 0.33, 0.33))
         .set_material(sphere_mat)
-        .set_pattern(&rings);
-
+        .set_color(color::green());
     scene::Sphere sphere; 
 
     /* -------------- Plane -------------- */
 
     scene::Plane floor;
     floor 
-        .set_reflective(0.3)
         .set_diffuse(0.8)
         .set_ambient(0.2)
-        .set_pattern(&checkers);
+        .set_color(color::RGB(0.5, 0.5, 0.5));
 
 
-    scene::Plane background; 
-    background
-        .set_diffuse(0.8)
-        .set_ambient(0.5)
-        .set_color(color::black())
-        .transform(xform::translation(0, 0, 20))
-        .transform(xform::rotation_x(M_PI/2));
 
         
     /* ------------- Light --------------- */
@@ -100,8 +73,9 @@ int main() {
     scene::World world;
     world
         .set_lights({light})
-        .set_objects({&floor, &background, &middle_sphere, &right_sphere, &left_sphere});
-
+        .set_objects({&floor, &middle_sphere, &right_sphere, &left_sphere})
+        .set_reflection_limit(10);
+    
     image::Canvas image = camera.render(world);
 
     image.write_to_ppm();

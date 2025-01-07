@@ -29,6 +29,8 @@ namespace scene {
         Hittable& set_material(const Material&);
         Hittable& set_pattern(const color::Pattern*);
         Hittable& set_reflective(double);
+        Hittable& set_refractive_index(double);
+        Hittable& set_transparency(double);
 
         Material material; 
 

@@ -12,26 +12,26 @@ bool geo::operator==(const Intersection& i1, const Intersection& i2) {
     return i1.t == i2.t && i1.object == i2.object;
 }
 
-Intersection geo::hit(std::vector<Intersection>& intersections) { 
-    //finds what gets hit out of a list of interesections by returning the intersection 
-    //with the lowest t. If there are no hits, returns an intersection with a nullptr object 
-    if (intersections.empty()) return Intersection(0, nullptr); 
+int geo::hit_index(const std::vector<Intersection>& intersections) { 
+    //finds what gets hit out of a list of interesections by returning the index of the intersection
+    //with the lowest t. If there are no hits, returns -1
+    if (intersections.empty()) return -1; 
 
-    Intersection min = intersections.at(0);  
-    for (const auto intersection : intersections) { 
-        if (intersection.t >= 0 && (min.t < 0 || intersection.t < min.t)) { 
-            min = intersection; 
+    float min_t = intersections.at(0).t;  
+    int min_index = 0; 
+    for (size_t i = 0; i < intersections.size(); ++i) {
+        if (intersections[i].t >= 0 && (min_t < 0 || intersections[i].t < min_t)) { 
+            min_t = intersections[i].t; 
+            min_index = i; 
         }
     }
-    if (min.t < 0) { 
-        return Intersection(0, nullptr);
+    if (min_t < 0) { 
+        return -1;
     }
-    return min;  
+    return min_index;  
 }
 
-bool geo::is_miss(const Intersection& intersection) { 
-    return intersection.object == nullptr;  
-}
+
 
 
 

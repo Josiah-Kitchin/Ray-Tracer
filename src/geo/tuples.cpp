@@ -104,6 +104,9 @@ Vec geo::cross(const Vec& v1, const Vec& v2) {
 
 Vec geo::unit_vector(const Vec& v) { 
     //The unit vector is meant to provide direction without changing magnitude 
+    if (v.length() == 0) { 
+        return v; 
+    }
     return v / v.length(); 
 }
 

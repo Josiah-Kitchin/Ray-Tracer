@@ -16,8 +16,7 @@ namespace geo {
         Intersection(double, const scene::Hittable*);
     };
 
-    Intersection hit(std::vector<Intersection>&); 
-    bool is_miss(const Intersection&);
+    int hit_index(const std::vector<Intersection>&); 
 
     bool operator==(const Intersection&, const Intersection&); 
 

@@ -12,7 +12,7 @@ TEST(hit, hit1) {
     std::vector<Intersection> intersections = {Intersection(1, &sphere), Intersection(2, &sphere)};
     Intersection expected(1, &sphere);
 
-    ASSERT_EQ(hit(intersections), expected);
+    ASSERT_EQ(intersections[hit_index(intersections)], expected);
 }
 
 TEST(hit, hit2) { 
@@ -20,15 +20,14 @@ TEST(hit, hit2) {
     std::vector<Intersection> intersections = {Intersection(1, &sphere), Intersection(-1, &sphere)};
     Intersection expected(1, &sphere); 
 
-    ASSERT_EQ(hit(intersections), expected);
+    ASSERT_EQ(intersections[hit_index(intersections)], expected);
 }
 
 TEST(hit, hit3) { 
     Sphere sphere; 
     std::vector<Intersection> intersections = {Intersection(-2, &sphere), Intersection(-1, &sphere)};
-    Intersection expected(0, nullptr); 
 
-    ASSERT_EQ(hit(intersections), expected);
+    ASSERT_EQ(hit_index(intersections), -1);
 }
 
 TEST(hit, hit4) { 
@@ -40,7 +39,7 @@ TEST(hit, hit4) {
     std::vector<Intersection> intersections = {i1, i2, i3, i4};
     Intersection expected = i4; 
 
-    ASSERT_EQ(hit(intersections), expected);
+    ASSERT_EQ(intersections[hit_index(intersections)], expected);
 
 }
 

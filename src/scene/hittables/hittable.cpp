@@ -43,6 +43,16 @@ Hittable& Hittable::set_reflective(double ref) {
     return *this; 
 }
 
+Hittable& Hittable::set_refractive_index(double ret) { 
+    material.refractive_index = ret; 
+    return *this; 
+}
+
+Hittable& Hittable::set_transparency(double trans) { 
+    material.transparency = trans; 
+    return *this; 
+}
+
 xform::Matrix<4> Hittable::get_transformation() const { 
     return m_transformation; 
 }

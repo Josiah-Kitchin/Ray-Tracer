@@ -63,8 +63,9 @@ TEST(World, shade_hit) {
     shape.material.specular = 1; 
     world.m_objects = {&shape};
     Intersection i(4, &shape);
-    IntersectionState state(i, r); 
-    RGB shade = world.shade_hit(state);
+    std::vector<Intersection> intersections{i};
+    IntersectionState state(0, intersections, r); 
+    RGB shade = world.shade_hit(state, 10);
     ASSERT_EQ(shade, RGB(0.536895, 0.536895, 0.536895));
 }
 
@@ -77,8 +78,9 @@ TEST(World, shade_hit2) {
     shape.material.diffuse = 1;
     shape.material.specular = 1; 
     Intersection i(0.5, &shape);
-    IntersectionState state(i, r);
-    RGB shade = world.shade_hit(state);
+    std::vector<Intersection> intersections{i};
+    IntersectionState state(0, intersections, r);
+    RGB shade = world.shade_hit(state, 10);
     ASSERT_EQ(shade, RGB(0.894427, 0.894427, 0.894427));
 }
 
@@ -92,8 +94,9 @@ TEST(World, shade_hit3) {
     world.m_objects = {&s1, &s2};
     Ray r(Point(0, 0, 5), Vec(0, 0, 1));
     Intersection i(4, &s2);
-    IntersectionState state(i, r);
-    color::RGB c = world.shade_hit(state);
+    std::vector<Intersection> intersections{i};
+    IntersectionState state(0, intersections, r);
+    color::RGB c = world.shade_hit(state, 10);
     ASSERT_EQ(c, color::RGB(0.1, 0.1, 0.1));
 }
 
@@ -101,7 +104,7 @@ TEST(World, shade_hit3) {
 TEST(World, color_at) { 
     World world; 
     Ray ray(Point(0, 0, -5), Vec(0, 1, 0));
-    RGB color = world.color_at(ray);
+    RGB color = world.color_at(ray, 10);
     ASSERT_EQ(color, RGB(0, 0, 0)); 
 }
 
@@ -149,8 +152,9 @@ TEST(World, reflect_color) {
     world.add_object(&plane);
     geo::Ray r(geo::Point(0, 0, -3), geo::Vec(0, -sqrt(2)/2, sqrt(2)/2));
     geo::Intersection i(sqrt(2), &plane);
-    geo::IntersectionState state(i, r);
-    color::RGB c = world.reflect_color(state);
+    std::vector<Intersection> intersections{i};
+    geo::IntersectionState state(0, intersections, r);
+    color::RGB c = world.reflect_color(state, 10);
     ASSERT_EQ(c, color::RGB(0.19032, 0.2379, 0.14274));
 }
 

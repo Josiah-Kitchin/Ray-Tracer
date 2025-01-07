@@ -1,7 +1,6 @@
 #ifndef MATERIAL_HPP
 #define MATERIAL_HPP
 
-#include "geo/tuples.hpp"
 #include "color/color.hpp"
 #include "color/pattern.hpp"
 
@@ -11,7 +10,8 @@ namespace scene {
     public: 
         color::RGB color; 
         const color::Pattern* m_pattern = nullptr;
-        double ambient, diffuse, specular, shininess, reflective; 
+        double ambient, diffuse, specular, shininess, 
+               reflective, refractive_index, transparency; 
 
         Material(); 
 
@@ -22,8 +22,12 @@ namespace scene {
         Material& set_reflective(double);
         Material& set_color(const color::RGB&);
         Material& set_pattern(const color::Pattern*);
+        Material& set_refractive_index(double);
+        Material& set_transparency(double);
     };
-}
 
+    Material glass(); 
+
+}
 
 #endif

@@ -12,6 +12,7 @@ int main() {
 
     /* ----------- Spheres ------------*/
 
+
     scene::Material sphere_mat; 
     sphere_mat
         .set_ambient(0.3)
@@ -52,6 +53,12 @@ int main() {
         .set_color(color::RGB(0.5, 0.5, 0.5));
 
 
+    color::Checkers checkers; 
+    checkers
+        .set_first_color(color::black())
+        .set_second_color(color::white());
+
+    
 
         
     /* ------------- Light --------------- */

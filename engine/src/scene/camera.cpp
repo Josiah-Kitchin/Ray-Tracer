@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <execution> 
 #include <chrono> 
-#include "thread_pool.hpp"
 
 using scene::Camera; 
 
@@ -63,20 +62,29 @@ image::Canvas Camera::render(scene::World& world) {
     std::clog << " Rendering...            \r";
 
     
-    jthread::thread_pool pool; 
 
     /* -------------- Render Loop -------------- */
-    for (int y = 0; y < m_vertical_pixels; ++y) { 
-        pool.enqueue_task([&] {
-            for (int x = 0; x < m_horizontal_pixels; ++x) { 
+    #ifdef DEBUG_BUILD //take away multithreading for easier debugging 
+    std::for_each(m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
+        [&](int y) {
+            for (int x = 0; x < m_horizontal_pixels; ++x) {
                 geo::Ray ray = ray_to_pixel(x, y);
                 color::RGB pixel_color = world.color_at(ray, world.reflection_limit);
                 image.insert_color(pixel_color, x, y);
             }
-        }); 
-    }
-
-
+        }
+    );
+    #else
+    std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
+        [&](int y) {
+            for (int x = 0; x < m_horizontal_pixels; ++x) {
+                geo::Ray ray = ray_to_pixel(x, y);
+                color::RGB pixel_color = world.color_at(ray, world.reflection_limit);
+                image.insert_color(pixel_color, x, y);
+            }
+        }
+    );
+    #endif
     /*-------------------------------------------*/
 
     auto end = std::chrono::high_resolution_clock::now(); 

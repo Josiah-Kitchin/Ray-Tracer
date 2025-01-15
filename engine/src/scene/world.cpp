@@ -79,8 +79,6 @@ bool World::is_shadowed(const geo::Point& point) {
 }
 
 color::RGB World::reflect_color(const geo::IntersectionState& state, int recursive_reflection_limit) {
-    /* find the color reflected from the intersection */
-
     if (recursive_reflection_limit < 1) { 
         return color::black(); 
     }
@@ -94,7 +92,6 @@ color::RGB World::reflect_color(const geo::IntersectionState& state, int recursi
 }
 
 color::RGB World::refract_color(const geo::IntersectionState& state, int recursive_reflection_limit) { 
-    
     if (recursive_reflection_limit < 1) { 
         return color::black(); 
     }

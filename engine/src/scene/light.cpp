@@ -36,7 +36,6 @@ color::RGB calculate_lighting(const scene::Hittable* object, const Light& light,
     geo::Vec light_direction = geo::unit_vector(light.m_position - position);
 
     ambient = effective_color * mat.ambient; 
-
     if (in_shadow) { 
         return ambient;
     }

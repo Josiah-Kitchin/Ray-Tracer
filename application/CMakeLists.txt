@@ -26,7 +26,7 @@ find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
 
 target_link_libraries(ray PRIVATE TBB::tbb sfml-system sfml-window sfml-graphics)
 
-target_compile_options(ray PRIVATE -Wall -Wextra -O3)
+target_compile_options(ray PRIVATE -Wall -Wextra -g)
 #
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
 # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")

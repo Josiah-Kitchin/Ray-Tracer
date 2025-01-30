@@ -9,6 +9,7 @@
 namespace geo {
 
     class Vec { 
+    // Represents a direction with length in 3D space  
     public: 
         double x, y, z; 
 
@@ -36,6 +37,7 @@ namespace geo {
 
 
     class Point { 
+    // Point in 3D space 
     public:
         double x, y, z; 
 

@@ -10,6 +10,9 @@
 namespace color {
 
     class RGB { 
+    /* Represent a red, green, blue color 
+     * Color values lie between 0 and 1 and will be converted to 256 come
+     * time to display colors */ 
     public: 
         double r, g, b; 
 
@@ -19,7 +22,9 @@ namespace color {
         RGB& operator+=(const RGB&); 
         RGB& operator+=(const geo::Point&); 
 
+        // Set color range to 0 and 1 if outside 0 and 1 
         void clamp(); 
+        // Change rgb to 256 based 
         void convert_to_256(); 
     };
 

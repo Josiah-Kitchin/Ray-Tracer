@@ -7,6 +7,9 @@
 
 namespace scene {
     class Material { 
+    /* The material for a hittable object, 
+     * holds the color, pattern and material data */ 
+
     public: 
         color::RGB color; 
         const color::Pattern* m_pattern = nullptr;

@@ -12,6 +12,11 @@ namespace scene {
 namespace color {
 
     class Pattern { 
+    /* Apply a pattern to a hittable object 
+     * Patterns can be transformed
+     * Because of the pattern abstract class, patterns must be added to 
+     * materials by address */ 
+
     public:
         virtual RGB color_at(const geo::Point&) const = 0;       
         RGB color_at_object(const scene::Hittable*, const geo::Point&) const;
@@ -27,6 +32,7 @@ namespace color {
         xform::Matrix<4> m_transformation = xform::identity(); 
     };
 
+    //DIfferent patterns will return a different color at a given point 
 
     class Stripes : public Pattern {
     public: 

@@ -42,7 +42,6 @@ RGB Stripes::color_at(const geo::Point& point) const {
     return color1; 
 }
 
-
 RGB Gradient::color_at(const geo::Point& point) const { 
 
     RGB distance(color2.r - color1.r, color2.g - color1.g, color2.b - color1.b);

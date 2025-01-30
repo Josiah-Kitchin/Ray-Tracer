@@ -7,6 +7,8 @@
 namespace scene {
 
     struct Light { 
+    /* A point that generates light for the scene */ 
+
     public: 
         Light(const color::RGB&, const geo::Point&);
         Light();
@@ -18,7 +20,8 @@ namespace scene {
     };
 }
 
-color::RGB calculate_lighting(const scene::Hittable*, const scene::Light&, const geo::Point&, 
-                              const geo::Vec&, const geo::Vec&, bool);
-
+// Calculate the color given the object, light, position of the hit, the eye, the normal of the vec, and whether
+// it is a shadowed point or not 
+color::RGB calculate_lighting(const scene::Hittable* object, const scene::Light& light, const geo::Point& position, 
+                              const geo::Vec& eye, const geo::Vec& normal, bool in_shadow);  
 #endif

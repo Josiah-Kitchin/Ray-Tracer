@@ -9,13 +9,12 @@
 
 namespace scene {
     class Hittable { 
-        /* 
-            The hittable abstract class is for objects that can be insersected by rays. They hold materials 
-            and can be transformed 
-        */
-    public: 
+    /* The hittable abstract class is for objects that can be insersected by rays. */ 
 
+    public: 
+        // Give a vector of the intersections occured from a given ray 
         virtual std::vector<geo::Intersection> intersect(const geo::Ray&) const = 0; 
+        // Get the surface normal at a given point
         virtual geo::Vec normal_at(const geo::Point&) const = 0; 
 
         Hittable() : material(), m_transformation(xform::identity()) {}
@@ -25,6 +24,7 @@ namespace scene {
         Hittable& set_ambient(double);
         Hittable& set_diffuse(double);
         Hittable& set_specular(double);
+        // Transform the object with a given transformation matrix 
         Hittable& transform(const xform::Matrix<4>&);
         Hittable& set_material(const Material&);
         Hittable& set_pattern(const color::Pattern*);
@@ -42,7 +42,6 @@ namespace scene {
     };
 
     class Sphere : public Hittable { 
-
     public: 
 
         Sphere();
@@ -56,7 +55,6 @@ namespace scene {
     };
 
     class Plane : public Hittable {
-
     public:
 
         std::vector<geo::Intersection> intersect(const geo::Ray&) const override;

@@ -7,21 +7,18 @@
 #include <iostream> 
 #include "geo/tuples.hpp"
 
-/*
-    The cursed matrix class. utilizes templates to speed up all matrix operations
-
-    --The template is so it can have a variable sized array instead of a vector to keep memory on the stack 
-    --The only matrices that will be used is 4, 3, and 2 (representing 4x4, 3x3, etc)
-
-    This results in the matrix operations being very fast with a downside of less readable code 
-
-*/
 
 
 namespace xform { 
 
     template <std::size_t N> 
     class Matrix { 
+    /*
+     * The cursed matrix class. utilizes templates to speed up all matrix operations
+     * --The template is so it can have a variable sized array instead of a vector to keep memory on the stack 
+     * --The only matrices that will be used is 4, 3, and 2 (representing 4x4, 3x3, etc)
+     *  This results in the matrix operations being very fast with a downside of less readable code */
+
     private: 
         std::array<double, N * N> m_data; 
 
@@ -79,7 +76,6 @@ template <std::size_t N>
 xform::Matrix<N - 1> submatrix(const xform::Matrix<N>& matrix, size_t delete_row, size_t delete_col);  
 template <std::size_t N> 
 bool is_invertable(const xform::Matrix<N>& matrix);  
-
 
 
 
@@ -157,10 +153,12 @@ xform::Matrix<N> xform::inverse(const xform::Matrix<N>& matrix) {
 
 
 /* ---------------------- Transformation Matrices ---------------------- */
+// Transformation matrices will be multiplied with vectors to transform the vector 
+// to get the effect of transforming hittable objects 
 
 xform::Matrix<4> inline xform::identity() { 
-    //returns a 4x4 idenity_matrix. Returns the originial matrix when 
-    //mulitiplied by the identity matrix
+    // Returns a 4x4 idenity_matrix. Returns the originial matrix when 
+    // mulitiplied by the identity matrix
     return xform::Matrix<4>({ 1, 0, 0, 0, 
                               0, 1, 0, 0,
                               0, 0, 1, 0, 
@@ -169,8 +167,8 @@ xform::Matrix<4> inline xform::identity() {
 
 
 xform::Matrix<4> inline xform::translation(double x, double y, double z) { 
-    //the translation matrix is meant to be mulitpled with a point to return a point translated 
-    //in the direction of x y and z (point.x += x, point.y += y, point.z += z)
+    // The translation matrix is meant to be mulitpled with a point to return a point translated 
+    // in the direction of x y and z (point.x += x, point.y += y, point.z += z)
     return xform::Matrix<4>({1, 0, 0, x,
                              0, 1, 0, y, 
                              0, 0, 1, z, 
@@ -186,7 +184,7 @@ xform::Matrix<4> inline xform::scaling(double x, double y, double z) {
 }
 
 xform::Matrix<4> inline xform::rotation_x(double radians) { 
-    //Rotates the point along the x-axis
+    //Rotates the vec along the x-axis
     return xform::Matrix<4>({1, 0, 0, 0, 
                              0, std::cos(radians), -std::sin(radians), 0,
                              0, std::sin(radians), std::cos(radians), 0, 
@@ -195,6 +193,7 @@ xform::Matrix<4> inline xform::rotation_x(double radians) {
 }
 
 xform::Matrix<4> inline xform::rotation_y(double radians) { 
+    //Rotates the vec along the y axis 
     return xform::Matrix<4>({std::cos(radians), 0, std::sin(radians), 0, 
                             0, 1, 0, 0, 
                             -std::sin(radians), 0, std::cos(radians), 0,
@@ -202,6 +201,7 @@ xform::Matrix<4> inline xform::rotation_y(double radians) {
 }
 
 xform::Matrix<4> inline xform::rotation_z(double radians) { 
+    //Rotates the vec along the z axis 
     return xform::Matrix<4>({std::cos(radians), -std::sin(radians), 0, 0,
                             std::sin(radians), std::cos(radians), 0, 0,
                             0, 0, 1, 0, 

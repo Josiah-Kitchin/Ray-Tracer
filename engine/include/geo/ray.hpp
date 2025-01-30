@@ -10,15 +10,16 @@ namespace geo {
 
     class Ray { 
     public: 
-        Point origin; 
+        Point origin; // Point of where the ray was shot from  
         Vec direction; 
 
         Ray(Point, Vec);
 
-        Point at(double) const;
+        Point at(double) const; // Point along the ray at a given t 
     };
 }
 
+// Transform a ray by multiplying a matrix with the ray 
 geo::Ray transform_ray(const geo::Ray&, const xform::Matrix<4>&);
 
 

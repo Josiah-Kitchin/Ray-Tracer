@@ -36,12 +36,16 @@ int main() {
         .set_material(sphere_mat)
         .set_color(color::red());
 
+    color::Gradient gradient; 
+    gradient.set_first_color(color::red());
+    gradient.set_second_color(color::blue());
+
     scene::Sphere left_sphere; 
     left_sphere
         .transform(xform::translation(-1.5, 0.33, -0.5))
         .transform(xform::scaling(0.33, 0.33, 0.33))
         .set_material(sphere_mat)
-        .set_color(color::green());
+        .set_pattern(&gradient);
     scene::Sphere sphere; 
 
     /* -------------- Plane -------------- */
@@ -76,7 +80,7 @@ int main() {
     camera
         .set_horizontal_pixels(horizontal_pixels)
         .set_vertical_pixels(vertical_pixels)
-        .set_field_of_view(M_PI/2)
+        .set_field_of_view(M_PI/3)
         .transform(xform::view_transform(geo::Point(0, 1, -5), geo::Point(0, 1, 0), geo::Vec(0, 1, 0)));
 
     scene::World world;

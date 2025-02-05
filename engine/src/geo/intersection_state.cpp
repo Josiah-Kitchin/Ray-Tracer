@@ -15,7 +15,6 @@ IntersectionState::IntersectionState(size_t hit_index, const std::vector<Interse
     std::vector<const scene::Hittable*> objects_not_exited; 
     objects_not_exited.reserve(intersections.size());
 
-
     for (size_t i = 0; i < intersections.size(); ++i) { 
         bool is_hit_object = hit_index == i;  
         if (is_hit_object) { 

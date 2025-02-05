@@ -6,18 +6,21 @@ using scene::Light;
 Light::Light(const color::RGB& intensity, const geo::Point& position) : m_intensity(intensity), m_position(position) {}
 Light::Light() : m_intensity(color::RGB()), m_position(geo::Point()) {}
 
-Light& Light::set_intensity(const color::RGB& intensity) { 
+Light& Light::set_intensity(const color::RGB& intensity) 
+{ 
     m_intensity = intensity; 
     return *this; 
 }
 
-Light& Light::set_position(const geo::Point& position) { 
+Light& Light::set_position(const geo::Point& position) 
+{ 
     m_position = position; 
     return *this; 
 }
 
 color::RGB calculate_lighting(const scene::Hittable* object, const Light& light, const geo::Point& position, 
-                              const geo::Vec& eye, const geo::Vec& normal, bool in_shadow) { 
+                              const geo::Vec& eye, const geo::Vec& normal, bool in_shadow) 
+{ 
     /* Phong Reflection Model */
 
     scene::Material mat = object->material; 
@@ -38,7 +41,8 @@ color::RGB calculate_lighting(const scene::Hittable* object, const Light& light,
 
     double light_dot_normal = geo::dot(light_direction, normal); 
 
-    if (light_dot_normal < 0) { 
+    if (light_dot_normal < 0) 
+    { 
         diffuse = color::RGB(0, 0, 0); 
         specular = color::RGB(0, 0, 0);
         return ambient + diffuse + specular; 
@@ -48,9 +52,11 @@ color::RGB calculate_lighting(const scene::Hittable* object, const Light& light,
     geo::Vec reflect_direction = geo::reflect(-light_direction, normal);
     double reflect_dot_eye = geo::dot(reflect_direction, eye);
 
-    if (reflect_dot_eye <= 0) { 
+    if (reflect_dot_eye <= 0) 
+    { 
         specular = color::RGB(0, 0, 0);
-    } else { 
+    } 
+    else { 
         double factor = pow(reflect_dot_eye, mat.shininess);
         specular = light.m_intensity * mat.specular * factor; 
     }

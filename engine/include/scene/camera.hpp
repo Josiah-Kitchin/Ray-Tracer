@@ -34,7 +34,8 @@ namespace scene {
         double m_half_height; 
         xform::Matrix<4> m_transformation = xform::identity(); 
 
-        geo::Ray ray_to_pixel(int, int) const;
+        geo::Ray ray_to_pixel(double, double) const;
+        color::RGB anti_alias(double, double, scene::World&) const; 
         void init(); //calculates pixel size, half_width, half_height
 
         std::vector<int> m_vertical_pixel_iterator;  //need iters to use for each parrallelisim 

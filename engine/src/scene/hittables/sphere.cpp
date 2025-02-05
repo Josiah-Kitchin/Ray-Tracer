@@ -9,7 +9,8 @@ using scene::Sphere;
 
 Sphere::Sphere() : m_origin(geo::Point(0, 0, 0)) {}
 
-vector<geo::Intersection> Sphere::intersect(const geo::Ray& ray) const { 
+vector<geo::Intersection> Sphere::intersect(const geo::Ray& ray) const 
+{ 
     
     //transform the ray instead of the sphere, with the type of transformation matrix being held in the 
     //hittable object. This means we have to take the inverse to give the correct transformation to the ray  
@@ -38,7 +39,8 @@ vector<geo::Intersection> Sphere::intersect(const geo::Ray& ray) const {
     return vector<geo::Intersection>{intersection_1, intersection_2}; 
 }
 
-geo::Vec Sphere::normal_at(const geo::Point& world_point) const { 
+geo::Vec Sphere::normal_at(const geo::Point& world_point) const 
+{ 
     //Returns the normal vector at a point. 
     //Because the sphere is transformed, we must make calculations to compute the normal at the 
     //transformed state. 

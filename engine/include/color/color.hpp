@@ -21,6 +21,7 @@ namespace color {
 
         RGB& operator+=(const RGB&); 
         RGB& operator+=(const geo::Point&); 
+        RGB& operator/=(double);
 
         // Set color range to 0 and 1 if outside 0 and 1 
         void clamp(); 

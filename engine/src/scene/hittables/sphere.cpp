@@ -1,7 +1,6 @@
 
 
 #include "scene/hittable.hpp"
-#include "scene/material.hpp"
 #include "utils.hpp"
 #include <cmath> 
 

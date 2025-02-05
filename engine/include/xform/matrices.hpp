@@ -391,7 +391,7 @@ double minor(const xform::Matrix<N>& matrix, size_t delete_row, size_t delete_co
 
 template <std::size_t N> 
 bool is_invertable(const xform::Matrix<N>& matrix) { 
-    return !(determinant(matrix) == 0);
+    return determinant(matrix) != 0;
 }
 
 

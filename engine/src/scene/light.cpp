@@ -22,12 +22,8 @@ color::RGB calculate_lighting(const scene::Hittable* object, const Light& light,
 
     scene::Material mat = object->material; 
 
-    color::RGB color; 
-    if (mat.m_pattern != nullptr) { 
-        color = mat.m_pattern->color_at_object(object, position);
-    } else { 
-        color = mat.color; 
-    } 
+    color::RGB color = mat.m_pattern != nullptr ? 
+        mat.m_pattern->color_at_object(object, position) : mat.color; 
 
     color::RGB ambient, diffuse, specular; 
 
@@ -36,26 +32,27 @@ color::RGB calculate_lighting(const scene::Hittable* object, const Light& light,
     geo::Vec light_direction = geo::unit_vector(light.m_position - position);
 
     ambient = effective_color * mat.ambient; 
-    if (in_shadow) { 
+
+    if (in_shadow)  
         return ambient;
-    }
 
     double light_dot_normal = geo::dot(light_direction, normal); 
 
     if (light_dot_normal < 0) { 
         diffuse = color::RGB(0, 0, 0); 
         specular = color::RGB(0, 0, 0);
-    } else { 
-        diffuse = effective_color * mat.diffuse * light_dot_normal; 
-        geo::Vec reflect_direction = geo::reflect(-light_direction, normal);
-        double reflect_dot_eye = geo::dot(reflect_direction, eye);
+        return ambient + diffuse + specular; 
+    }  
 
-        if (reflect_dot_eye <= 0) { 
-            specular = color::RGB(0, 0, 0);
-        } else { 
-            double factor = pow(reflect_dot_eye, mat.shininess);
-            specular = light.m_intensity * mat.specular * factor; 
-        }
+    diffuse = effective_color * mat.diffuse * light_dot_normal; 
+    geo::Vec reflect_direction = geo::reflect(-light_direction, normal);
+    double reflect_dot_eye = geo::dot(reflect_direction, eye);
+
+    if (reflect_dot_eye <= 0) { 
+        specular = color::RGB(0, 0, 0);
+    } else { 
+        double factor = pow(reflect_dot_eye, mat.shininess);
+        specular = light.m_intensity * mat.specular * factor; 
     }
     return ambient + diffuse + specular; 
 }

@@ -36,7 +36,7 @@ color::RGB World::shade_hit(const geo::IntersectionState& state, int recursive_r
     
     color::RGB surface; 
     for (const auto& light : m_lights) { 
-       surface += calculate_lighting(state.object, light, state.point, state.eye, state.normal, is_shadow);
+        surface += calculate_lighting(state.object, light, state.point, state.eye, state.normal, is_shadow);
     }
 
     color::RGB reflected = reflect_color(state, recursive_reflection_limit);

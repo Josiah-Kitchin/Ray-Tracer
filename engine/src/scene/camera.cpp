@@ -34,8 +34,10 @@ geo::Ray Camera::ray_to_pixel(int pixel_x, int pixel_y) const {
     double world_x = m_half_width - x_offset; 
     double world_y = m_half_height - y_offset; 
 
-    geo::Point pixel =  xform::inverse(m_transformation) * geo::Point(world_x, world_y, -1);
-    geo::Point origin = xform::inverse(m_transformation) * geo::Point(0, 0, 0);
+    // The ray is transformed based on transformations made on the camera 
+    xform::Matrix inverse_mat = xform::inverse(m_transformation);
+    geo::Point pixel =  inverse_mat * geo::Point(world_x, world_y, -1);
+    geo::Point origin = inverse_mat * geo::Point(0, 0, 0);
     geo::Vec direction = unit_vector(pixel - origin);
 
     return geo::Ray(origin, direction);
@@ -48,9 +50,9 @@ image::Canvas Camera::render(scene::World& world) {
     /* Called by the user to render a world of lights and objects 
        Iterators are used to create a multithreaded for loop */ 
 
-    init(); //calculate some neccessary variables 
+    init(); // Calculate some neccessary variables 
 
-    //Initialize the iterator 
+    // Initialize the iterator 
     m_vertical_pixel_iterator.resize(m_vertical_pixels);
     for (int i = 0; i < m_vertical_pixels; ++i)  
         m_vertical_pixel_iterator[i] = i; 
@@ -64,7 +66,7 @@ image::Canvas Camera::render(scene::World& world) {
     
 
     /* -------------- Render Loop -------------- */
-    #ifdef DEBUG_BUILD //take away multithreading for easier debugging 
+    #ifdef DEBUG_BUILD // Take away multithreading for easier debugging 
     std::for_each(m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), 
         [&](int y) {
             for (int x = 0; x < m_horizontal_pixels; ++x) {

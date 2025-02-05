@@ -18,10 +18,12 @@ IntersectionState::IntersectionState(size_t hit_index, const std::vector<Interse
 
     for (size_t i = 0; i < intersections.size(); ++i) 
     { 
-        bool is_hit_object = hit_index == i;  
+        bool is_hit_object = (hit_index == i);  
         if (is_hit_object) 
         { 
-            if (objects_not_exited.empty()) { 
+            // N1 based on last material encountered 
+            if (objects_not_exited.empty()) 
+            {  
                 n1 = 1.0; 
             } 
             else 
@@ -32,17 +34,19 @@ IntersectionState::IntersectionState(size_t hit_index, const std::vector<Interse
 
         if (std::find(objects_not_exited.begin(), objects_not_exited.end(), intersections[i].object) != objects_not_exited.end()) 
         { 
-            //If the object has been exited, erase it from objects
+            // If the object has been exited, erase it from objects not exited 
             auto it = std::remove(objects_not_exited.begin(), objects_not_exited.end(), intersections[i].object);
             objects_not_exited.erase(it, objects_not_exited.end());
         } 
         else 
         { 
+            // Entering a new object 
             objects_not_exited.emplace_back(intersections[i].object);
         }
 
         if (is_hit_object) 
         { 
+            // N2 based on new material being entered 
             if (objects_not_exited.empty())
             { 
                 n2 = 1.0;

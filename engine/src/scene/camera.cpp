@@ -16,10 +16,13 @@ void Camera::init()
     double half_view = std::tan(m_field_of_view / 2);
     double aspect = double(m_horizontal_pixels) / double(m_vertical_pixels);
 
-    if (aspect >= 1) { 
+    if (aspect >= 1) 
+    { 
         m_half_width = half_view;  
         m_half_height = half_view / aspect; 
-    } else { 
+    } 
+    else 
+    { 
         m_half_width = half_view * aspect; 
         m_half_height = half_view; 
     }
@@ -50,7 +53,8 @@ color::RGB Camera::anti_alias(double pixel_x, double pixel_y, scene::World& worl
     // Send 9 different rays around the pixel and average the color to get the 
     // final color. Used to make edges less abrupt
     
-    std::array<double, 8> jitter_matrix = {
+    constexpr int jitter_matrix_size = 8; 
+    std::array<double, jitter_matrix_size> jitter_matrix = {
     //Offsets for each pixel 
         -0.25,  0.25,  
          0.25, -0.25,  
@@ -60,7 +64,7 @@ color::RGB Camera::anti_alias(double pixel_x, double pixel_y, scene::World& worl
     //Color at the exact point 
     geo::Ray init_ray = ray_to_pixel(pixel_x, pixel_y); 
     color::RGB pixel_color = world.color_at(init_ray, world.reflection_limit);
-    for (int sample = 0; sample < 4; ++sample)
+    for (int sample = 0; sample < jitter_matrix_size / 2; ++sample)
     {
         //Colors at the jittered points 
         double jittered_x = pixel_x + jitter_matrix.at(2 * sample);
@@ -69,7 +73,7 @@ color::RGB Camera::anti_alias(double pixel_x, double pixel_y, scene::World& worl
         pixel_color += world.color_at(ray, world.reflection_limit);
     }
     // Average color; 
-    pixel_color /= 5; 
+    pixel_color /= ((double(jitter_matrix_size) / 2) + 1); 
     return pixel_color; 
 }
 

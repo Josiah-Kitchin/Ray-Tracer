@@ -28,17 +28,23 @@ int main() {
         .set_color(color::red())
         .set_refractive_index(2);
         
+    color::Stripes stripes; 
+    stripes
+        .set_first_color(color::red())
+        .set_second_color(color::green())
+        .transform(xform::scaling(0.3, 0.3, 0.3));
 
     scene::Sphere right_sphere; 
     right_sphere
-        .transform(xform::translation(-0.5, 0.5, 8))
+        .transform(xform::translation(1.5, 1, -0.5))
         .transform(xform::scaling(0.5, 0.5, 0.5))
         .set_material(sphere_mat)
-        .set_color(color::red());
+        .set_pattern(&stripes);
 
     color::Gradient gradient; 
-    gradient.set_first_color(color::red());
-    gradient.set_second_color(color::blue());
+    gradient
+        .set_first_color(color::red())
+        .set_second_color(color::blue());
 
     scene::Sphere left_sphere; 
     left_sphere
@@ -60,8 +66,6 @@ int main() {
         .set_diffuse(0.8)
         .set_ambient(0.2)
         .set_pattern(&checkers);
-
-
 
         
     /* ------------- Light --------------- */
@@ -102,9 +106,11 @@ int main() {
     sf::Sprite sprite(texture);
     sf::RenderWindow window(sf::VideoMode(horizontal_pixels, vertical_pixels), "Ray Tracer Output");
 
-    while (window.isOpen()) { 
+    while (window.isOpen()) 
+    { 
         sf::Event event; 
-        while (window.pollEvent(event)) { 
+        while (window.pollEvent(event)) 
+        { 
             if (event.type == sf::Event::Closed) 
                 window.close(); 
         }

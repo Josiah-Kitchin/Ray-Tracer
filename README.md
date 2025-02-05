@@ -5,7 +5,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 
 
-2000 x 1000, 1.5 seconds to render 
+2000 x 1000, 2.8 seconds to render 
 ![My Image](images/spheres.png)
 
 
@@ -20,20 +20,24 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 ## Dependencies 
 
 - Google Test 
+- SFML for the application 
+- TBB for multithreading 
 
 
 
 ## Build 
 ```bash
-    sudo apt install cmake #install cmake
     git clone https://github.com/Josiah-Kitchin/Ray-Tracer-Challenge #clone the repo 
     cd Ray-Tracer-Challenge 
-    cmake -S . -B build #create the make files with cmake 
-    cd build
-    make #compile the code to create an executable 
-    ./ray > image.ppm #run the program and output a ppm file
+    bash setup.sh # installs dependencies and builds engine and application
 ```
 
+## Run Application 
+```bash
+    cd application
+    cd build
+    ./ray
+```
 
 ## Test Build
 ```bash

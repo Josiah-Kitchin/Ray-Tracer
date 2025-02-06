@@ -7,7 +7,7 @@
 #include "color/color.hpp"
 #include <SFML/Graphics.hpp> 
 
-int main() { 
+int main(int argc, char** argv) { 
 
     /* ----------- Spheres ------------*/
 
@@ -91,7 +91,7 @@ int main() {
         .set_horizontal_pixels(horizontal_pixels)
         .set_vertical_pixels(vertical_pixels)
         .set_field_of_view(M_PI/3)
-        .transform(xform::view_transform(geo::Point(0, 1, -5), geo::Point(0, 1, 0), geo::Vec(0, 1, 0)));
+        .transform(xform::view_transform(geo::Point(0, 3, -5), geo::Point(0, 1, 0), geo::Vec(0, 1, 0)));
 
     scene::World world;
     world
@@ -101,28 +101,43 @@ int main() {
     
     image::Canvas canvas = camera.render(world);
 
-    std::vector<uint8_t> frame_buffer = canvas.write_to_frame_buffer(); 
+    if (argc < 2) { 
 
-    sf::Image image; 
-    image.create(horizontal_pixels, vertical_pixels, frame_buffer.data());
+        std::vector<uint8_t> frame_buffer = canvas.write_to_frame_buffer(); 
 
-    sf::Texture texture; 
-    texture.loadFromImage(image);
+        sf::Image image; 
+        image.create(horizontal_pixels, vertical_pixels, frame_buffer.data());
 
-    sf::Sprite sprite(texture);
-    sf::RenderWindow window(sf::VideoMode(horizontal_pixels, vertical_pixels), "Ray Tracer Output");
+        sf::Texture texture; 
+        texture.loadFromImage(image);
 
-    while (window.isOpen()) 
-    { 
-        sf::Event event; 
-        while (window.pollEvent(event)) 
+        sf::Sprite sprite(texture);
+        sf::RenderWindow window(sf::VideoMode(horizontal_pixels, vertical_pixels), "Ray Tracer Output");
+
+        while (window.isOpen()) 
         { 
-            if (event.type == sf::Event::Closed) 
-                window.close(); 
+            sf::Event event; 
+            while (window.pollEvent(event)) 
+            { 
+                if (event.type == sf::Event::Closed) 
+                    window.close(); 
+            }
+            window.clear(); 
+            window.draw(sprite);
+            window.display(); 
         }
-        window.clear(); 
-        window.draw(sprite);
-        window.display(); 
+    } 
+    else 
+    { 
+        if (std::string(argv[1]) == "-ppm") 
+        { 
+            canvas.write_to_ppm(); 
+        } 
+        else 
+        {
+            std::clog << "Usage: ./ray or ./ray -ppm to write a ppm to stdout\n";
+        }
+        
     }
 
 

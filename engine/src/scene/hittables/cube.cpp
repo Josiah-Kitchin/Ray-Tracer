@@ -11,7 +11,7 @@ Cube::Cube() : m_origin(geo::Point(0, 0, 0)), m_side_length(2.0) {}
 
 vector<geo::Intersection> Cube::intersect(const geo::Ray& ray) const 
 { 
-    geo::Ray transformed_ray = transform_ray(ray, inverse(m_transformation)); 
+    geo::Ray transformed_ray = transform_ray(ray, m_inverse_transformation); 
 
     // Initialize t_min and t_max for intersection points
     double t_min = -std::numeric_limits<double>::infinity();
@@ -96,7 +96,7 @@ vector<geo::Intersection> Cube::intersect(const geo::Ray& ray) const
 
 geo::Vec Cube::normal_at(const geo::Point& world_point) const 
 {
-    geo::Point object_point = xform::inverse(m_transformation) * world_point;
+    geo::Point object_point = m_inverse_transformation * world_point;
     geo::Vec object_normal;
 
     // Determine which face of the cube was hit and set the normal
@@ -126,7 +126,7 @@ geo::Vec Cube::normal_at(const geo::Point& world_point) const
     }
 
     // Transform the normal back to world coordinates
-    geo::Vec world_normal = xform::transpose(xform::inverse(m_transformation)) * object_normal;
+    geo::Vec world_normal = xform::transpose(m_inverse_transformation) * object_normal;
     return unit_vector(world_normal);  // Normalize the result
 }
 

@@ -11,7 +11,6 @@ The Vec is a direction in 3d space, while a Point is a coordinate in 3d space
 The Color holds an r, g, and b */ 
 
 
-
 /*-------------Vec-------------*/
 using geo::Vec; 
 using geo::Point; 

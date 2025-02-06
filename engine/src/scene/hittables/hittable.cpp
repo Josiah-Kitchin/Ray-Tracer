@@ -39,6 +39,7 @@ Hittable& Hittable::set_material(const scene::Material& mat)
 Hittable& Hittable::transform(const xform::Matrix<4>& new_transformation) 
 { 
     m_transformation = m_transformation * new_transformation;
+    m_inverse_transformation = xform::inverse(m_transformation);
     return *this; 
 }
 
@@ -69,6 +70,10 @@ Hittable& Hittable::set_transparency(double trans)
 xform::Matrix<4> Hittable::get_transformation() const 
 { 
     return m_transformation; 
+}
+xform::Matrix<4> Hittable::get_inverse_transformation() const 
+{ 
+    return m_inverse_transformation; 
 }
 
 

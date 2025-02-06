@@ -6,7 +6,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 
 2000 x 1000, 2.8 seconds to render 
-![My Image](images/spheres.png)
+![My Image](images/image.png)
 
 
 

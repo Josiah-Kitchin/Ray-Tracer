@@ -27,8 +27,8 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 ## Build 
 ```bash
-    git clone https://github.com/Josiah-Kitchin/Ray-Tracer-Challenge #clone the repo 
-    cd Ray-Tracer-Challenge 
+    git clone https://github.com/Josiah-Kitchin/Ray-Tracer #clone the repo 
+    cd Ray-Tracer 
     bash setup.sh # installs dependencies and builds engine and application
 ```
 
@@ -41,7 +41,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 ## Test Build
 ```bash
-    cd Ray-Tracer-Challenge/tests
+    cd Ray-Tracer/tests
     git clone https://github.com/google/googletest.git
     cmake -S . -B build #create the make files with cmake 
     cd build

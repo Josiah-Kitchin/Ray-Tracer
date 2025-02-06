@@ -4,9 +4,11 @@
 #include "geo/tuples.hpp"
 #include "scene/material.hpp"
 
-namespace scene {
+namespace scene 
+{
 
-    struct Light { 
+    struct Light 
+    { 
     /* A point that generates light for the scene */ 
 
     public: 

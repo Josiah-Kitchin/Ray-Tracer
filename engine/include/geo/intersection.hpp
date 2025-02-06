@@ -3,12 +3,15 @@
 
 #include <vector> 
 
-namespace scene {
+namespace scene 
+{
     class Hittable; 
 }
 
-namespace geo { 
-    class Intersection { 
+namespace geo 
+{ 
+    class Intersection 
+    { 
     /* Represents a ray intersecting with a hittable object */ 
 
     public: 

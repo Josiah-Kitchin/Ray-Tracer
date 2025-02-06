@@ -5,8 +5,10 @@
 #include "color/pattern.hpp"
 
 
-namespace scene {
-    class Material { 
+namespace scene 
+{
+    class Material 
+    { 
     /* The material for a hittable object, 
      * holds the color, pattern and material data */ 
 

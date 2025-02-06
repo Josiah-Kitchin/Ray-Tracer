@@ -7,8 +7,10 @@
 #include "scene/hittable.hpp"
 #include <vector> 
 
-namespace geo {
-    class IntersectionState { 
+namespace geo 
+{
+    class IntersectionState 
+    { 
     // Meta data of an intersection and a ray 
     public: 
         double t; // t of the ray 

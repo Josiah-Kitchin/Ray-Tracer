@@ -44,15 +44,11 @@ int main() {
     color::Gradient gradient; 
     gradient
         .set_first_color(color::red())
-        .set_second_color(color::blue());
+        .set_second_color(color::blue())
+        .transform(xform::scaling(1.2, 1.2, 1.2));
 
-    scene::Sphere left_sphere; 
-    left_sphere
-        .transform(xform::translation(-1.5, 0.33, -0.5))
-        .transform(xform::scaling(0.33, 0.33, 0.33))
-        .set_material(sphere_mat)
-        .set_pattern(&gradient);
-    scene::Sphere sphere; 
+    
+
 
     /* -------------- Plane -------------- */
 
@@ -67,7 +63,17 @@ int main() {
         .set_ambient(0.2)
         .set_pattern(&checkers);
 
+
+
         
+    /* --------- Cube ---------- */
+    scene::Cube cube; 
+    cube
+        .transform(xform::translation(-1.5, 0.33, -0.5))
+        .transform(xform::scaling(0.33, 0.33, 0.33))
+        .set_material(sphere_mat)
+        .set_pattern(&gradient);
+
     /* ------------- Light --------------- */
 
     scene::Light light; 
@@ -90,7 +96,7 @@ int main() {
     scene::World world;
     world
         .set_lights({light})
-        .set_objects({&floor, &middle_sphere, &right_sphere, &left_sphere})
+        .set_objects({&floor, &middle_sphere, &right_sphere, &cube})
         .set_reflection_limit(50);
     
     image::Canvas canvas = camera.render(world);

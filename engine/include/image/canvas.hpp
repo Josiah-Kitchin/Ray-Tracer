@@ -7,9 +7,11 @@
 #include "color/color.hpp"
 #include <cstdint> 
 
-namespace image {
+namespace image 
+{
 
-    class Canvas { 
+    class Canvas 
+    { 
     /* Holds a matrix of colors, used to generate the image */ 
      
     public: 

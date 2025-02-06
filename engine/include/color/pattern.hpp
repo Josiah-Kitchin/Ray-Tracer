@@ -5,13 +5,16 @@
 #include "color/color.hpp"
 
 
-namespace scene { 
+namespace scene 
+{ 
     class Hittable; 
 }
 
-namespace color {
+namespace color 
+{
 
-    class Pattern { 
+    class Pattern 
+    { 
     /* Apply a pattern to a hittable object 
      * Patterns can be transformed
      * Because of the pattern abstract class, patterns must be added to 
@@ -34,22 +37,26 @@ namespace color {
 
     //DIfferent patterns will return a different color at a given point 
 
-    class Stripes : public Pattern {
+    class Stripes : public Pattern 
+    {
     public: 
         RGB color_at(const geo::Point&) const override; 
     };
 
-    class Gradient : public Pattern { 
+    class Gradient : public Pattern 
+    { 
     public: 
         RGB color_at(const geo::Point&) const override; 
     };
 
-    class Rings : public Pattern { 
+    class Rings : public Pattern 
+    { 
     public:
         RGB color_at(const geo::Point&) const override; 
     };
 
-    class Checkers : public Pattern { 
+    class Checkers : public Pattern 
+    { 
     public: 
         RGB color_at(const geo::Point&) const override; 
     };

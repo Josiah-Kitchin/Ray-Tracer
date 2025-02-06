@@ -8,9 +8,11 @@
 #include "image/canvas.hpp"
 #include <vector> 
 
-namespace scene { 
+namespace scene 
+{ 
 
-    class Camera { 
+    class Camera 
+    { 
     /* The eye of the scene, where the first rays originate from.  
      * Holds data for the size of the image and field of view. 
      * The camera can be moved around by transforming with the view_transform matrix */ 

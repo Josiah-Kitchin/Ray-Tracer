@@ -10,9 +10,11 @@
 #include "geo/tuples.hpp"
 
 
-namespace scene {
+namespace scene 
+{
 
-class World {
+    class World 
+    {
     /* The world holds all of the hittable objects and lights. 
      * The world can be rendered by the camera */ 
 

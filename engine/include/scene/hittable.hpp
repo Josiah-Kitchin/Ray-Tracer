@@ -7,8 +7,10 @@
 #include "geo/intersection.hpp"
 #include "color/color.hpp"
 
-namespace scene {
-    class Hittable { 
+namespace scene 
+{
+    class Hittable 
+    { 
     /* The hittable abstract class is for objects that can be insersected by rays. */ 
 
     public: 
@@ -41,7 +43,8 @@ namespace scene {
         
     };
 
-    class Sphere : public Hittable { 
+    class Sphere : public Hittable 
+    { 
     public: 
 
         Sphere();
@@ -54,12 +57,24 @@ namespace scene {
 
     };
 
-    class Plane : public Hittable {
+    class Plane : public Hittable 
+    {
     public:
 
         std::vector<geo::Intersection> intersect(const geo::Ray&) const override;
         geo::Vec normal_at(const geo::Point&) const override;
         
+    };
+
+    class Cube : public Hittable 
+    { 
+    public: 
+        Cube(); 
+        std::vector<geo::Intersection> intersect(const geo::Ray&) const override; 
+        geo::Vec normal_at(const geo::Point&) const override; 
+    private: 
+        geo::Point m_origin; 
+        double m_side_length; 
     };
 }
 

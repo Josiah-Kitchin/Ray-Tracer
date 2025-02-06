@@ -7,9 +7,11 @@
 #include "xform/matrices.hpp" 
 
 
-namespace color {
+namespace color 
+{
 
-    class RGB { 
+    class RGB 
+    { 
     /* Represent a red, green, blue color 
      * Color values lie between 0 and 1 and will be converted to 256 come
      * time to display colors */ 

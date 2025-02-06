@@ -6,9 +6,11 @@
 #include "geo/tuples.hpp"
 #include "xform/matrices.hpp" 
 
-namespace geo {
+namespace geo 
+{
 
-    class Ray { 
+    class Ray 
+    { 
     public: 
         Point origin; // Point of where the ray was shot from  
         Vec direction; 

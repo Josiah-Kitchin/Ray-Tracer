@@ -14,7 +14,7 @@ World::World() : m_objects(std::vector<scene::Hittable*>{}),
 
 std::vector<geo::Intersection> World::intersects(const geo::Ray& ray) 
 { 
-    /* Return a vector of all intersections of objects in the world in sorted order*/
+    /* Return a vector of all intersections of objects in the world in sorted order */
 
     std::vector<geo::Intersection> intersections; 
     intersections.reserve(m_objects.size() * 500);
@@ -35,13 +35,13 @@ std::vector<geo::Intersection> World::intersects(const geo::Ray& ray)
 color::RGB World::shade_hit(const geo::IntersectionState& state, int recursive_reflection_limit) 
 { 
     /* Calculate the color for an intersection based on the worlds lights and the intersection state */
+
     bool is_shadow = is_shadowed(state.over_point);
     
     color::RGB surface; 
     for (const auto& light : m_lights) 
         surface += calculate_lighting(state.object, light, state.point, state.eye, state.normal, is_shadow);
     
-
     color::RGB reflected = reflect_color(state, recursive_reflection_limit);
     color::RGB refracted = refract_color(state, recursive_reflection_limit);
 

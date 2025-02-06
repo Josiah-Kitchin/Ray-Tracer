@@ -69,9 +69,13 @@ namespace scene
     class Cube : public Hittable 
     { 
     public: 
+        Cube(); 
         std::vector<geo::Intersection> intersect(const geo::Ray&) const override; 
         geo::Vec normal_at(const geo::Point&) const override; 
-    }
+    private: 
+        geo::Point m_origin; 
+        double m_side_length; 
+    };
 }
 
 #endif

@@ -37,9 +37,11 @@ namespace scene
         Material material; 
 
         xform::Matrix<4> get_transformation() const; 
+        xform::Matrix<4> get_inverse_transformation() const; 
 
     protected:        
-        xform::Matrix<4> m_transformation; 
+        xform::Matrix<4> m_transformation = xform::identity(); 
+        xform::Matrix<4> m_inverse_transformation = xform::inverse(xform::identity()); 
         
     };
 

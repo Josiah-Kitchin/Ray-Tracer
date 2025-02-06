@@ -14,7 +14,8 @@ vector<geo::Intersection> Sphere::intersect(const geo::Ray& ray) const
     
     //transform the ray instead of the sphere, with the type of transformation matrix being held in the 
     //hittable object. This means we have to take the inverse to give the correct transformation to the ray  
-    geo::Ray transformed_ray = transform_ray(ray, inverse(m_transformation)); 
+    /*geo::Ray transformed_ray = transform_ray(ray, inverse(m_transformation)); */
+    geo::Ray transformed_ray = transform_ray(ray, m_inverse_transformation); 
     //calculates whether a ray hits a sphere by calculating the discriminant 
     geo::Vec sphere_to_ray = transformed_ray.origin - m_origin; 
 
@@ -44,8 +45,8 @@ geo::Vec Sphere::normal_at(const geo::Point& world_point) const
     //Returns the normal vector at a point. 
     //Because the sphere is transformed, we must make calculations to compute the normal at the 
     //transformed state. 
-    geo::Point object_point = xform::inverse(m_transformation) * world_point; 
+    geo::Point object_point = m_inverse_transformation * world_point; 
     geo::Vec object_normal = object_point - geo::Point(0, 0, 0);
-    geo::Vec world_normal = xform::transpose(xform::inverse(m_transformation)) * object_normal; 
+    geo::Vec world_normal = xform::transpose(m_inverse_transformation) * object_normal; 
     return unit_vector(world_normal);
 }

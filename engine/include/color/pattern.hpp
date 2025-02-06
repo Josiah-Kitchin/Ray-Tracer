@@ -33,6 +33,7 @@ namespace color
 
         RGB color1 = color::black(), color2 = color::white(); 
         xform::Matrix<4> m_transformation = xform::identity(); 
+        xform::Matrix<4> m_inverse_transformation = xform::inverse(xform::identity()); 
     };
 
     //DIfferent patterns will return a different color at a given point 

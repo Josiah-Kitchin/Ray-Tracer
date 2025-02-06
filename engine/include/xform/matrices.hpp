@@ -22,7 +22,8 @@ namespace xform
      *  This results in the matrix operations being very fast with a downside of less readable code */
 
     private: 
-        std::array<double, N * N> m_data; 
+        /*std::array<double, N * N> m_data; */
+        std::array<double, N * N> m_data __attribute__((aligned(32)));
 
     public: 
         Matrix(); 
@@ -33,6 +34,7 @@ namespace xform
         double get(int, int) const;  
         void set(double, int, int); 
 
+        friend geo::Point inline operator*(const xform::Matrix<4>& matrix, const geo::Point& point); 
     };
 
     template <std::size_t N> 
@@ -120,13 +122,13 @@ xform::Matrix<N>& xform::Matrix<N>::operator=(const Matrix<N>& other)
 }
     
 template <std::size_t N> 
-double inline xform::Matrix<N>::get(int row, int col) const 
+inline double xform::Matrix<N>::get(int row, int col) const 
 { 
     return m_data[row * N + col];
 }
 
 template <std::size_t N> 
-void inline xform::Matrix<N>::set(double value, int row, int col) 
+inline void xform::Matrix<N>::set(double value, int row, int col) 
 { 
     m_data[row * N + col] = value;
 }
@@ -322,7 +324,7 @@ std::ostream& xform::operator<<(std::ostream& out, const xform::Matrix<N>& matri
 //Point and vec interaction 
 
 geo::Point inline xform::operator*(const xform::Matrix<4>& matrix, const geo::Point& point) 
-{ 
+{
     double x_new = matrix.get(0, 0) * point.x + matrix.get(0, 1) * point.y + matrix.get(0,2) * point.z + matrix.get(0,3);
     double y_new = matrix.get(1, 0) * point.x + matrix.get(1, 1) * point.y + matrix.get(1, 2) * point.z + matrix.get(1, 3);
     double z_new = matrix.get(2, 0) * point.x + matrix.get(2, 1) * point.y + matrix.get(2, 2) * point.z + matrix.get(2, 3);
@@ -448,6 +450,8 @@ bool is_invertable(const xform::Matrix<N>& matrix)
 { 
     return determinant(matrix) != 0;
 }
+
+
 
 
 #endif

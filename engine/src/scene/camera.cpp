@@ -40,9 +40,8 @@ geo::Ray Camera::ray_to_pixel(double pixel_x, double  pixel_y) const
     double world_y = m_half_height - y_offset; 
 
     // The ray is transformed based on transformations made on the camera 
-    xform::Matrix inverse_mat = xform::inverse(m_transformation);
-    geo::Point pixel =  inverse_mat * geo::Point(world_x, world_y, -1);
-    geo::Point origin = inverse_mat * geo::Point(0, 0, 0);
+    geo::Point pixel =  m_inverse_transformation * geo::Point(world_x, world_y, -1);
+    geo::Point origin = m_inverse_transformation * geo::Point(0, 0, 0);
     geo::Vec direction = unit_vector(pixel - origin);
 
     return geo::Ray(origin, direction);
@@ -152,6 +151,7 @@ Camera& Camera::set_field_of_view(double degrees)
 Camera& Camera::transform(const xform::Matrix<4>& new_transformation) 
 { 
     m_transformation = m_transformation * new_transformation;
+    m_inverse_transformation = xform::inverse(m_transformation);
     return *this;
 }
 

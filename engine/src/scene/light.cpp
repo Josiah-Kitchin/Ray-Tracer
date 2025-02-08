@@ -56,7 +56,8 @@ color::RGB calculate_lighting(const scene::Hittable* object, const Light& light,
     { 
         specular = color::RGB(0, 0, 0);
     } 
-    else { 
+    else 
+    { 
         double factor = pow(reflect_dot_eye, mat.shininess);
         specular = light.m_intensity * mat.specular * factor; 
     }

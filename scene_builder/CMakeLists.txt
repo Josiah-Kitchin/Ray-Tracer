@@ -18,15 +18,21 @@ include_directories(../engine/include)
 target_link_directories(ray PRIVATE ${CMAKE_SOURCE_DIR}/../engine/build)
 target_link_libraries(ray PRIVATE libray.a)
 
+set(JSON_DIR ./libs/json)
+add_subdirectory(${JSON_DIR} nlohmann_json)
+
 #for multithreading 
 find_package(TBB REQUIRED)
 
 #window
-find_package(SFML 2.5 COMPONENTS system window graphics REQUIRED)
 
-target_link_libraries(ray PRIVATE TBB::tbb sfml-system sfml-window sfml-graphics)
+target_link_libraries(
+    ray PRIVATE 
+    TBB::tbb 
+    nlohmann_json
+)
 
-target_compile_options(ray PRIVATE -Wall -Wextra -O3)
+target_compile_options(ray PRIVATE -Wall -Wextra -g)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -mavx")
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -O3")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
+# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")

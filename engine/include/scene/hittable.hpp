@@ -41,6 +41,7 @@ namespace scene
 
     protected:        
         xform::Matrix<4> m_transformation = xform::identity(); 
+        // Store the inverse transformation so it only needs to be calculated once 
         xform::Matrix<4> m_inverse_transformation = xform::inverse(xform::identity()); 
         
     };

@@ -23,7 +23,7 @@ namespace xform
 
     private: 
         /*std::array<double, N * N> m_data; */
-        std::array<double, N * N> m_data __attribute__((aligned(32)));
+        std::array<double, N * N> m_data;
 
     public: 
         Matrix(); 
@@ -70,6 +70,7 @@ namespace xform
 
 }
 
+// Very expensive operations, use wisely 
 template <std::size_t N> 
 double cofactor(const xform::Matrix<N>& matrix, size_t delete_row, size_t delete_column);  
 template <std::size_t N> 

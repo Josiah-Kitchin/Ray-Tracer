@@ -4,7 +4,6 @@
 #include "scene/scene.hpp"
 #include <string> 
 #include <fstream> 
-#include <iostream> 
 
 using namespace nlohmann; 
 

@@ -21,16 +21,16 @@ void Canvas::insert_color(color::RGB color, int color_idx, int line)
     color_matrix.at(line * m_width + color_idx) = color;  
 }
 
-void Canvas::write_to_ppm() 
+void Canvas::write_to_ppm(std::ostream& out) 
 { 
-    std::cout << "P3\n" << m_width << ' ' << m_height << "\n255\n"; 
+    out << "P3\n" << m_width << ' ' << m_height << "\n255\n"; 
     for (int line = 0; line < m_height; line++) 
     { 
         for (int pixel = 0; pixel < m_width; pixel++) 
         { 
             color::RGB color = pixel_at(line, pixel); 
             color.convert_to_256(); 
-            std::cout << color.r << ' ' << color.g << ' ' << color.b << '\n';
+            out << color.r << ' ' << color.g << ' ' << color.b << '\n';
         }
     }
 }

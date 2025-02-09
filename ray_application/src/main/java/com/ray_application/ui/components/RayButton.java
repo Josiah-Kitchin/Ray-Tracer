@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*; 
 
 public class RayButton extends JButton
+/* Main button for the ui */ 
 {
-    
     public RayButton(String text, int width, int height)
     {
         super(text);

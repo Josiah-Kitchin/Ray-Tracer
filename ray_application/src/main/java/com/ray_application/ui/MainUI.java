@@ -2,12 +2,10 @@
 package com.ray_application.ui; 
 
 import com.ray_application.ui.components.*; 
-import com.ray_application.sceneCreater.PPMReader;
 
 import javax.swing.*; 
 import java.awt.*; 
 import java.awt.image.BufferedImage; 
-import java.io.IOException; 
 
 
 public class MainUI
@@ -34,6 +32,7 @@ public class MainUI
 
     private static void addImageContainer(BufferedImage imageBuffer, JFrame frame)
     {
+        // Upper panel meant for viewing the rendered image 
         ImagePanel image = new ImagePanel(imageBuffer, imageBuffer.getWidth(), imageBuffer.getHeight());
         image.resize(600);
 
@@ -47,6 +46,7 @@ public class MainUI
 
     private static void addButtonsContainer(JFrame frame)
     {
+        // Control panel for creating the scene and rendering 
         JPanel buttonContainer = new JPanel(); 
         buttonContainer.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight() / 3));
         buttonContainer.setBackground(new Color(30, 30, 30));

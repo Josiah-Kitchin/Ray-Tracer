@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Engine
+/* Manages the engine executable */ 
 {
     String engineExecutablePath; 
     public Engine(String engineExecutablePath)
@@ -13,6 +14,11 @@ public class Engine
     }
 
     public BufferedImage render() throws IOException, InterruptedException
+    /* Spawns a process for the engine executable and waits for its completion.
+     * On completion, returns the rendered image in a BufferedImage.
+     * Throws an interrupt exception if the rendering is interruped  
+     * Throws an IO exception if it can not find the executable or json 
+     */
     {
         try { 
             String renderCommand = this.engineExecutablePath + "./ray " +

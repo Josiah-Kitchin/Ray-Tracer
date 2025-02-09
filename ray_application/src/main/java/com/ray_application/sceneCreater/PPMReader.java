@@ -8,6 +8,9 @@ import java.util.Scanner;
 public class PPMReader
 {
     public static BufferedImage loadPPM(String filename) throws IOException
+    /* Takes in a file name of a ppm file and converts it to a BufferedImage
+     * Throws an IO exception if the file can not be found 
+     */
     {
         File file = new File(filename);
         Scanner scanner = new Scanner(file);

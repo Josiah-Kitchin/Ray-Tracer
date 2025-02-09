@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+    id 'application'  // Add this line
+}
+
+group = 'com.ray_application'
+version = '1.0'
+sourceCompatibility = '17' 
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.google.code.gson:gson:2.10'  // For JSON handling
+    testImplementation 'junit:junit:4.13.2'  // For unit testing
+}
+
+application {  // Use 'application' instead of 'ray_application'
+    mainClass = 'com.ray_application.Main'  
+}
+

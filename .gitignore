@@ -7,3 +7,5 @@ build/
 .vscode
 .cache
 tests/.cache
+todo.txt
+run.sh

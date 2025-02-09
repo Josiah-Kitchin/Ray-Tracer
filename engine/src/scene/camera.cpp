@@ -27,6 +27,7 @@ void Camera::init()
         m_half_height = half_view; 
     }
     m_pixel_size = (m_half_width * 2) / m_horizontal_pixels;
+    m_transformed_origin = m_inverse_transformation * geo::Point(0, 0, 0);
 }
 
 
@@ -41,10 +42,10 @@ geo::Ray Camera::ray_to_pixel(double pixel_x, double  pixel_y) const
 
     // The ray is transformed based on transformations made on the camera 
     geo::Point pixel =  m_inverse_transformation * geo::Point(world_x, world_y, -1);
-    geo::Point origin = m_inverse_transformation * geo::Point(0, 0, 0);
-    geo::Vec direction = unit_vector(pixel - origin);
 
-    return geo::Ray(origin, direction);
+    geo::Vec direction = unit_vector(pixel - m_transformed_origin);
+
+    return geo::Ray(m_transformed_origin, direction);
 }
 
 color::RGB Camera::anti_alias(double pixel_x, double pixel_y, scene::World& world) const 

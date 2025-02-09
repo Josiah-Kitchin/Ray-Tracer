@@ -17,6 +17,7 @@ std::vector<geo::Intersection> World::intersects(const geo::Ray& ray)
     /* Return a vector of all intersections of objects in the world in sorted order */
 
     std::vector<geo::Intersection> intersections; 
+    // A guess to how much needs to be reserved 
     intersections.reserve(m_objects.size() * 500);
 
     for (const auto object : m_objects) 

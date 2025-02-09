@@ -36,6 +36,7 @@ namespace scene
         double m_half_height; 
         xform::Matrix<4> m_transformation = xform::identity(); 
         xform::Matrix<4> m_inverse_transformation = xform::inverse(xform::identity());
+        geo::Point m_transformed_origin; 
 
         geo::Ray ray_to_pixel(double, double) const;
         color::RGB anti_alias(double, double, scene::World&) const; 

@@ -29,13 +29,10 @@ namespace geo
         double length() const; 
     };
 
-
     Vec cross(const Vec&, const Vec&); 
     Vec unit_vector(const Vec&); 
     double dot(const Vec&, const Vec&);
-
     Vec reflect(const Vec&, const Vec&);
-
 
 
     class Point 

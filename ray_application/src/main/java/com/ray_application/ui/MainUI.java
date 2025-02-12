@@ -2,16 +2,19 @@
 package com.ray_application.ui; 
 
 import com.ray_application.ui.components.*; 
+import com.ray_application.Controller; 
+import com.ray_application.sceneCreater.Engine; 
 
 import javax.swing.*; 
 import java.awt.*; 
-import java.awt.image.BufferedImage; 
 
 
 public class MainUI
 {
-    
-    public static void main(BufferedImage renderedImage)
+
+    private static ImagePanel imagePanel; 
+
+    public static void main()
     {
         SwingUtilities.invokeLater(() -> {;
             // Window setup
@@ -22,20 +25,19 @@ public class MainUI
             frame.setLayout(new FlowLayout());
             frame.getContentPane().setBackground(new Color(30, 30, 30));
 
-            addImageContainer(renderedImage, frame);
+            // Create an empty image 
+            imagePanel = new ImagePanel(1000, 750);
+
+            addImageContainer(imagePanel, frame);
             addButtonsContainer(frame);
 
             frame.setVisible(true);
         }); 
     }
 
-
-    private static void addImageContainer(BufferedImage imageBuffer, JFrame frame)
+    private static void addImageContainer(ImagePanel image, JFrame frame)
     {
         // Upper panel meant for viewing the rendered image 
-        ImagePanel image = new ImagePanel(imageBuffer, imageBuffer.getWidth(), imageBuffer.getHeight());
-        image.resize(600);
-
         JPanel imageContainer = new JPanel(); 
         imageContainer.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight() / 3));
         imageContainer.setBorder(BorderFactory.createLineBorder(new Color(10, 10, 10), 4));
@@ -48,14 +50,26 @@ public class MainUI
     {
         // Control panel for creating the scene and rendering 
         JPanel buttonContainer = new JPanel(); 
+        buttonContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10)); // Center aligned, with spacing
         buttonContainer.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight() / 3));
         buttonContainer.setBackground(new Color(30, 30, 30));
+        
+        // Add Object button 
+        JButton addObject = new RayButton("Add Object", 200, 50);
+        buttonContainer.add(addObject);
 
-        JButton button = new RayButton("Render", 100, 50);
-        buttonContainer.add(button);
+        // Render button 
+        Engine engine = new Engine("resources/");
+        Controller controller = new Controller(engine); 
+        JButton render = new RayButton("Render", 200, 50);
+        controller.setButtonToRenderImage(render, imagePanel);
+        buttonContainer.add(render);
+
+        // Add Light button 
+        JButton addLight = new RayButton("Add Light", 200, 50);
+        buttonContainer.add(addLight);
 
         frame.add(buttonContainer);
-
     }
 }
 

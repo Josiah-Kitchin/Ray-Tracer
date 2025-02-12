@@ -26,10 +26,8 @@ public class Engine
 
             ProcessBuilder processBuilder = new ProcessBuilder(renderCommand.split(" "));
 
-            System.out.println("Rendering image");
             Process process = processBuilder.start(); 
             int exitCode = process.waitFor(); 
-            System.out.println("Image complete");
 
             return PPMReader.loadPPM("image.ppm");
 

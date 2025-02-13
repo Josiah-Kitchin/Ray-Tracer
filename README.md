@@ -51,7 +51,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 ```
 
 ## Example scene.json
-[Main](scene.json)
+[Scene](scene.json)
 
 
 See [Docs](docs) for more information on how to use the ray tracer

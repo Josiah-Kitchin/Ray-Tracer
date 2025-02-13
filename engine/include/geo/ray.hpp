@@ -4,25 +4,22 @@
 #define RAY_HPP
 
 #include "geo/tuples.hpp"
-#include "xform/matrices.hpp" 
+#include "xform/matrices.hpp"
 
-namespace geo 
-{
+namespace geo {
 
-    class Ray 
-    { 
-    public: 
-        Point origin; // Point of where the ray was shot from  
-        Vec direction; 
+class Ray {
+  public:
+    Point origin; // Point of where the ray was shot from
+    Vec direction;
 
-        Ray(Point, Vec);
+    Ray(Point, Vec);
 
-        Point at(double) const; // Point along the ray at a given t 
-    };
-}
+    Point at(double) const; // Point along the ray at a given t
+};
+} // namespace geo
 
-// Transform a ray by multiplying a matrix with the ray 
-geo::Ray transform_ray(const geo::Ray&, const xform::Matrix<4>&);
+// Transform a ray by multiplying a matrix with the ray
+geo::Ray transform_ray(const geo::Ray &, const xform::Matrix<4> &);
 
-
-#endif 
+#endif

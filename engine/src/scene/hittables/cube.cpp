@@ -1,17 +1,15 @@
 
 #include "scene/hittable.hpp"
-#include <algorithm> 
+#include <algorithm>
 
 using scene::Cube;
-using std::vector; 
-#include <cmath> 
-
+using std::vector;
+#include <cmath>
 
 Cube::Cube() : m_origin(geo::Point(0, 0, 0)), m_side_length(2.0) {}
 
-vector<geo::Intersection> Cube::intersect(const geo::Ray& ray) const 
-{ 
-    geo::Ray transformed_ray = transform_ray(ray, m_inverse_transformation); 
+vector<geo::Intersection> Cube::intersect(const geo::Ray &ray) const {
+    geo::Ray transformed_ray = transform_ray(ray, m_inverse_transformation);
 
     // Initialize t_min and t_max for intersection points
     double t_min = -std::numeric_limits<double>::infinity();
@@ -43,21 +41,17 @@ vector<geo::Intersection> Cube::intersect(const geo::Ray& ray) const
     for (int i = 0; i < 3; ++i) {
         double origin, direction, min_bound, max_bound;
 
-        if (i == 0) 
-        {
+        if (i == 0) {
             origin = ray_origin_x;
             direction = ray_dir_x;
             min_bound = min_x;
             max_bound = max_x;
-        } 
-        else if (i == 1) 
-        {
+        } else if (i == 1) {
             origin = ray_origin_y;
             direction = ray_dir_y;
             min_bound = min_y;
             max_bound = max_y;
-        } 
-        else {
+        } else {
             origin = ray_origin_z;
             direction = ray_dir_z;
             min_bound = min_z;
@@ -80,54 +74,47 @@ vector<geo::Intersection> Cube::intersect(const geo::Ray& ray) const
 
             // If t_min is greater than t_max, there's no intersection
             if (t_min > t_max) {
-                return {}; 
+                return {};
             }
         } else {
-            // If ray is parallel to the plane and doesn't intersect along this axis
+            // If ray is parallel to the plane and doesn't intersect along this
+            // axis
             if (origin < min_bound || origin > max_bound) {
-                return {}; 
+                return {};
             }
         }
     }
 
     // If we get here, the ray intersects the cube
-    return { geo::Intersection(t_min, this), geo::Intersection(t_max, this) };
+    return {geo::Intersection(t_min, this), geo::Intersection(t_max, this)};
 }
 
-geo::Vec Cube::normal_at(const geo::Point& world_point) const 
-{
+geo::Vec Cube::normal_at(const geo::Point &world_point) const {
     geo::Point object_point = m_inverse_transformation * world_point;
     geo::Vec object_normal;
 
     // Determine which face of the cube was hit and set the normal
-    if (std::abs(object_point.x - m_origin.x - m_side_length / 2.0) < 1e-6) 
-    {
+    if (std::abs(object_point.x - m_origin.x - m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(1, 0, 0); // Normal along positive x-axis
-    } 
-    else if (std::abs(object_point.x - m_origin.x + m_side_length / 2.0) < 1e-6) 
-    {
+    } else if (std::abs(object_point.x - m_origin.x + m_side_length / 2.0) <
+               1e-6) {
         object_normal = geo::Vec(-1, 0, 0); // Normal along negative x-axis
-    } 
-    else if (std::abs(object_point.y - m_origin.y - m_side_length / 2.0) < 1e-6) 
-    {
+    } else if (std::abs(object_point.y - m_origin.y - m_side_length / 2.0) <
+               1e-6) {
         object_normal = geo::Vec(0, 1, 0); // Normal along positive y-axis
-    } 
-    else if (std::abs(object_point.y - m_origin.y + m_side_length / 2.0) < 1e-6) 
-    {
+    } else if (std::abs(object_point.y - m_origin.y + m_side_length / 2.0) <
+               1e-6) {
         object_normal = geo::Vec(0, -1, 0); // Normal along negative y-axis
-    } 
-    else if (std::abs(object_point.z - m_origin.z - m_side_length / 2.0) < 1e-6) 
-    {
+    } else if (std::abs(object_point.z - m_origin.z - m_side_length / 2.0) <
+               1e-6) {
         object_normal = geo::Vec(0, 0, 1); // Normal along positive z-axis
-    } 
-    else if (std::abs(object_point.z - m_origin.z + m_side_length / 2.0) < 1e-6) 
-    {
+    } else if (std::abs(object_point.z - m_origin.z + m_side_length / 2.0) <
+               1e-6) {
         object_normal = geo::Vec(0, 0, -1); // Normal along negative z-axis
     }
 
     // Transform the normal back to world coordinates
-    geo::Vec world_normal = xform::transpose(m_inverse_transformation) * object_normal;
-    return unit_vector(world_normal);  // Normalize the result
+    geo::Vec world_normal =
+        xform::transpose(m_inverse_transformation) * object_normal;
+    return unit_vector(world_normal); // Normalize the result
 }
-
-

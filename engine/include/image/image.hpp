@@ -4,5 +4,4 @@
 
 #include "image/canvas.hpp"
 
-
 #endif

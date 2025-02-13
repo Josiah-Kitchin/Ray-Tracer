@@ -5,22 +5,20 @@
 #include "scene/hittable.hpp"
 #undef private
 
-
-
-TEST(plane, intersect) { 
+TEST(plane, intersect) {
     scene::Plane plane;
     geo::Ray ray(geo::Point(0, 10, 0), geo::Vec(0, 0, 1));
     std::vector<geo::Intersection> intersections = plane.intersect(ray);
     ASSERT_TRUE(intersections.empty());
 }
-TEST(plane, intersect2) { 
+TEST(plane, intersect2) {
     scene::Plane plane;
     geo::Ray ray(geo::Point(0, 0, 0), geo::Vec(0, 0, 1));
     auto intersections = plane.intersect(ray);
     ASSERT_TRUE(intersections.empty());
 }
 
-TEST(plane, intersect3) { 
+TEST(plane, intersect3) {
     scene::Plane plane;
     geo::Ray ray(geo::Point(0, 1, 0), geo::Vec(0, -1, 0));
     auto intersections = plane.intersect(ray);
@@ -29,7 +27,7 @@ TEST(plane, intersect3) {
     ASSERT_EQ(intersections.at(0).object, &plane);
 }
 
-TEST(plane, intersect4) { 
+TEST(plane, intersect4) {
     scene::Plane plane;
     geo::Ray ray(geo::Point(0, -1, 0), geo::Vec(0, 1, 0));
     auto intersections = plane.intersect(ray);

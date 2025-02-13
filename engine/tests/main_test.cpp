@@ -1,7 +1,5 @@
 
-#include <gtest/gtest.h> 
-
-
+#include <gtest/gtest.h>
 
 // Main function to run all tests
 int main(int argc, char **argv) {

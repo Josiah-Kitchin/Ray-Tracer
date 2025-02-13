@@ -8,8 +8,8 @@ using scene::World;
 
 World::World()
     : m_objects(std::vector<scene::Hittable *>{}),
-      m_lights(std::vector<scene::Light>{
-          scene::Light(color::RGB(1, 1, 1), geo::Point(-10, 10, -10))}),
+      m_lights(
+          std::vector<scene::Light>{scene::Light(color::RGB(1, 1, 1), geo::Point(-10, 10, -10))}),
       reflection_limit(50) {}
 
 std::vector<geo::Intersection> World::intersects(const geo::Ray &ray) {
@@ -25,14 +25,12 @@ std::vector<geo::Intersection> World::intersects(const geo::Ray &ray) {
         for (const auto &intersection : object_intersections)
             intersections.emplace_back(intersection);
     }
-    std::sort(
-        intersections.begin(), intersections.end(),
-        [](geo::Intersection a, geo::Intersection b) { return a.t < b.t; });
+    std::sort(intersections.begin(), intersections.end(),
+              [](geo::Intersection a, geo::Intersection b) { return a.t < b.t; });
     return intersections;
 }
 
-color::RGB World::shade_hit(const geo::IntersectionState &state,
-                            int recursive_reflection_limit) {
+color::RGB World::shade_hit(const geo::IntersectionState &state, int recursive_reflection_limit) {
     /* Calculate the color for an intersection based on the worlds lights and
      * the intersection state */
 
@@ -40,8 +38,8 @@ color::RGB World::shade_hit(const geo::IntersectionState &state,
 
     color::RGB surface;
     for (const auto &light : m_lights)
-        surface += calculate_lighting(state.object, light, state.point,
-                                      state.eye, state.normal, is_shadow);
+        surface += calculate_lighting(state.object, light, state.point, state.eye, state.normal,
+                                      is_shadow);
 
     color::RGB reflected = reflect_color(state, recursive_reflection_limit);
     color::RGB refracted = refract_color(state, recursive_reflection_limit);
@@ -49,8 +47,7 @@ color::RGB World::shade_hit(const geo::IntersectionState &state,
     return surface + reflected + refracted;
 }
 
-color::RGB World::color_at(const geo::Ray &ray,
-                           int recursive_reflection_limit) {
+color::RGB World::color_at(const geo::Ray &ray, int recursive_reflection_limit) {
     /* Encapuslate some of the intersection logic in one function */
     auto intersections = intersects(ray);
     int object_hit_idx = geo::hit_index(intersections);
@@ -75,8 +72,7 @@ bool World::is_shadowed(const geo::Point &point) {
         const auto intersections = intersects(ray_from_point);
         int intersected_ray_idx = geo::hit_index(intersections);
 
-        if ((intersected_ray_idx == -1) ||
-            intersections[intersected_ray_idx].t >= distance)
+        if ((intersected_ray_idx == -1) || intersections[intersected_ray_idx].t >= distance)
             return false;
     }
     return true;
@@ -111,12 +107,11 @@ color::RGB World::refract_color(const geo::IntersectionState &state,
         return color::black();
 
     double cos_t = sqrt(1.0 - sin2_t);
-    geo::Vec refract_direction =
-        state.normal * (n_ratio * cos_i - cos_t) - state.eye * n_ratio;
+    geo::Vec refract_direction = state.normal * (n_ratio * cos_i - cos_t) - state.eye * n_ratio;
     geo::Ray refract_ray(state.under_point, refract_direction);
 
-    color::RGB color = color_at(refract_ray, recursive_reflection_limit - 1) *
-                       state.object->material.transparency;
+    color::RGB color =
+        color_at(refract_ray, recursive_reflection_limit - 1) * state.object->material.transparency;
 
     return color;
 }

@@ -4,64 +4,55 @@
 
 #include "color/color.hpp"
 
-
-namespace scene 
-{ 
-    class Hittable; 
+namespace scene {
+class Hittable;
 }
 
-namespace color 
-{
+namespace color {
 
-    class Pattern 
-    { 
-    /* Apply a pattern to a hittable object 
+class Pattern {
+    /* Apply a pattern to a hittable object
      * Patterns can be transformed
-     * Because of the pattern abstract class, patterns must be added to 
-     * materials by address */ 
+     * Because of the pattern abstract class, patterns must be added to
+     * materials by address */
 
-    public:
-        virtual RGB color_at(const geo::Point&) const = 0;       
-        RGB color_at_object(const scene::Hittable*, const geo::Point&) const;
+  public:
+    virtual RGB color_at(const geo::Point &) const = 0;
+    RGB color_at_object(const scene::Hittable *, const geo::Point &) const;
 
-        Pattern& transform(const xform::Matrix<4>&);
+    Pattern &transform(const xform::Matrix<4> &);
 
-        Pattern& set_first_color(const color::RGB&);
-        Pattern& set_second_color(const color::RGB&);
+    Pattern &set_first_color(const color::RGB &);
+    Pattern &set_second_color(const color::RGB &);
 
-    protected:
+  protected:
+    RGB color1 = color::black(), color2 = color::white();
+    xform::Matrix<4> m_transformation = xform::identity();
+    xform::Matrix<4> m_inverse_transformation = xform::inverse(xform::identity());
+};
 
-        RGB color1 = color::black(), color2 = color::white(); 
-        xform::Matrix<4> m_transformation = xform::identity(); 
-        xform::Matrix<4> m_inverse_transformation = xform::inverse(xform::identity()); 
-    };
+// DIfferent patterns will return a different color at a given point
 
-    //DIfferent patterns will return a different color at a given point 
+class Stripes : public Pattern {
+  public:
+    RGB color_at(const geo::Point &) const override;
+};
 
-    class Stripes : public Pattern 
-    {
-    public: 
-        RGB color_at(const geo::Point&) const override; 
-    };
+class Gradient : public Pattern {
+  public:
+    RGB color_at(const geo::Point &) const override;
+};
 
-    class Gradient : public Pattern 
-    { 
-    public: 
-        RGB color_at(const geo::Point&) const override; 
-    };
+class Rings : public Pattern {
+  public:
+    RGB color_at(const geo::Point &) const override;
+};
 
-    class Rings : public Pattern 
-    { 
-    public:
-        RGB color_at(const geo::Point&) const override; 
-    };
+class Checkers : public Pattern {
+  public:
+    RGB color_at(const geo::Point &) const override;
+};
 
-    class Checkers : public Pattern 
-    { 
-    public: 
-        RGB color_at(const geo::Point&) const override; 
-    };
-    
-}
+} // namespace color
 
-#endif 
+#endif

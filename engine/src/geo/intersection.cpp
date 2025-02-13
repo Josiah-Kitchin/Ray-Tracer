@@ -6,8 +6,7 @@ to the object that was intersected*/
 
 using geo::Intersection;
 
-Intersection::Intersection(double t, const scene::Hittable *object)
-    : t(t), object(object){};
+Intersection::Intersection(double t, const scene::Hittable *object) : t(t), object(object){};
 
 bool geo::operator==(const Intersection &i1, const Intersection &i2) {
     return i1.t == i2.t && i1.object == i2.object;
@@ -23,8 +22,7 @@ int geo::hit_index(const std::vector<Intersection> &intersections) {
     float min_t = intersections.at(0).t;
     int min_index = 0;
     for (size_t i = 0; i < intersections.size(); ++i) {
-        if (intersections[i].t >= 0 &&
-            (min_t < 0 || intersections[i].t < min_t)) {
+        if (intersections[i].t >= 0 && (min_t < 0 || intersections[i].t < min_t)) {
             min_t = intersections[i].t;
             min_index = i;
         }

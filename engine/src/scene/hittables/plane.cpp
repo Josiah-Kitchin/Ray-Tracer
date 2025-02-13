@@ -9,8 +9,7 @@ using std::vector;
 
 vector<geo::Intersection> Plane::intersect(const geo::Ray &ray) const {
     geo::Ray transformed_ray = transform_ray(ray, m_inverse_transformation);
-    if (std::abs(transformed_ray.direction.y) <
-        utils::EPSILON) // ray parellel with the plane
+    if (std::abs(transformed_ray.direction.y) < utils::EPSILON) // ray parellel with the plane
         return {};
 
     double t = -transformed_ray.origin.y / transformed_ray.direction.y;

@@ -36,23 +36,21 @@ geo::Ray Camera::ray_to_pixel(double pixel_x, double pixel_y) const {
     double world_y = m_half_height - y_offset;
 
     // The ray is transformed based on transformations made on the camera
-    geo::Point pixel =
-        m_inverse_transformation * geo::Point(world_x, world_y, -1);
+    geo::Point pixel = m_inverse_transformation * geo::Point(world_x, world_y, -1);
 
     geo::Vec direction = unit_vector(pixel - m_transformed_origin);
 
     return geo::Ray(m_transformed_origin, direction);
 }
 
-color::RGB Camera::anti_alias(double pixel_x, double pixel_y,
-                              scene::World &world) const {
+color::RGB Camera::anti_alias(double pixel_x, double pixel_y, scene::World &world) const {
     // Send 9 different rays around the pixel and average the color to get the
     // final color. Used to make edges less abrupt
 
     constexpr int jitter_matrix_size = 8;
-    std::array<double, jitter_matrix_size> jitter_matrix = {
-        // Offsets for each pixel
-        -0.25, 0.25, 0.25, -0.25, -0.75, -0.75, 0.75, 0.75};
+    std::array<double, jitter_matrix_size> jitter_matrix = {// Offsets for each pixel
+                                                            -0.25, 0.25,  0.25, -0.25,
+                                                            -0.75, -0.75, 0.75, 0.75};
     // Color at the exact point
     geo::Ray init_ray = ray_to_pixel(pixel_x, pixel_y);
     color::RGB pixel_color = world.color_at(init_ray, world.reflection_limit);
@@ -89,13 +87,12 @@ image::Canvas Camera::render(scene::World &world) {
 
 /* -------------- Render Loop -------------- */
 #ifdef DEBUG_BUILD // Take away multithreading for easier debugging
-    std::for_each(m_vertical_pixel_iterator.begin(),
-                  m_vertical_pixel_iterator.end(), [&](int y) {
-                      for (int x = 0; x < m_horizontal_pixels; ++x) {
-                          color::RGB pixel_color = anti_alias(x, y, world);
-                          image.insert_color(pixel_color, x, y);
-                      }
-                  });
+    std::for_each(m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), [&](int y) {
+        for (int x = 0; x < m_horizontal_pixels; ++x) {
+            color::RGB pixel_color = anti_alias(x, y, world);
+            image.insert_color(pixel_color, x, y);
+        }
+    });
 #else
     std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(),
                   m_vertical_pixel_iterator.end(), [&](int y) {
@@ -109,8 +106,7 @@ image::Canvas Camera::render(scene::World &world) {
 
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
-    std::clog << "\rImage Complete\nTime to render: " << duration.count()
-              << '\n';
+    std::clog << "\rImage Complete\nTime to render: " << duration.count() << '\n';
 
     return image;
 }

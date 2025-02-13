@@ -52,23 +52,18 @@ Vec geo::operator*(const Vec &left, const Vec &right) {
     return Vec(left.x * right.x, left.y * right.y, left.z * right.z);
 }
 
-Vec geo::operator*(const Vec &left, double t) {
-    return Vec(left.x * t, left.y * t, left.z * t);
-}
+Vec geo::operator*(const Vec &left, double t) { return Vec(left.x * t, left.y * t, left.z * t); }
 
 Vec geo::operator*(double t, const Vec &right) { return right * t; }
 
 Vec geo::operator/(const Vec &right, double t) { return (1 / t) * right; }
 
 bool geo::operator==(const Vec &left, const Vec &right) {
-    return utils::compare_doubles(left.x, right.x) &&
-           utils::compare_doubles(left.y, right.y) &&
+    return utils::compare_doubles(left.x, right.x) && utils::compare_doubles(left.y, right.y) &&
            utils::compare_doubles(left.z, right.z);
 }
 
-bool geo::operator!=(const Vec &left, const Vec &right) {
-    return !(left == right);
-}
+bool geo::operator!=(const Vec &left, const Vec &right) { return !(left == right); }
 
 std::ostream &geo::operator<<(std::ostream &out, const Vec &vec) {
     out << "(" << vec.x << ", " << vec.y << ", " << vec.z << ")";
@@ -81,8 +76,7 @@ double Vec::length() const { return std::sqrt(length_squared()); }
 
 Vec geo::cross(const Vec &v1, const Vec &v2) {
     // Provides the vector perpendicular to where two vectors cross
-    return Vec(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z,
-               v1.x * v2.y - v1.y * v2.x);
+    return Vec(v1.y * v2.z - v1.z * v2.y, v1.z * v2.x - v1.x * v2.z, v1.x * v2.y - v1.y * v2.x);
 }
 
 Vec geo::unit_vector(const Vec &v) {
@@ -134,14 +128,11 @@ Vec geo::operator-(const Point &left, const Point &right) {
 }
 
 bool geo::operator==(const Point &left, const Point &right) {
-    return utils::compare_doubles(left.x, right.x) &&
-           utils::compare_doubles(left.y, right.y) &&
+    return utils::compare_doubles(left.x, right.x) && utils::compare_doubles(left.y, right.y) &&
            utils::compare_doubles(left.z, right.z);
 }
 
-bool geo::operator!=(const Point &left, const Point &right) {
-    return !(left == right);
-}
+bool geo::operator!=(const Point &left, const Point &right) { return !(left == right); }
 
 std::ostream &geo::operator<<(std::ostream &out, const Point &point) {
     out << "(" << point.x << ", " << point.y << ", " << point.z << ")";

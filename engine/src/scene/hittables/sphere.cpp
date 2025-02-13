@@ -46,7 +46,6 @@ geo::Vec Sphere::normal_at(const geo::Point &world_point) const {
     // the normal at the transformed state.
     geo::Point object_point = m_inverse_transformation * world_point;
     geo::Vec object_normal = object_point - geo::Point(0, 0, 0);
-    geo::Vec world_normal =
-        xform::transpose(m_inverse_transformation) * object_normal;
+    geo::Vec world_normal = xform::transpose(m_inverse_transformation) * object_normal;
     return unit_vector(world_normal);
 }

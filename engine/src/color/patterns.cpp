@@ -14,10 +14,8 @@ Pattern &Pattern::transform(const xform::Matrix<4> &transformation) {
     return *this;
 }
 
-RGB Pattern::color_at_object(const scene::Hittable *object,
-                             const geo::Point &world_point) const {
-    geo::Point object_point =
-        object->get_inverse_transformation() * world_point;
+RGB Pattern::color_at_object(const scene::Hittable *object, const geo::Point &world_point) const {
+    geo::Point object_point = object->get_inverse_transformation() * world_point;
     geo::Point pattern_point = m_inverse_transformation * object_point;
 
     return color_at(pattern_point);

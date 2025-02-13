@@ -57,9 +57,5 @@ Hittable &Hittable::set_transparency(double trans) {
     return *this;
 }
 
-xform::Matrix<4> Hittable::get_transformation() const {
-    return m_transformation;
-}
-xform::Matrix<4> Hittable::get_inverse_transformation() const {
-    return m_inverse_transformation;
-}
+xform::Matrix<4> Hittable::get_transformation() const { return m_transformation; }
+xform::Matrix<4> Hittable::get_inverse_transformation() const { return m_inverse_transformation; }

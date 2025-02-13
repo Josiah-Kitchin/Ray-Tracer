@@ -63,8 +63,7 @@ static xform::Matrix<4> build_transformation(const json &transformations_data) {
             double y_z = transform_data["y_z"];
             double z_x = transform_data["z_x"];
             double z_y = transform_data["z_y"];
-            transformation =
-                transformation * xform::shearing(x_y, x_z, y_x, y_z, z_x, z_y);
+            transformation = transformation * xform::shearing(x_y, x_z, y_x, y_z, z_x, z_y);
         }
     }
     return transformation;
@@ -74,10 +73,8 @@ static color::Pattern *build_pattern(const json &pattern_data) {
     const std::string &type = pattern_data["type"];
     const json &first_color_data = pattern_data["first_color"];
     const json &second_color_data = pattern_data["second_color"];
-    const color::RGB first_color(first_color_data[0], first_color_data[1],
-                                 first_color_data[2]);
-    const color::RGB second_color(second_color_data[0], second_color_data[1],
-                                  second_color_data[2]);
+    const color::RGB first_color(first_color_data[0], first_color_data[1], first_color_data[2]);
+    const color::RGB second_color(second_color_data[0], second_color_data[1], second_color_data[2]);
     color::Pattern *pattern = nullptr;
     if (type == "Checkers") {
         pattern = new color::Checkers();
@@ -100,8 +97,7 @@ static color::Pattern *build_pattern(const json &pattern_data) {
         pattern->set_second_color(second_color);
     }
     if (pattern_data.contains("transformations")) {
-        xform::Matrix<4> transformation =
-            build_transformation(pattern_data["transformations"]);
+        xform::Matrix<4> transformation = build_transformation(pattern_data["transformations"]);
         pattern->transform(transformation);
     }
     return pattern;
@@ -157,8 +153,7 @@ static scene::World build_world(const json &world_data) {
             object->set_material(mat);
         }
         if (object_data.contains("transformations")) {
-            xform::Matrix<4> transformation =
-                build_transformation(object_data["transformations"]);
+            xform::Matrix<4> transformation = build_transformation(object_data["transformations"]);
             object->transform(transformation);
         }
         world.add_object(object);
@@ -166,12 +161,10 @@ static scene::World build_world(const json &world_data) {
 
     for (const json &light_data : world_data["lights"]) {
         scene::Light light;
-        color::RGB intensity(light_data["intensity"][0],
-                             light_data["intensity"][1],
+        color::RGB intensity(light_data["intensity"][0], light_data["intensity"][1],
                              light_data["intensity"][2]);
         light.set_intensity(intensity);
-        geo::Point position(light_data["position"][0],
-                            light_data["position"][1],
+        geo::Point position(light_data["position"][0], light_data["position"][1],
                             light_data["position"][2]);
         light.set_position(position);
         world.add_light(light);

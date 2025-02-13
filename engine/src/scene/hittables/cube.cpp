@@ -96,25 +96,19 @@ geo::Vec Cube::normal_at(const geo::Point &world_point) const {
     // Determine which face of the cube was hit and set the normal
     if (std::abs(object_point.x - m_origin.x - m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(1, 0, 0); // Normal along positive x-axis
-    } else if (std::abs(object_point.x - m_origin.x + m_side_length / 2.0) <
-               1e-6) {
+    } else if (std::abs(object_point.x - m_origin.x + m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(-1, 0, 0); // Normal along negative x-axis
-    } else if (std::abs(object_point.y - m_origin.y - m_side_length / 2.0) <
-               1e-6) {
+    } else if (std::abs(object_point.y - m_origin.y - m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(0, 1, 0); // Normal along positive y-axis
-    } else if (std::abs(object_point.y - m_origin.y + m_side_length / 2.0) <
-               1e-6) {
+    } else if (std::abs(object_point.y - m_origin.y + m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(0, -1, 0); // Normal along negative y-axis
-    } else if (std::abs(object_point.z - m_origin.z - m_side_length / 2.0) <
-               1e-6) {
+    } else if (std::abs(object_point.z - m_origin.z - m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(0, 0, 1); // Normal along positive z-axis
-    } else if (std::abs(object_point.z - m_origin.z + m_side_length / 2.0) <
-               1e-6) {
+    } else if (std::abs(object_point.z - m_origin.z + m_side_length / 2.0) < 1e-6) {
         object_normal = geo::Vec(0, 0, -1); // Normal along negative z-axis
     }
 
     // Transform the normal back to world coordinates
-    geo::Vec world_normal =
-        xform::transpose(m_inverse_transformation) * object_normal;
+    geo::Vec world_normal = xform::transpose(m_inverse_transformation) * object_normal;
     return unit_vector(world_normal); // Normalize the result
 }

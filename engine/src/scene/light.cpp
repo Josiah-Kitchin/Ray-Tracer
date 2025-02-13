@@ -24,9 +24,8 @@ color::RGB calculate_lighting(const scene::Hittable *object, const Light &light,
 
     scene::Material mat = object->material;
 
-    color::RGB color = mat.m_pattern != nullptr
-                           ? mat.m_pattern->color_at_object(object, position)
-                           : mat.color;
+    color::RGB color =
+        mat.m_pattern != nullptr ? mat.m_pattern->color_at_object(object, position) : mat.color;
 
     color::RGB ambient, diffuse, specular;
 

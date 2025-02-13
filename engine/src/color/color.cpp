@@ -39,19 +39,14 @@ RGB color::operator+(const RGB &color, const geo::Point &point) {
     return RGB(color.r + point.x, color.g + point.y, color.b + point.z);
 }
 
-RGB color::operator+(const geo::Point &point, const RGB &color) {
-    return color + point;
-}
+RGB color::operator+(const geo::Point &point, const RGB &color) { return color + point; }
 
 bool color::operator==(const RGB &left, const RGB &right) {
-    return utils::compare_doubles(left.r, right.r) &&
-           utils::compare_doubles(left.g, right.g) &&
+    return utils::compare_doubles(left.r, right.r) && utils::compare_doubles(left.g, right.g) &&
            utils::compare_doubles(left.b, right.b);
 }
 
-bool color::operator!=(const RGB &left, const RGB &right) {
-    return !(left == right);
-}
+bool color::operator!=(const RGB &left, const RGB &right) { return !(left == right); }
 
 RGB color::operator*(const RGB &left, const RGB &right) {
     return RGB(left.r * right.r, left.g * right.g, left.b * right.b);

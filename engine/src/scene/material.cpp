@@ -4,8 +4,8 @@
 using scene::Material;
 
 Material::Material()
-    : color(color::RGB(0, 0, 0)), ambient(0), diffuse(0), specular(0),
-      shininess(1), reflective(0), refractive_index(0), transparency(0) {}
+    : color(color::RGB(0, 0, 0)), ambient(0), diffuse(0), specular(0), shininess(1), reflective(0),
+      refractive_index(0), transparency(0) {}
 
 Material &Material::set_ambient(double amb) {
     ambient = amb;

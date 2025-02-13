@@ -8,9 +8,9 @@
 using geo::Intersection;
 using geo::IntersectionState;
 
-IntersectionState::IntersectionState(
-    size_t hit_index, const std::vector<Intersection> &intersections,
-    const Ray &ray) {
+IntersectionState::IntersectionState(size_t hit_index,
+                                     const std::vector<Intersection> &intersections,
+                                     const Ray &ray) {
 
     /* -------- Calculate the refraction -------- */
 
@@ -31,9 +31,8 @@ IntersectionState::IntersectionState(
         if (std::find(objects_not_exited.begin(), objects_not_exited.end(),
                       intersections[i].object) != objects_not_exited.end()) {
             // If the object has been exited, erase it from objects not exited
-            auto it =
-                std::remove(objects_not_exited.begin(),
-                            objects_not_exited.end(), intersections[i].object);
+            auto it = std::remove(objects_not_exited.begin(), objects_not_exited.end(),
+                                  intersections[i].object);
             objects_not_exited.erase(it, objects_not_exited.end());
         } else {
             // Entering a new object

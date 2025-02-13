@@ -1,0 +1,163 @@
+{
+  "camera": {
+    "horizontal_pixels": 1500,
+    "vertical_pixels": 1000,
+    "field_of_view": 1.0471975511965976,
+    "view_transform": {
+      "from": [
+        1.0,
+        3.0,
+        -5.0
+      ],
+      "to": [
+        -1.0,
+        1.0,
+        0.0
+      ],
+      "up": [
+        0.0,
+        1.0,
+        0.0
+      ]
+    }
+  },
+  "world": {
+    "objects": [
+      {
+        "type": "Sphere",
+        "transformations": [
+          {
+            "type": "translation",
+            "x": -0.5,
+            "y": 1.0,
+            "z": 3.0
+          }
+        ],
+        "material": {
+          "ambient": 0.3,
+          "diffuse": 0.8,
+          "specular": 0.4,
+          "transparency": 1.0,
+          "color": [
+            1.0,
+            0.0,
+            1.0
+          ],
+          "refractive_index": 2.0
+        }
+      },
+      {
+        "type": "Plane",
+        "transformations": [],
+        "material": {
+          "ambient": 0.2,
+          "diffuse": 0.8,
+          "pattern": {
+            "type": "Checkers",
+            "first_color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "second_color": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      {
+        "type": "Plane",
+        "transformations": [
+          {
+            "type": "translation",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 10.0
+          },
+          {
+            "type": "rotation_x",
+            "radians": 1.578
+          }
+        ],
+        "material": {
+          "ambient": 0.2,
+          "diffuse": 0.8,
+          "pattern": {
+            "type": "Checkers",
+            "first_color": [
+              1.0,
+              1.0,
+              1.0
+            ],
+            "second_color": [
+              0.0,
+              0.0,
+              0.0
+            ]
+          }
+        }
+      },
+      {
+        "type": "Cube",
+        "transformations": [
+          {
+            "type": "translation",
+            "x": -1.5,
+            "y": 0.33,
+            "z": -0.5
+          },
+          {
+            "type": "scaling",
+            "x": 0.33,
+            "y": 0.33,
+            "z": 0.33
+          }
+        ],
+        "material": {
+          "ambient": 0.3,
+          "diffuse": 0.7,
+          "specular": 0.3,
+          "pattern": {
+            "type": "Gradient",
+            "first_color": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "second_color": [
+              0.0,
+              0.0,
+              1.0
+            ],
+            "transformations": [
+              {
+                "type": "scaling",
+                "x": 2.0,
+                "y": 2.0,
+                "z": 2.0
+              }
+            ]
+          }
+        }
+      }
+    ],
+    "lights": [
+      {
+        "type": "Light",
+        "position": [
+          -10.0,
+          10.0,
+          -10.0
+        ],
+        "intensity": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ],
+    "reflection_limit": 10
+  }
+}

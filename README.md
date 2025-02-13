@@ -16,6 +16,7 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 - Multithreaded 
 - Test-driven development with Google Test
 - Built with CMake for easy build configuration
+- Create scenes via JSON files
 
 ## Dependencies 
 
@@ -34,9 +35,9 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
 
 ## Run Application 
 ```bash
-    cd application
+    cd scene_builder
     cd build
-    ./ray
+    ./ray <your scene.json here>  
 ```
 
 ## Test Build
@@ -49,8 +50,8 @@ A 3D ray tracer inspired by *[The Ray Tracer Challenge](https://www.oreilly.com/
     ./ray_test #run the tests 
 ```
 
-## Example main.cpp
-[Main](application/src/main.cpp)
+## Example scene.json
+[Main](scene.json)
 
 
 See [Docs](docs) for more information on how to use the ray tracer

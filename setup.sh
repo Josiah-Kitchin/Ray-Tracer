@@ -17,7 +17,7 @@ cd build
 make
 cd ../..
 
-cd application
+cd scene_builder 
 mkdir build
 cmake -B build -S .
 cd build

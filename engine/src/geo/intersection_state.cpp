@@ -3,7 +3,6 @@
 #include "geo/intersection.hpp"
 #include "scene/hittable.hpp"
 #include "utils.hpp"
-#include <algorithm>
 
 using geo::Intersection;
 using geo::IntersectionState;
@@ -19,34 +18,20 @@ IntersectionState::IntersectionState(size_t hit_index,
 
     for (size_t i = 0; i < intersections.size(); ++i) {
         bool is_hit_object = (hit_index == i);
-        if (is_hit_object) {
-            // N1 based on last material encountered
-            if (objects_not_exited.empty()) {
-                n1 = 1.0;
-            } else {
-                n1 = objects_not_exited.back()->material.refractive_index;
-            }
+        const auto &intersection = intersections.at(i);
+        if (is_hit_object)
+            n1 = !objects_not_exited.empty() ? objects_not_exited.back()->material.refractive_index
+                                             : 1.0;
+
+        if (!objects_not_exited.empty() && objects_not_exited.back() == intersection.object) {   
+            objects_not_exited.pop_back();
+        } else { 
+            objects_not_exited.push_back(intersection.object);
         }
 
-        if (std::find(objects_not_exited.begin(), objects_not_exited.end(),
-                      intersections[i].object) != objects_not_exited.end()) {
-            // If the object has been exited, erase it from objects not exited
-            auto it = std::remove(objects_not_exited.begin(), objects_not_exited.end(),
-                                  intersections[i].object);
-            objects_not_exited.erase(it, objects_not_exited.end());
-        } else {
-            // Entering a new object
-            objects_not_exited.emplace_back(intersections[i].object);
-        }
-
-        if (is_hit_object) {
-            // N2 based on new material being entered
-            if (objects_not_exited.empty()) {
-                n2 = 1.0;
-            } else {
-                n2 = objects_not_exited.back()->material.refractive_index;
-            }
-        }
+        if (is_hit_object) 
+            n2 = !objects_not_exited.empty() ? objects_not_exited.back()->material.refractive_index
+                                             : 1.0;
     }
 
     /* -------- Object specific intersection data ------- */

@@ -29,18 +29,3 @@ void Canvas::write_to_ppm(std::ostream &out) {
     }
 }
 
-std::vector<uint8_t> Canvas::write_to_frame_buffer() {
-    /* Write to a frame buffer to be used for displaying the image on a SFML
-     * window */
-
-    std::vector<uint8_t> frame_buffer;
-    frame_buffer.reserve(color_matrix.size() * 4);
-    for (auto &color : color_matrix) {
-        color.convert_to_256();
-        frame_buffer.push_back(color.r);
-        frame_buffer.push_back(color.g);
-        frame_buffer.push_back(color.b);
-        frame_buffer.push_back(255);
-    }
-    return frame_buffer;
-}

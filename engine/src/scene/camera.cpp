@@ -54,6 +54,7 @@ color::RGB Camera::anti_alias(double pixel_x, double pixel_y, scene::World &worl
     // Color at the exact point
     geo::Ray init_ray = ray_to_pixel(pixel_x, pixel_y);
     color::RGB pixel_color = world.color_at(init_ray, world.reflection_limit);
+
     for (int sample = 0; sample < jitter_matrix_size / 2; ++sample) {
         // Colors at the jittered points
         double jittered_x = pixel_x + jitter_matrix.at(2 * sample);
@@ -74,39 +75,24 @@ image::Canvas Camera::render(scene::World &world) {
 
     init(); // Calculate some neccessary variables
 
-    // Initialize the iterator
-    m_vertical_pixel_iterator.resize(m_vertical_pixels);
-    for (int i = 0; i < m_vertical_pixels; ++i)
-        m_vertical_pixel_iterator[i] = i;
-
     image::Canvas image(m_horizontal_pixels, m_vertical_pixels);
 
     auto start = std::chrono::high_resolution_clock::now();
 
     std::clog << " Rendering...            \r";
 
-/* -------------- Render Loop -------------- */
-#ifdef DEBUG_BUILD // Take away multithreading for easier debugging
-    std::for_each(m_vertical_pixel_iterator.begin(), m_vertical_pixel_iterator.end(), [&](int y) {
+    /* -------------- Render Loop -------------- */
+    #pragma omp parallel for schedule(dynamic)
+    for (int y = 0; y < m_vertical_pixels; ++y) {
         for (int x = 0; x < m_horizontal_pixels; ++x) {
             color::RGB pixel_color = anti_alias(x, y, world);
             image.insert_color(pixel_color, x, y);
         }
-    });
-#else
-    std::for_each(std::execution::par, m_vertical_pixel_iterator.begin(),
-                  m_vertical_pixel_iterator.end(), [&](int y) {
-                      for (int x = 0; x < m_horizontal_pixels; ++x) {
-                          color::RGB pixel_color = anti_alias(x, y, world);
-                          image.insert_color(pixel_color, x, y);
-                      }
-                  });
-#endif
-    /*-------------------------------------------*/
-
+    }
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> duration = end - start;
     std::clog << "\rImage Complete\nTime to render: " << duration.count() << '\n';
+    /*-------------------------------------------*/
 
     return image;
 }

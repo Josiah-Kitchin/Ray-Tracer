@@ -6,7 +6,6 @@
 #include "image/canvas.hpp"
 #include "scene/world.hpp"
 #include "xform/matrices.hpp"
-#include <vector>
 
 namespace scene {
 
@@ -40,9 +39,6 @@ class Camera {
     geo::Ray ray_to_pixel(double, double) const;
     color::RGB anti_alias(double, double, scene::World &) const;
     void init(); // calculates pixel size, half_width, half_height
-
-    std::vector<int>
-        m_vertical_pixel_iterator; // need iters to use for each parrallelisim
 };
 
 } // namespace scene

@@ -21,18 +21,16 @@ target_link_libraries(ray PRIVATE libray.a)
 set(JSON_DIR ./libs/json)
 add_subdirectory(${JSON_DIR} nlohmann_json)
 
-#for multithreading 
-find_package(TBB REQUIRED)
 
 #window
 
 target_link_libraries(
     ray PRIVATE 
-    TBB::tbb 
     nlohmann_json
 )
 
 target_compile_options(ray PRIVATE -Wall -Wextra -g)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fopenmp")
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
 # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg")
